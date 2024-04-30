@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:04:40 by skorbai           #+#    #+#             */
-/*   Updated: 2024/04/29 14:36:51 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/04/30 14:27:31 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_vector	*vector_new(size_t size)
 	return (new_vector);
 }
 
-static char	**vector_array_realloc(char ***old_text, size_t node_max)
+char	**vector_array_realloc(char ***old_text, size_t node_max)
 {
 	char	**new_text;
 	size_t	i;
@@ -61,7 +61,7 @@ static char	**vector_array_realloc(char ***old_text, size_t node_max)
 	return (new_text);
 }
 
-static int	expand_vector(t_vector *old)
+int	expand_vector(t_vector *old)
 {
 	old->text = vector_array_realloc(&old->text, old->max_nodes);
 	if (old->text == NULL)

@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/04/30 14:18:10 by fshields         ###   ########.fr       */
+/*   Updated: 2024/04/30 14:26:50 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void		msg_and_exit(char *msg);
 t_vector	*read_map(int argc, char **argv);
 
 //init.c
-int			init_window();
+mlx_t		*init_window();
 
 //find_walls
 double		get_ray_length(double ray_direction_x, double ray_direction_y, int *step_x, int *step_y, double position_x, double position_y, int map_x, int map_y, char **map);

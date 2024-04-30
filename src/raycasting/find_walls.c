@@ -6,11 +6,11 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 11:21:57 by fshields          #+#    #+#             */
-/*   Updated: 2024/04/30 14:02:08 by fshields         ###   ########.fr       */
+/*   Updated: 2024/04/30 14:29:08 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 #include "float.h"//maybe remove this later?
 
 double	adjust_ray_direction(int mode, int x)
@@ -31,7 +31,7 @@ static double	get_delta_dist(double ray_direction)
 		return (DBL_MAX);
 	else
 	{
-		return (abs(1 / ray_direction));
+		return (fabs(1 / ray_direction));
 	}
 }
 

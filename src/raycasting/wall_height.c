@@ -6,18 +6,18 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:28:49 by fshields          #+#    #+#             */
-/*   Updated: 2024/04/30 14:17:11 by fshields         ###   ########.fr       */
+/*   Updated: 2024/04/30 14:30:32 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 static int	get_line_height(double perp_wall_dist)
 {
 	return ((int) SCREEN_HEIGHT / perp_wall_dist);
 }
 
-static void draw_wall_section(char **map, mlx_t *window, int x, mlx_image_t *line)
+static void draw_wall_section(char **map, int x, mlx_image_t *line)
 {
 	int		draw_start;
 	int		draw_end;
@@ -50,12 +50,13 @@ void	draw_walls(char **map, mlx_t *window)
 	int			screen_x;
 	mlx_image_t	*wall_pixel;
 	
+	screen_x = 0;
 	wall_pixel = mlx_new_image(window, 1, 1);
 	if (wall_pixel == NULL)
 		msg_and_exit("Failed to create image");//also, free the map
 	while (screen_x < SCREEN_WIDTH)
 	{
-		draw_wall_section(map, window, screen_x, wall_pixel);
+		draw_wall_section(map, screen_x, wall_pixel);
 		screen_x++;
 	}	
 }
