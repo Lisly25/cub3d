@@ -1,5 +1,5 @@
 NAME		=	cub3d
-GLFW_DIR	=	/Users/fshields/.brew/opt/glfw/lib
+GLFW_DIR	=	/Users/$(USER)/.brew/opt/glfw/lib
 CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror
 SRCS		=	src/main.c \
