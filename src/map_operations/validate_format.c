@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 11:04:42 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/01 11:36:24 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/01 12:16:58 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static bool	check_if_possibly_asset_info_line(char *str)
 {
 	if (*str != '\n')
 	{
-		if (ft_isalpha(*str) == true)
+		if (ft_isalpha(*str) == true && ft_strlen(str) > 3)
 			return (true);
 		else
 			return (false);
