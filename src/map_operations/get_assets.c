@@ -6,33 +6,35 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:46:21 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/01 12:22:16 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/01 12:41:00 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static void	trim_identifier(char **config_line)
+static char	*trim_identifier(char *config_line)
 {
-	char	*str;
 	char	*temp;
+	char	*trimmed;
 	size_t	len;
 
-	str = *config_line;
-	len = ft_strlen(str);
-	temp = ft_substr(str, 2, (ft_strlen(str - 3)));
-	free(str);
-	str = NULL;
+	len = ft_strlen(config_line);
+	temp = ft_substr(config_line, 3, (ft_strlen(config_line) - 3));
+	free(config_line);
 	if (temp == NULL)
-		return ;
-	str = ft_strtrim(temp, " \n");
+		return (NULL);
+	trimmed = ft_strtrim(temp, " \n");
 	free(temp);
+	if (trimmed == NULL)
+		return (NULL);
+	return (trimmed);
 }
 
 static char	*extract_texture_path(char *id, t_assets *assets, t_vector *map)
 {
 	size_t	i;
 	char	*texture_info;
+	char	*trimmed_info;
 
 	i = 0;
 	while (i < map->used_nodes)
@@ -44,10 +46,10 @@ static char	*extract_texture_path(char *id, t_assets *assets, t_vector *map)
 			texture_info = extract_array(map, i);
 			if (texture_info == NULL)
 				map_validation_error("Malloc failure", map, assets);
-			trim_identifier(&texture_info);
-			if (texture_info == NULL)
+			trimmed_info = trim_identifier(texture_info);
+			if (trimmed_info == NULL)
 				map_validation_error("Malloc failure", map, assets);
-			return (texture_info);
+			return (trimmed_info);
 		}
 		i++;
 	}
@@ -58,7 +60,7 @@ static char	*extract_texture_path(char *id, t_assets *assets, t_vector *map)
 void	get_texture_info(t_vector *map, t_assets *assets)
 {
 	assets->north_file = extract_texture_path("NO ", assets, map);
-	ft_printf("%s\n", assets->north_file);
+	ft_printf("North file path: %s\n", assets->north_file);
 	assets->south_file = extract_texture_path("SO ", assets, map);
 	assets->east_file = extract_texture_path("EA ", assets, map);
 	assets->west_file = extract_texture_path("WE ", assets, map);
@@ -71,7 +73,7 @@ t_assets	*get_assets(t_vector *map)
 	t_assets	*assets;
 
 	validate_texture_info_format(map);
-	ft_printf("First texture info validity check passed!");
+	ft_printf("First texture info validity check passed!\n");
 	assets = (t_assets *)malloc(sizeof(t_assets));
 	if (assets == NULL)
 		map_validation_error("Malloc failure", map, NULL);
