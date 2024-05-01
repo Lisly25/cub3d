@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:47:28 by skorbai           #+#    #+#             */
-/*   Updated: 2024/04/29 14:42:52 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/01 09:40:54 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int	main(int argc, char **argv)
 {
 	t_vector	*map;
+	t_assets	*assets;
 
 	map = read_map(argc, argv);
-	validate_map(map);
+	assets = get_assets(map);
 }
