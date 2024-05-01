@@ -6,13 +6,13 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:15:33 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/01 10:02:46 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/01 10:52:51 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	free_assets_struct(t_assets *assets)
+void	free_assets_struct(t_assets *assets)
 {
 	if (assets->north_file != NULL)
 		free(assets->north_file);

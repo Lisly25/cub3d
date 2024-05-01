@@ -8,6 +8,7 @@ SRCS		=	src/main.c \
 				src/vector_decrease.c \
 				src/map_operations/read_map.c \
 				src/map_operations/get_assets.c \
+				src/map_operations/validate_format.c
 				
 OBJS		=	$(SRCS:.c=.o)
 HEADER		=	src/cub3d.h
@@ -16,7 +17,7 @@ LIBFT_H		=	$(LIBFT_DIR)/libft.h
 LIBFT		=	$(LIBFT_DIR)/libft.a
 MLX			=	mlx/build/libmlx42.a
 MLX_HEADER	=	mlx/include/MLX42/MLX42.h
-# FSAN		=	-g -fsanitize=address -static-libsan
+FSAN		=	-g -fsanitize=address -static-libsan
 
 all:			makelibft $(NAME)
 
@@ -35,16 +36,16 @@ $(NAME):		$(OBJS) $(LIBFT) $(HEADER) $(LIBFT_H) $(MLX)
 %.o:			%.c
 					@$(CC) $(CFLAGS) -c $< -o $@
 
-# san:		
-# 					@$(CC) $(CFLAGS) $(FSAN) $(SRCS) $(LIBFT)  -o san
+san:			$(OBJS) $(LIBFT) $(HEADER) $(LIBFT_H) $(MLX)
+					@$(CC) $(FSAN) $(OBJS) $(MLX) $(LIBFT) -ldl -pthread -lm -L$(GLFW_DIR) -lglfw -I $(MLX_HEADER) -o san
 
 clean:
 					@rm -f $(OBJS)
-					@rm -rf mlx/build
 					make fclean -C ./libft
 
 fclean:			clean
 					@rm -f $(NAME)
+					@rm -rf mlx/build
 
 
 re:				fclean all

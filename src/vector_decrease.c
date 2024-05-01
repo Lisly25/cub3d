@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 09:59:22 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/01 10:47:09 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/01 12:22:45 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	print_vector_content(t_vector *vector)
 		ft_printf("%s", vector->text[i]);
 		i++;
 	}
+	ft_printf("\n");
 }
 
 static void	rearrange_vector(t_vector *vector, size_t index, char **new_text)
