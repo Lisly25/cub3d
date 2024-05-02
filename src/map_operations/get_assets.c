@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:46:21 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/02 13:20:56 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/02 15:26:27 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ t_assets	*get_assets(t_vector *map)
 	t_assets	*assets;
 
 	validate_texture_info_format(map);
-	ft_printf("First texture info validity check passed!\n");
+	//ft_printf("First texture info validity check passed!\n");
 	assets = (t_assets *)malloc(sizeof(t_assets));
 	if (assets == NULL)
 		map_validation_error("Malloc failure", map, NULL);

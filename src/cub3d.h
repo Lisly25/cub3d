@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/02 13:39:55 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/02 15:22:04 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_assets
 void		msg_and_exit(char *msg);
 void		map_validation_error(char *msg, t_vector *map, t_assets *assets);
 void		free_assets_struct(t_assets *assets);
-void		error_msg(char *msg);
+bool		error_msg(char *msg);
 
 //map_operations/read_map.c
 t_vector	*read_map(int argc, char **argv);

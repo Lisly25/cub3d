@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:15:32 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/02 15:15:41 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/02 15:26:12 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,18 @@ static bool	validate_top_line(t_vector *map)
 	size_t	i;
 	size_t	line_len;
 
+	i = 0;
 	if (map->used_nodes < 3)
-		return (false);
+		return (error_msg("Map too small"));
 	line_len = ft_strlen(map->text[0]);
 	if (line_len < 2)
-		return (false);
+		return (error_msg("Invalid map format"));
 	if (map->text[0][line_len - 1] != '\n')
-		return (false);
+		return (error_msg("Map too small"));
 	while (map->text[0][i] != '\n')
 	{
 		if (map->text[0][i] != '1' || map->text[0][i] != ' ')
-			return (false);
+			return (error_msg("Invalid map format"));
 		i++;
 	}
 	return (true);
@@ -68,23 +69,23 @@ static bool	validate_middle_line(char *line)
 	i = 0;
 	line_len = ft_strlen(line);
 	if (line_len < 2)
-		return (false);
+		return (error_msg("Map too small"));
 	if (line[line_len - 1] != '\n')
-		return (false);
+		return (error_msg("Invalid map format"));
 	while (line[i] != '\n')
 	{
 		while (line[i] == ' ')
 			i++;
 		if (line[i] != '1')
-			return (false);
+			return (error_msg("Map must be surrounded by walls(1)"));
 		while (line[i] != ' ' && line[i] != '\n')
 		{
 			if (ft_strchr("NESW10", line[i]) == NULL)
-				return (false);
+				return (error_msg("Invalid character in map"));
 			i++;
 		}
 		if (i != 0 && line[i - 1] != '1')
-			return (false);
+			return (error_msg("Map must be surrounded by walls(1)"));
 	}
 	return (true);
 }
@@ -95,14 +96,15 @@ static bool	validate_bottom_line(t_vector *map)
 	size_t	line_len;
 	char	*bottom_line;
 
+	i = 0;
 	bottom_line = map->text[map->used_nodes - 1];
 	line_len = ft_strlen(bottom_line);
 	if (line_len < 2)
-		return (false);
+		return (error_msg("Invalid map format"));
 	while (bottom_line[i] != '\0')
 	{
 		if (bottom_line[i] != '1' || bottom_line[i] != ' ')
-			return (false);
+			return (error_msg("Map must be surrounded by walls(1)"));
 		i++;
 	}
 	return (true);
@@ -125,7 +127,7 @@ bool	clean_up_and_validate_map(t_vector *map)
 	}
 	if (validate_bottom_line(map) == false)
 		return (false);
-	if (validate_map_shape(map) == false)
-		return (false);
+	//if (validate_map_shape(map) == false)
+	//	return (false);
 	return (true);
 }

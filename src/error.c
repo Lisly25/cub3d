@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:15:33 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/02 13:33:42 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/02 15:21:58 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ void	msg_and_exit(char *msg)
 	exit(1);
 }
 
-void	error_msg(char *msg)
+bool	error_msg(char *msg)
 {
 	ft_putendl_fd("Error", 2);
 	ft_putendl_fd(msg, 2);
+	return (false);
 }
