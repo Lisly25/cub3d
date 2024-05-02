@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/02 15:22:04 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/02 16:21:27 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,8 @@ int			copy_rgb_values(char *color_info, t_assets *assets, char *id);
 
 //map_operations/clean_up_map.c
 bool		clean_up_and_validate_map(t_vector *map);
+
+//map_operations/validate_map_shape.c
+bool		validate_map_shape(t_vector *map);
 
 #endif

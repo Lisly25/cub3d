@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:15:32 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/02 15:39:18 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/02 16:20:18 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ static bool	validate_bottom_line(t_vector *map)
 	while (bottom_line[i] != '\0')
 	{
 		if (bottom_line[i] != '1' && bottom_line[i] != ' ')
-			return (error_msg("Map must be surrounded by walls(1)"));
+			return (error_msg("Map must be surrounded by walls(1)/can't end in \\n"));
 		i++;
 	}
 	return (true);
@@ -127,7 +127,7 @@ bool	clean_up_and_validate_map(t_vector *map)
 	}
 	if (validate_bottom_line(map) == false)
 		return (false);
-	//if (validate_map_shape(map) == false)
-	//	return (false);
+	if (validate_map_shape(map) == false)
+		return (false);
 	return (true);
 }
