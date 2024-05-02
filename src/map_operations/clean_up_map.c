@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:15:32 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/02 15:26:12 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/02 15:39:18 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ static bool	validate_top_line(t_vector *map)
 		return (error_msg("Map too small"));
 	line_len = ft_strlen(map->text[0]);
 	if (line_len < 2)
-		return (error_msg("Invalid map format"));
+		return (error_msg("Invalid map format - top line too small"));
 	if (map->text[0][line_len - 1] != '\n')
 		return (error_msg("Map too small"));
 	while (map->text[0][i] != '\n')
 	{
-		if (map->text[0][i] != '1' || map->text[0][i] != ' ')
-			return (error_msg("Invalid map format"));
+		if (map->text[0][i] != '1' && map->text[0][i] != ' ')
+			return (error_msg("Invalid map format - map upper border"));
 		i++;
 	}
 	return (true);
@@ -71,7 +71,7 @@ static bool	validate_middle_line(char *line)
 	if (line_len < 2)
 		return (error_msg("Map too small"));
 	if (line[line_len - 1] != '\n')
-		return (error_msg("Invalid map format"));
+		return (error_msg("Invalid map format - unexpected newline"));
 	while (line[i] != '\n')
 	{
 		while (line[i] == ' ')
@@ -103,7 +103,7 @@ static bool	validate_bottom_line(t_vector *map)
 		return (error_msg("Invalid map format"));
 	while (bottom_line[i] != '\0')
 	{
-		if (bottom_line[i] != '1' || bottom_line[i] != ' ')
+		if (bottom_line[i] != '1' && bottom_line[i] != ' ')
 			return (error_msg("Map must be surrounded by walls(1)"));
 		i++;
 	}
