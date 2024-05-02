@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/02 10:27:02 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/02 13:39:55 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@ typedef struct s_assets
 	char	*south_file;
 	int		floor[3];
 	int		ceiling[3];
+	char	start_orientation;
 }	t_assets;
 
 //error.c
 void		msg_and_exit(char *msg);
 void		map_validation_error(char *msg, t_vector *map, t_assets *assets);
 void		free_assets_struct(t_assets *assets);
+void		error_msg(char *msg);
 
 //map_operations/read_map.c
 t_vector	*read_map(int argc, char **argv);
@@ -47,5 +49,8 @@ void		validate_texture_info_format(t_vector *map);
 
 //map_operations/get_color_config.c
 int			copy_rgb_values(char *color_info, t_assets *assets, char *id);
+
+//map_operations/clean_up_map.c
+bool		clean_up_and_validate_map(t_vector *map);
 
 #endif
