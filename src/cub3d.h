@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/01 12:42:05 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/02 10:27:02 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,13 @@ void		free_assets_struct(t_assets *assets);
 t_vector	*read_map(int argc, char **argv);
 
 //map_operations/get_assets.c
+char		*trim_identifier(char *config_line, unsigned int id_length);
 t_assets	*get_assets(t_vector *map);
 
 //map_operations/validate_format.c
 void		validate_texture_info_format(t_vector *map);
+
+//map_operations/get_color_config.c
+int			copy_rgb_values(char *color_info, t_assets *assets, char *id);
 
 #endif

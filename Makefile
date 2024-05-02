@@ -8,6 +8,7 @@ SRCS		=	src/main.c \
 				src/vector_decrease.c \
 				src/map_operations/read_map.c \
 				src/map_operations/get_assets.c \
+				src/map_operations/get_color_config.c \
 				src/map_operations/validate_format.c
 				
 OBJS		=	$(SRCS:.c=.o)
