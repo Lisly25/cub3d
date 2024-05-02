@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:46:21 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/02 10:35:34 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/02 11:20:38 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,9 @@ void	get_texture_info(t_vector *map, t_assets *assets)
 	assets->south_file = extract_config("SO ", assets, map);
 	assets->east_file = extract_config("EA ", assets, map);
 	assets->west_file = extract_config("WE ", assets, map);
-	//extract_rgb("F ", assets, map);
-	//extract_rgb("C ", assets, map);
+	extract_rgb("F ", assets, map);
+	ft_printf("Floor colour is: %d,%d,%d\n", assets->floor[0], assets->floor[1], assets->floor[2]);
+	extract_rgb("C ", assets, map);
 }
 
 t_assets	*get_assets(t_vector *map)

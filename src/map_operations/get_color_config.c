@@ -6,13 +6,13 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 10:09:04 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/02 11:03:29 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/02 11:22:12 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static void	free_2d_array(char *arr)
+static void	free_2d_array(char **arr)
 {
 	size_t	i;
 
