@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:47:28 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/06 12:13:19 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:56:16 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,16 @@
 int	main(int argc, char **argv)
 {
 	t_vector	*map;
-  t_assets	*assets;
+  	t_assets	*assets;
+	t_data		*data;
 	mlx_t		*window;
 
 	map = read_map(argc, argv);
-  assets = get_assets(map);
+	assets = get_assets(map);
 	window = init_window();
-	draw_walls(map->text, window);
+	data = init_data(window, map);
+	draw_walls(map->text, data);
+	mlx_key_hook(window, &key_hook, data);
 	mlx_loop(window);
 	free_vector(map);
 	free_assets_struct(assets);
