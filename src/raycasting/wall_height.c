@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:28:49 by fshields          #+#    #+#             */
-/*   Updated: 2024/04/30 14:30:32 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:44:19 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 static int	get_line_height(double perp_wall_dist)
 {
+	printf("perp wall dist: %f\n", perp_wall_dist);
+	if (!perp_wall_dist)
+		return (SCREEN_HEIGHT);
 	return ((int) SCREEN_HEIGHT / perp_wall_dist);
 }
 
-static void draw_wall_section(char **map, int x, mlx_image_t *line)
+static void draw_wall_section(char **map, int x, mlx_image_t *line, mlx_t *window)
 {
 	int		draw_start;
 	int		draw_end;
@@ -30,6 +33,7 @@ static void draw_wall_section(char **map, int x, mlx_image_t *line)
 	
 	ray_direction_x = adjust_ray_direction(1, x);
 	ray_direction_y = adjust_ray_direction(2, x);
+	printf("ray_dir_x: %f ray_dir_y: %f\n", ray_direction_x, ray_direction_y);
 	perp_wall_dist = get_ray_length(ray_direction_x, ray_direction_y, &step_x, &step_y, POSITION_X, POSITION_Y, POSITION_X, POSITION_Y, map);
 	line_height = get_line_height(perp_wall_dist);
 	draw_start = -(line_height) / 2 + SCREEN_HEIGHT / 2;
@@ -40,23 +44,32 @@ static void draw_wall_section(char **map, int x, mlx_image_t *line)
 		draw_end = SCREEN_HEIGHT - 1;
 	while (draw_start <= draw_end)
 	{
-		mlx_put_pixel(line, x, draw_start, 0x00FF0000);
-		draw_start++;
+		if (mlx_image_to_window(window, line, x, draw_start) == -1)
+			msg_and_exit("Image to window error");
+		//printf("Just put wall at %i, %i\n", x, draw_start);
+		draw_start += 10;
 	}
 }
 
 void	draw_walls(char **map, mlx_t *window)
 {
 	int			screen_x;
-	mlx_image_t	*wall_pixel;
+	mlx_image_t		*wall;
+	mlx_texture_t	*wall_texture;
 	
 	screen_x = 0;
-	wall_pixel = mlx_new_image(window, 1, 1);
-	if (wall_pixel == NULL)
+	wall_texture = mlx_load_png("./textures/stone.png");
+	if (wall_texture == NULL)
+		msg_and_exit("Texture load failre");
+	wall = mlx_texture_to_image(window, wall_texture);
+	if (wall == NULL)
 		msg_and_exit("Failed to create image");//also, free the map
+	if (mlx_resize_image(wall, 10, 10) == false)
+		msg_and_exit("resize error");
 	while (screen_x < SCREEN_WIDTH)
 	{
-		draw_wall_section(map, screen_x, wall_pixel);
-		screen_x++;
+		//printf("about to draw wall section at %i\n", screen_x);
+		draw_wall_section(map, screen_x, wall, window);
+		screen_x += 10;
 	}	
 }

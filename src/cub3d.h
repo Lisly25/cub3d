@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/04/30 14:26:50 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:45:18 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,19 @@
 # include "vector.h"
 # include "fcntl.h"
 # include <math.h>
+# include <stdio.h>
+# include <errno.h>
 
 # define MALLOC_ERROR 1 
-# define SCREEN_WIDTH 640
-# define SCREEN_HEIGHT 480
+# define SCREEN_WIDTH 1300
+# define SCREEN_HEIGHT 900
 # define PLANE_X 0
 # define PLANE_Y 0.66
 
 //throw this away later
 # define POSITION_X 1
 # define POSITION_Y 1
-# define DIRECTION_X -1
+# define DIRECTION_X 1
 # define DIRECTION_Y 0
 
 //error.c

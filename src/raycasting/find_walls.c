@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 11:21:57 by fshields          #+#    #+#             */
-/*   Updated: 2024/04/30 14:29:08 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:00:27 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,9 @@ double	get_ray_length(double ray_direction_x, double ray_direction_y, int *step_
 			side = 1;
 		}
 		if (map[map_x][map_y] == '1')
+		{
 			hit = true;
+		}
 	}
 	if (side == 0)
 		return (adjust_for_camera_plane(side_distance_x, ray_direction_x));
