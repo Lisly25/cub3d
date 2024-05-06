@@ -7,7 +7,7 @@ SRCS		=	src/main.c \
 				src/vector.c \
 				src/init.c \
 				src/raycasting/find_walls.c \
-				src/raycasting/wall_height.c
+				src/raycasting/wall_height.c \
 				src/vector_expand.c \
 				src/vector_decrease.c \
 				src/map_operations/read_map.c \
