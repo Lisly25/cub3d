@@ -26,12 +26,26 @@
 # define SCREEN_HEIGHT 900
 # define PLANE_X 0
 # define PLANE_Y 0.66
+# define ROT_SPEED 0.2
 
 //throw this away later
-# define POSITION_X 10
-# define POSITION_Y 1
-# define DIRECTION_X 1
+# define POSITION_X 9
+# define POSITION_Y 9
+# define DIRECTION_X -1
 # define DIRECTION_Y 0
+
+typedef struct s_data
+{
+	mlx_t			*window;
+	mlx_image_t		*wall;
+	t_vector		*map;
+	double			dir_X;
+	double			dir_Y;
+	double			plane_X;
+	double			plane_Y;
+	double			pos_X;
+	double			pos_Y;
+}	t_data;
 
 typedef struct s_assets
 {
@@ -49,6 +63,9 @@ void		msg_and_exit(char *msg);
 void		map_validation_error(char *msg, t_vector *map, t_assets *assets);
 void		free_assets_struct(t_assets *assets);
 bool		error_msg(char *msg);
+
+//key_hook
+void		key_hook(mlx_key_data_t keydata, void *param);
 
 //map_operations/read_map.c
 t_vector	*read_map(int argc, char **argv);
@@ -71,12 +88,13 @@ bool		validate_map_shape(t_vector *map);
 
 //init.c
 mlx_t		*init_window();
+t_data		*init_data(mlx_t *window, t_vector *map);
 
 //find_walls
-double		get_ray_length(double ray_direction_x, double ray_direction_y, int *step_x, int *step_y, double position_x, double position_y, int map_x, int map_y, char **map);
-double		adjust_ray_direction(int mode, int x);
+double		get_ray_length(double ray_direction_x, double ray_direction_y, int *step_x, int *step_y, double position_x, double position_y, char **map);
+double		adjust_ray_direction(int mode, int x, t_data *data);
 
 //wall_height.c
-void		draw_walls(char **map, mlx_t *window);
+void		draw_walls(char **map, t_data *data);
 
 #endif

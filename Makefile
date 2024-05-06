@@ -5,6 +5,7 @@ CFLAGS		=	-Wall -Wextra -Werror
 SRCS		=	src/main.c \
 				src/error.c \
 				src/init.c \
+				src/key_hook.c \
 				src/raycasting/find_walls.c \
 				src/raycasting/wall_height.c \
 				src/vector_expand.c \
@@ -31,7 +32,7 @@ makelibft:
 					@make -C ./$(LIBFT_DIR)
 
 $(MLX):
-				@cd mlx && cmake -B build && cmake --build build -j4
+					@cd mlx && cmake -B build && cmake --build build -j4
 
 $(NAME):		$(OBJS) $(LIBFT) $(HEADER) $(LIBFT_H) $(MLX)
 					@$(CC) $(OBJS) $(MLX) $(LIBFT) -ldl -pthread -lm -L$(GLFW_DIR) -lglfw -I $(MLX_HEADER) -o $(NAME)
@@ -51,7 +52,6 @@ san:			$(OBJS) $(LIBFT) $(HEADER) $(LIBFT_H) $(MLX)
 fclean:			clean
 					@rm -f $(NAME)
 					@rm -rf mlx/build
-
 
 re:				fclean all
 
