@@ -4,7 +4,6 @@ CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror
 SRCS		=	src/main.c \
 				src/error.c \
-				src/vector.c \
 				src/init.c \
 				src/raycasting/find_walls.c \
 				src/raycasting/wall_height.c \
@@ -57,7 +56,7 @@ fclean:			clean
 re:				fclean all
 
 tidymake:	
-					@make fclean
+					@make clean
 					@make all
 					@make clean
 
