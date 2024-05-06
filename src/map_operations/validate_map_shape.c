@@ -6,13 +6,13 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 14:29:36 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/02 16:21:46 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/06 11:32:45 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static bool	get_and_validate_start_orientation(t_vector *map)
+static bool	validate_start_orientation(t_vector *map)
 {
 	bool	is_start_orientation_found;
 	size_t	i;
@@ -41,9 +41,30 @@ static bool	get_and_validate_start_orientation(t_vector *map)
 	return (true);
 }
 
+/*static void	mark_neighbour(t_vector *map)
+{
+	
+}
+
+static bool	validate_if_walled(t_vector *map)
+{
+	size_t	i;
+	size_t	j;
+	size_t	start_pos;
+
+	i = 0;
+	j = 0;
+	while (map->text[0][i] != '\n')
+	{
+		
+	}
+}*/
+
 bool	validate_map_shape(t_vector *map)
 {
-	if (get_and_validate_start_orientation(map) == false)
+	if (validate_start_orientation(map) == false)
 		return (false);
+	//if (validate_if_walled(map) == false)
+	//	return (false);
 	return (true);
 }
