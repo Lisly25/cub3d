@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 14:29:36 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/06 11:32:45 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/06 15:01:37 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,30 +41,48 @@ static bool	validate_start_orientation(t_vector *map)
 	return (true);
 }
 
-/*static void	mark_neighbour(t_vector *map)
+static bool	check_neighbours_for_char(t_vector *map, char c, size_t x, size_t y)
 {
-	
+	if ((y < map->used_nodes - 1) && (map->text[y + 1][x] == c))
+		return (true);
+	if ((x < (ft_strlen(map->text[y]) - 1)) && (map->text[y][x + 1] == c))
+		return (true);
+	if ((y != 0) && (map->text[y - 1][x] == c))
+		return (true);
+	if ((x != 0) && (map->text[y][x - 1] == c))
+		return (true);
+	return (false);
 }
 
 static bool	validate_if_walled(t_vector *map)
 {
-	size_t	i;
-	size_t	j;
-	size_t	start_pos;
+	size_t	x;
+	size_t	y;
 
-	i = 0;
-	j = 0;
-	while (map->text[0][i] != '\n')
+	x = 0;
+	y = 0;
+	while (y < map->used_nodes)
 	{
-		
+		while (map->text[y][x] != '\0')
+		{
+			if (map->text[y][x] == '0')
+			{
+				if (check_neighbours_for_char(map, ' ', x, y) == true)
+					return (false);
+			}
+			x++;
+		}
+		x = 0;
+		y++;
 	}
-}*/
+	return (true);
+}
 
 bool	validate_map_shape(t_vector *map)
 {
 	if (validate_start_orientation(map) == false)
 		return (false);
-	//if (validate_if_walled(map) == false)
-	//	return (false);
+	if (validate_if_walled(map) == false)
+		return (false);
 	return (true);
 }

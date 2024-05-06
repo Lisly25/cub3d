@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 10:09:04 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/02 11:22:12 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/06 13:46:01 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,14 @@ int	copy_rgb_values(char *trimmed_info, t_assets *assets, char *id)
 
 	return_value = -1;
 	num_strs = ft_split(trimmed_info, ',');
+	free(trimmed_info);
 	if (num_strs == NULL)
 		return (return_value);
 	if (get_array_size(num_strs) != 3)
+	{
+		free_2d_array(num_strs);
 		return (return_value);
+	}
 	i = 0;
 	while (num_strs[i] != NULL)
 	{

@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:15:32 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/06 11:43:34 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/06 15:02:09 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 int	trim_empty_lines(t_vector *map)
 {
 	size_t	i;
-	//bool	is_start_position_found;
 	char	*empty_line;
 
 	i = 0;
-	//is_start_position_found = false;
 	while (i == 0 && map->text[i] != NULL)
 	{
 		if (map->text[0][0] == '\n')

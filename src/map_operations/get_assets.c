@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:46:21 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/06 11:34:09 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/06 15:07:28 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void	extract_rgb(char *id, t_assets *assets, t_vector *map)
 			trimmed_info = trim_identifier(color_info, 2);
 			if (trimmed_info == NULL)
 				map_validation_error("Malloc failure", map, assets);
-			if (copy_rgb_values(color_info, assets, id) == -1)//this should differentiate between bad values and malloc fails
+			if (copy_rgb_values(trimmed_info, assets, id) == -1)//this should differentiate between bad values and malloc fails
 				map_validation_error("Invalid color config", map, assets);
 			return ;
 		}
@@ -88,12 +88,10 @@ static void	extract_rgb(char *id, t_assets *assets, t_vector *map)
 void	get_texture_info(t_vector *map, t_assets *assets)
 {
 	assets->north_file = extract_config("NO ", assets, map);
-	ft_printf("North file path: %s\n", assets->north_file);
 	assets->south_file = extract_config("SO ", assets, map);
 	assets->east_file = extract_config("EA ", assets, map);
 	assets->west_file = extract_config("WE ", assets, map);
 	extract_rgb("F ", assets, map);
-	ft_printf("Floor colour is: %d,%d,%d\n", assets->floor[0], assets->floor[1], assets->floor[2]);
 	extract_rgb("C ", assets, map);
 	if (clean_up_and_validate_map(map) == false)
 	{
@@ -108,7 +106,6 @@ t_assets	*get_assets(t_vector *map)
 	t_assets	*assets;
 
 	validate_texture_info_format(map);
-	//ft_printf("First texture info validity check passed!\n");
 	assets = (t_assets *)malloc(sizeof(t_assets));
 	if (assets == NULL)
 		map_validation_error("Malloc failure", map, NULL);
