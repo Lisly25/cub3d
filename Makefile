@@ -56,7 +56,7 @@ fclean:			clean
 re:				fclean all
 
 tidymake:	
-					@make fclean
+					@make clean
 					@make all
 					@make clean
 
