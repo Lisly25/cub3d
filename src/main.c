@@ -15,11 +15,14 @@
 int	main(int argc, char **argv)
 {
 	t_vector	*map;
+  t_assets	*assets;
 	mlx_t		*window;
 
 	map = read_map(argc, argv);
-	//validate_map(map);
+  assets = get_assets(map);
 	window = init_window();
 	draw_walls(map->text, window);
 	mlx_loop(window);
+	free_vector(map);
+	free_assets_struct(assets);
 }
