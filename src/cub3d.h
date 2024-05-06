@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/06 12:45:18 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/06 14:40:57 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define PLANE_Y 0.66
 
 //throw this away later
-# define POSITION_X 1
+# define POSITION_X 10
 # define POSITION_Y 1
 # define DIRECTION_X 1
 # define DIRECTION_Y 0
