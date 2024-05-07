@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:03:33 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/01 10:51:14 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/07 15:46:06 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,8 @@ void		free_vector(t_vector *vector);
 //vector_decrease.c
 void		print_vector_content(t_vector *vector);//just for test, DELETE
 char		*extract_array(t_vector *vector, size_t array_index);
+
+//vector_copy.c
+t_vector	*copy_vector(t_vector *vector);
 
 #endif
