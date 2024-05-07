@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/07 16:17:58 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/06 15:22:46 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,13 @@
 # define SCREEN_HEIGHT 900
 # define PLANE_X 0
 # define PLANE_Y 0.66
-# define ROT_SPEED 0.1
-# define MOVE_SPEED 0.5
+# define ROT_SPEED 0.2
+
+//throw this away later
+# define POSITION_X 9
+# define POSITION_Y 9
+# define DIRECTION_X -1
+# define DIRECTION_Y 0
 
 typedef struct s_data
 {
@@ -80,24 +85,14 @@ bool		clean_up_and_validate_map(t_vector *map);
 
 //map_operations/validate_map_shape.c
 bool		validate_map_shape(t_vector *map);
-bool		check_neighbours_for_char(t_vector *map, char c, size_t x, size_t y);
-
-//map_operations/path_validation.c
-int			check_if_all_map_is_accessible(t_vector *map);
 
 //init.c
 mlx_t		*init_window();
 t_data		*init_data(mlx_t *window, t_vector *map);
 
-//init_utils.c
-void		set_start_position(t_data *data, t_vector *map);
-
 //find_walls
 double		get_ray_length(double ray_direction_x, double ray_direction_y, int *step_x, int *step_y, double position_x, double position_y, char **map);
 double		adjust_ray_direction(int mode, int x, t_data *data);
-
-//find_walls_utils
-bool	check_if_valid_pos(char **map, int x, int y);
 
 //wall_height.c
 void		draw_walls(char **map, t_data *data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_walls.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 11:21:57 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/07 10:39:17 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/07 15:21:05 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ static double	get_delta_dist(double ray_direction)
 	if (ray_direction == 0)
 		return (DBL_MAX);
 	else
-	{
 		return (fabs(1 / ray_direction));
-	}
 }
 
 //works either for x or y

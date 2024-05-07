@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:13:25 by skorbai           #+#    #+#             */
-/*   Updated: 2024/04/29 14:43:34 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/04/30 15:08:48 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ t_vector	*read_map(int argc, char **argv)
 	if (argc != 2)
 		msg_and_exit("Incorrect number of arguments");
 	map_fd = open_map(argv[1]);
+	if (map_fd < 0)
+		msg_and_exit("failed to open map");
 	map = vector_new(1);
 	if (map == NULL)
 		msg_and_exit("Malloc failure");
@@ -59,5 +61,6 @@ t_vector	*read_map(int argc, char **argv)
 			msg_and_exit("Malloc failure");
 		}
 	}
+	close(map_fd);
 	return (map);
 }
