@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:28:49 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/06 15:24:01 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/07 14:03:10 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void draw_wall_section(char **map, int x, mlx_image_t *line, t_data *data
 
 void	draw_walls(char **map, t_data *data)
 {
-	int			screen_x;
+	int				screen_x;
 	mlx_image_t		*wall;
 	mlx_texture_t	*wall_texture;
 	
@@ -59,7 +59,9 @@ void	draw_walls(char **map, t_data *data)
 	if (wall_texture == NULL)
 	msg_and_exit("Texture load failre");
 	wall = mlx_texture_to_image(data->window, wall_texture);
+	mlx_delete_texture(wall_texture);
 	if (wall == NULL)
+		msg_and_exit("image error");
 	if (mlx_resize_image(wall, 10, 10) == false)
 		msg_and_exit("resize error");
 	data->wall = wall;
