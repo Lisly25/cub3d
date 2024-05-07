@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/07 11:25:19 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:17:58 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,10 @@ bool		clean_up_and_validate_map(t_vector *map);
 
 //map_operations/validate_map_shape.c
 bool		validate_map_shape(t_vector *map);
+bool		check_neighbours_for_char(t_vector *map, char c, size_t x, size_t y);
+
+//map_operations/path_validation.c
+int			check_if_all_map_is_accessible(t_vector *map);
 
 //init.c
 mlx_t		*init_window();
