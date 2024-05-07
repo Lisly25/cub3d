@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 13:40:41 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/07 15:21:17 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:33:25 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		mlx_close_window(data->window);
 		return ;
 	}
-	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
+	if (mlx_is_key_down(data->window, MLX_KEY_RIGHT))
 	{
 		mlx_delete_image(data->window, data->wall);
 		old_dir_X = data->dir_X;
@@ -37,7 +37,7 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		data->plane_Y = old_plane_X * sin(-ROT_SPEED) + data->plane_Y * cos(-ROT_SPEED);
 		draw_walls(data->map->text, data);
 	}
-	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
+	if (mlx_is_key_down(data->window, MLX_KEY_LEFT))
 	{
 		mlx_delete_image(data->window, data->wall);
 		old_dir_X = data->dir_X;
@@ -48,7 +48,7 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		data->plane_Y = old_plane_X * sin(ROT_SPEED) + data->plane_Y * cos(ROT_SPEED);
 		draw_walls(data->map->text, data);
 	}
-	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
+	if (mlx_is_key_down(data->window, MLX_KEY_W))
 	{
 		new_pos_X = data->pos_X + (data->dir_X * MOVE_SPEED);
 		new_pos_Y = data->pos_Y + (data->dir_Y * MOVE_SPEED);
@@ -60,7 +60,7 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 			draw_walls(data->map->text, data);
 		}
 	}
-	if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
+	if (mlx_is_key_down(data->window, MLX_KEY_S))
 	{
 		new_pos_X = data->pos_X - (data->dir_X * MOVE_SPEED);
 		new_pos_Y = data->pos_Y - (data->dir_Y * MOVE_SPEED);
@@ -72,7 +72,7 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 			draw_walls(data->map->text, data);
 		}
 	}
-	if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
+	if (mlx_is_key_down(data->window, MLX_KEY_A))
 	{
 		new_pos_X = data->pos_X + (data->plane_X * MOVE_SPEED);
 		new_pos_Y = data->pos_Y + (data->plane_Y * MOVE_SPEED);
@@ -84,7 +84,7 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 			draw_walls(data->map->text, data);
 		}
 	}
-	if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
+	if (mlx_is_key_down(data->window, MLX_KEY_D))
 	{
 		new_pos_X = data->pos_X - (data->plane_X * MOVE_SPEED);
 		new_pos_Y = data->pos_Y - (data->plane_Y * MOVE_SPEED);
