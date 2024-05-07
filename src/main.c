@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:47:28 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/06 13:56:16 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/06 15:37:31 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int	main(int argc, char **argv)
 {
 	t_vector	*map;
-  t_assets	*assets;
+  	t_assets	*assets;
 	t_data		*data;
-	mlx_t		  *window;
+	mlx_t		*window;
 
 	map = read_map(argc, argv);
 	assets = get_assets(map);
