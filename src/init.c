@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 10:58:44 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/06 14:24:12 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/07 09:51:23 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,8 @@ t_data	*init_data(mlx_t *window, t_vector *map)
 		return (NULL);
 	data->window = window;
 	data->map = map;
-	data->dir_X = DIRECTION_X;
-	data->dir_Y = DIRECTION_Y;
 	data->plane_X = PLANE_X;
 	data->plane_Y = PLANE_Y;
-	data->pos_X = POSITION_X;
-	data->pos_Y = POSITION_Y;
+	set_start_position(data, map);
 	return (data);
 }

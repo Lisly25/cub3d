@@ -5,8 +5,10 @@ CFLAGS		=	-Wall -Wextra -Werror
 SRCS		=	src/main.c \
 				src/error.c \
 				src/init.c \
+				src/init_utils.c \
 				src/key_hook.c \
 				src/raycasting/find_walls.c \
+				src/raycasting/find_walls_utils.c \
 				src/raycasting/wall_height.c \
 				src/vector_expand.c \
 				src/vector_decrease.c \
