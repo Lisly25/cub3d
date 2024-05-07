@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_height.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:28:49 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/06 15:10:11 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/06 15:24:01 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	draw_walls(char **map, t_data *data)
 	mlx_texture_t	*wall_texture;
 	
 	screen_x = 0;
-	wall_texture = mlx_load_png("./textures/backdrop.png");
+	wall_texture = mlx_load_png("./textures/stone.png");
 	if (wall_texture == NULL)
 	msg_and_exit("Texture load failre");
 	wall = mlx_texture_to_image(data->window, wall_texture);

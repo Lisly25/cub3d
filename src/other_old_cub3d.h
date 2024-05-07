@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/06 15:27:09 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/06 15:22:46 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # define ROT_SPEED 0.2
 
 //throw this away later
-# define POSITION_X 10
-# define POSITION_Y 7
+# define POSITION_X 9
+# define POSITION_Y 9
 # define DIRECTION_X -1
 # define DIRECTION_Y 0
 
