@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/06 15:27:09 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/07 11:25:19 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@
 # define SCREEN_HEIGHT 900
 # define PLANE_X 0
 # define PLANE_Y 0.66
-# define ROT_SPEED 0.2
+# define ROT_SPEED 0.1
+# define MOVE_SPEED 0.5
 
 typedef struct s_data
 {
