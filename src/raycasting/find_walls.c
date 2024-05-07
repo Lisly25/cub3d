@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_walls.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 11:21:57 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/06 14:25:56 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/07 10:39:17 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ double	get_ray_length(double ray_direction_x, double ray_direction_y, int *step_
 			map_y += *step_y;
 			side = 1;
 		}
-		if (map[map_x][map_y] == '1')
+		if ((check_if_valid_pos(map, map_x, map_y) == true) && map[map_y][map_x] == '1')
 		{
 			hit = true;
 		}
