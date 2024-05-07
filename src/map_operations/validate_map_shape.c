@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 14:29:36 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/06 15:01:37 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/06 15:48:07 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static bool	validate_if_walled(t_vector *map)
 			if (map->text[y][x] == '0')
 			{
 				if (check_neighbours_for_char(map, ' ', x, y) == true)
-					return (false);
+					return (error_msg("Map must be surrounded by walls"));
 			}
 			x++;
 		}
