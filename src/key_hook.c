@@ -6,11 +6,16 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 13:40:41 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/07 15:33:25 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:15:05 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	display_data(t_data *data)
+{
+	printf("------\ndir_X: %f\ndir_Y: %f\nplane_X: %f\nplane_Y: %f\npos_X: %f\npos_Y: %f\n", data->dir_X, data->dir_Y, data->plane_X, data->plane_Y, data->pos_X, data->pos_Y);
+}
 
 void	key_hook(mlx_key_data_t keydata, void *param)
 {
@@ -26,7 +31,7 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		mlx_close_window(data->window);
 		return ;
 	}
-	if (mlx_is_key_down(data->window, MLX_KEY_RIGHT))
+	if (mlx_is_key_down(data->window, MLX_KEY_LEFT))
 	{
 		mlx_delete_image(data->window, data->wall);
 		old_dir_X = data->dir_X;
@@ -37,7 +42,7 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		data->plane_Y = old_plane_X * sin(-ROT_SPEED) + data->plane_Y * cos(-ROT_SPEED);
 		draw_walls(data->map->text, data);
 	}
-	if (mlx_is_key_down(data->window, MLX_KEY_LEFT))
+	if (mlx_is_key_down(data->window, MLX_KEY_RIGHT))
 	{
 		mlx_delete_image(data->window, data->wall);
 		old_dir_X = data->dir_X;
@@ -72,7 +77,7 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 			draw_walls(data->map->text, data);
 		}
 	}
-	if (mlx_is_key_down(data->window, MLX_KEY_A))
+	if (mlx_is_key_down(data->window, MLX_KEY_D))
 	{
 		new_pos_X = data->pos_X + (data->plane_X * MOVE_SPEED);
 		new_pos_Y = data->pos_Y + (data->plane_Y * MOVE_SPEED);
@@ -84,7 +89,7 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 			draw_walls(data->map->text, data);
 		}
 	}
-	if (mlx_is_key_down(data->window, MLX_KEY_D))
+	if (mlx_is_key_down(data->window, MLX_KEY_A))
 	{
 		new_pos_X = data->pos_X - (data->plane_X * MOVE_SPEED);
 		new_pos_Y = data->pos_Y - (data->plane_Y * MOVE_SPEED);
