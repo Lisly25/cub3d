@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/08 10:24:18 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/08 13:11:18 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,9 @@ bool	check_if_valid_pos(char **map, int x, int y);
 
 //wall_height.c
 void		draw_walls(char **map, t_data *data);
+
+//raycasting/draw_floor_and_ceiling.c
+void		draw_ceiling(int x, int wall_start, t_data *data);
+void		draw_floor(int x, int wall_end, t_data *data);
 
 #endif

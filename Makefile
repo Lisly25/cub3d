@@ -10,6 +10,7 @@ SRCS		=	src/main.c \
 				src/raycasting/find_walls.c \
 				src/raycasting/find_walls_utils.c \
 				src/raycasting/wall_height.c \
+				src/raycasting/draw_floor_and_ceiling.c \
 				src/vector_expand.c \
 				src/vector_decrease.c \
 				src/vector_copy.c \

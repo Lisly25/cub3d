@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:28:49 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/08 10:31:15 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/08 13:12:20 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,14 @@ static void draw_wall_section(char **map, int x, mlx_image_t *line, t_data *data
 	draw_end =  line_height / 2 + SCREEN_HEIGHT / 2;
 	if (draw_end >= SCREEN_HEIGHT)
 		draw_end = SCREEN_HEIGHT - 1;
+	draw_ceiling(x, draw_start, data);
 	while (draw_start <= draw_end)
 	{
 		if (mlx_image_to_window(data->window, line, x, draw_start) == -1)
 			msg_and_exit("Image to window error");
 		draw_start += RENDER_SCALE;
 	}
+	draw_floor(x, draw_end, data);
 }
 
 void	draw_walls(char **map, t_data *data)
