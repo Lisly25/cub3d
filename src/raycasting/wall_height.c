@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_height.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:28:49 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/07 14:03:10 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/08 10:31:15 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void draw_wall_section(char **map, int x, mlx_image_t *line, t_data *data
 	{
 		if (mlx_image_to_window(data->window, line, x, draw_start) == -1)
 			msg_and_exit("Image to window error");
-		draw_start += 10;
+		draw_start += RENDER_SCALE;
 	}
 }
 
@@ -55,19 +55,19 @@ void	draw_walls(char **map, t_data *data)
 	mlx_texture_t	*wall_texture;
 	
 	screen_x = 0;
-	wall_texture = mlx_load_png("./textures/stone.png");
+	wall_texture = mlx_load_png("./textures/backdrop.png");
 	if (wall_texture == NULL)
 	msg_and_exit("Texture load failre");
 	wall = mlx_texture_to_image(data->window, wall_texture);
 	mlx_delete_texture(wall_texture);
 	if (wall == NULL)
 		msg_and_exit("image error");
-	if (mlx_resize_image(wall, 10, 10) == false)
+	if (mlx_resize_image(wall, RENDER_SCALE, RENDER_SCALE) == false)
 		msg_and_exit("resize error");
 	data->wall = wall;
 	while (screen_x < SCREEN_WIDTH)
 	{
 		draw_wall_section(map, screen_x, wall, data);
-		screen_x += 10;
+		screen_x += RENDER_SCALE;
 	}	
 }

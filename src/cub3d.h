@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/07 16:17:58 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/08 10:24:18 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,14 @@
 # define PLANE_Y 0.66
 # define ROT_SPEED 0.1
 # define MOVE_SPEED 0.5
+# define RENDER_SCALE 10
 
 typedef struct s_data
 {
 	mlx_t			*window;
 	mlx_image_t		*wall;
+	mlx_image_t		*floor;
+	mlx_image_t		*ceiling;
 	t_vector		*map;
 	double			dir_X;
 	double			dir_Y;
@@ -58,6 +61,7 @@ void		msg_and_exit(char *msg);
 void		map_validation_error(char *msg, t_vector *map, t_assets *assets);
 void		free_assets_struct(t_assets *assets);
 bool		error_msg(char *msg);
+void		free_all_n_exit(char *msg, t_data *data, t_assets *assts, t_vector *map);
 
 //key_hook
 void		key_hook(mlx_key_data_t keydata, void *param);
@@ -87,7 +91,7 @@ int			check_if_all_map_is_accessible(t_vector *map);
 
 //init.c
 mlx_t		*init_window();
-t_data		*init_data(mlx_t *window, t_vector *map);
+t_data		*init_data(mlx_t *window, t_vector *map, t_assets *assets);
 
 //init_utils.c
 void		set_start_position(t_data *data, t_vector *map);
