@@ -80,6 +80,10 @@ bool		clean_up_and_validate_map(t_vector *map);
 
 //map_operations/validate_map_shape.c
 bool		validate_map_shape(t_vector *map);
+bool		check_neighbours_for_char(t_vector *map, char c, size_t x, size_t y);
+
+//map_operations/path_validation.c
+int			check_if_all_map_is_accessible(t_vector *map);
 
 //init.c
 mlx_t		*init_window();

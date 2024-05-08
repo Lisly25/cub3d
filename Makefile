@@ -12,12 +12,14 @@ SRCS		=	src/main.c \
 				src/raycasting/wall_height.c \
 				src/vector_expand.c \
 				src/vector_decrease.c \
+				src/vector_copy.c \
 				src/map_operations/read_map.c \
 				src/map_operations/get_assets.c \
 				src/map_operations/get_color_config.c \
 				src/map_operations/validate_format.c \
 				src/map_operations/clean_up_map.c \
-				src/map_operations/validate_map_shape.c
+				src/map_operations/validate_map_shape.c \
+				src/map_operations/path_validation.c
 				
 OBJS		=	$(SRCS:.c=.o)
 HEADER		=	src/cub3d.h
