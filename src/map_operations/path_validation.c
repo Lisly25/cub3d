@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:03:05 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/07 16:54:07 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/08 10:34:20 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ static void	check_all_from_start(t_vector *map)
 		y = 0;
 		x = 0;
 	}
-	print_vector_content(map);
 }
 
 int	check_if_all_map_is_accessible(t_vector *map)
