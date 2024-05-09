@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/09 09:47:39 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/09 10:04:14 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,14 @@
 
 typedef struct s_assets
 {
-	char	*west_file;
-	char	*east_file;
-	char	*north_file;
-	char	*south_file;
-	int		floor[3];
-	int		ceiling[3];
-	char	start_orientation;
+	char			*west_file;
+	char			*east_file;
+	char			*north_file;
+	char			*south_file;
+	mlx_texture_t	*north;
+	int				floor[3];
+	int				ceiling[3];
+	char			start_orientation;
 }	t_assets;
 
 typedef struct s_data
@@ -97,6 +98,8 @@ bool		init_floor_and_ceiling_img(t_data *data);
 
 //init_utils.c
 void		set_start_position(t_data *data, t_vector *map);
+bool		init_wall_textures(t_data *data);
+bool		init_wall_images(t_data *data);
 
 //find_walls
 double		get_ray_length(double ray_direction_x, double ray_direction_y, int *step_x, int *step_y, double position_x, double position_y, char **map);
