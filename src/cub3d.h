@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/08 13:11:18 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/09 09:47:39 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,17 @@
 # define MOVE_SPEED 0.5
 # define RENDER_SCALE 10
 
+typedef struct s_assets
+{
+	char	*west_file;
+	char	*east_file;
+	char	*north_file;
+	char	*south_file;
+	int		floor[3];
+	int		ceiling[3];
+	char	start_orientation;
+}	t_assets;
+
 typedef struct s_data
 {
 	mlx_t			*window;
@@ -43,18 +54,8 @@ typedef struct s_data
 	double			plane_Y;
 	double			pos_X;
 	double			pos_Y;
+	t_assets		*assets;
 }	t_data;
-
-typedef struct s_assets
-{
-	char	*west_file;
-	char	*east_file;
-	char	*north_file;
-	char	*south_file;
-	int		floor[3];
-	int		ceiling[3];
-	char	start_orientation;
-}	t_assets;
 
 //error.c
 void		msg_and_exit(char *msg);
@@ -92,6 +93,7 @@ int			check_if_all_map_is_accessible(t_vector *map);
 //init.c
 mlx_t		*init_window();
 t_data		*init_data(mlx_t *window, t_vector *map, t_assets *assets);
+bool		init_floor_and_ceiling_img(t_data *data);
 
 //init_utils.c
 void		set_start_position(t_data *data, t_vector *map);

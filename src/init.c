@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 10:58:44 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/08 17:19:29 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/09 09:43:29 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	set_img_to_color(mlx_image_t *img, int rgb[3])
 
 }*/
 
-static bool	init_floor_and_ceiling_img(t_data *data, t_assets *assets)
+bool	init_floor_and_ceiling_img(t_data *data)
 {
 	data->ceiling = mlx_new_image(data->window, RENDER_SCALE, RENDER_SCALE);
 	if (data->ceiling == false)
@@ -77,9 +77,8 @@ static bool	init_floor_and_ceiling_img(t_data *data, t_assets *assets)
 	data->floor = mlx_new_image(data->window, RENDER_SCALE, RENDER_SCALE);
 	if (data->floor == false)
 		return (false);
-	printf("Ceiling data is: R: %d G: %d B: %d", assets->ceiling[0], assets->ceiling[1], assets->ceiling[2]);
-	set_img_to_color(data->ceiling, assets->ceiling);
-	set_img_to_color(data->floor, assets->floor);
+	set_img_to_color(data->ceiling, data->assets->ceiling);
+	set_img_to_color(data->floor, data->assets->floor);
 	return (true);
 }
 
@@ -95,7 +94,8 @@ t_data	*init_data(mlx_t *window, t_vector *map, t_assets *assets)
 	data->plane_X = PLANE_X;
 	data->plane_Y = PLANE_Y;
 	set_start_position(data, map);
-	if (init_floor_and_ceiling_img(data, assets) == false)
-		free_all_n_exit("Malloc failure", data, assets, map);
+	//if (init_floor_and_ceiling_img(data, assets) == false)
+	//	free_all_n_exit("Failed to create new image", data, assets, map);
+	data->assets = assets;
 	return (data);
 }

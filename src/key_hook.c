@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 13:40:41 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/07 15:21:17 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/09 09:46:49 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
 	{
 		mlx_delete_image(data->window, data->wall);
+		mlx_delete_image(data->window, data->ceiling);
+		mlx_delete_image(data->window, data->floor);
 		old_dir_X = data->dir_X;
 		data->dir_X = data->dir_X * cos(-ROT_SPEED) -  data->dir_Y * sin(-ROT_SPEED);
 		data->dir_Y = old_dir_X * sin(-ROT_SPEED) + data->dir_Y * cos(-ROT_SPEED);
@@ -40,6 +42,8 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
 	{
 		mlx_delete_image(data->window, data->wall);
+		mlx_delete_image(data->window, data->ceiling);
+		mlx_delete_image(data->window, data->floor);
 		old_dir_X = data->dir_X;
 		data->dir_X = data->dir_X * cos(ROT_SPEED) -  data->dir_Y * sin(ROT_SPEED);
 		data->dir_Y = old_dir_X * sin(ROT_SPEED) + data->dir_Y * cos(ROT_SPEED);
@@ -55,6 +59,8 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		if (data->map->text[(int) new_pos_Y][(int) new_pos_X] != '1')
 		{
 			mlx_delete_image(data->window, data->wall);
+			mlx_delete_image(data->window, data->ceiling);
+			mlx_delete_image(data->window, data->floor);
 			data->pos_Y = new_pos_Y;
 			data->pos_X = new_pos_X;
 			draw_walls(data->map->text, data);
@@ -67,6 +73,8 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		if (data->map->text[(int) new_pos_Y][(int) new_pos_X] != '1')
 		{
 			mlx_delete_image(data->window, data->wall);
+			mlx_delete_image(data->window, data->ceiling);
+			mlx_delete_image(data->window, data->floor);
 			data->pos_Y = new_pos_Y;
 			data->pos_X = new_pos_X;
 			draw_walls(data->map->text, data);
@@ -79,6 +87,8 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		if (data->map->text[(int) new_pos_Y][(int) new_pos_X] != '1')
 		{
 			mlx_delete_image(data->window, data->wall);
+			mlx_delete_image(data->window, data->ceiling);
+			mlx_delete_image(data->window, data->floor);
 			data->pos_Y = new_pos_Y;
 			data->pos_X = new_pos_X;
 			draw_walls(data->map->text, data);
@@ -91,6 +101,8 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		if (data->map->text[(int) new_pos_Y][(int) new_pos_X] != '1')
 		{
 			mlx_delete_image(data->window, data->wall);
+			mlx_delete_image(data->window, data->ceiling);
+			mlx_delete_image(data->window, data->floor);
 			data->pos_Y = new_pos_Y;
 			data->pos_X = new_pos_X;
 			draw_walls(data->map->text, data);
