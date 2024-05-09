@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_walls.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 11:21:57 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/08 16:12:13 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/09 15:30:48 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,68 +34,94 @@ static double	get_delta_dist(double ray_direction)
 }
 
 //works either for x or y
-static double	get_side_distance(double ray_direction, int *step, double position, int map)
+static double	get_side_distance(t_data *data, int *step, char mode)
 {
-	double	side_distance;
-	
+	double	ray_direction;
+	double	position;
+	t_ray	*ray;
+
+	ray = data->ray;
+	if (mode == 'x')
+	{
+		ray_direction = ray->ray_direction_x;
+		position = data->pos_X;
+	}
+	else
+	{
+		ray_direction = ray->ray_direction_y;
+		position = data->pos_Y;
+	}
 	if (ray_direction < 0)
 	{
 		*step = -1;
-		side_distance = (position - map) * get_delta_dist(ray_direction);
+		return ((position - ((int)position)) * get_delta_dist(ray_direction));
 	}
 	else
 	{
 		*step = 1;
-		side_distance = (map + 1.0 - position) * get_delta_dist(ray_direction);
+		return ((((int)position) + 1.0 - position) * \
+		get_delta_dist(ray_direction));
 	}
-	return (side_distance);
 }
 
 // static double	get_side_distance2(double );
 
-static double	adjust_for_camera_plane(double side_distance, double ray_direction)
+static double	adjust_for_camera_plane(t_data *data, char mode)
 {
-	return (side_distance - get_delta_dist(ray_direction));
+	double	delta_distance;
+	t_ray	*ray;
+
+	ray = data->ray;
+	if (mode == 'x')
+		delta_distance = get_delta_dist(ray->ray_direction_x);
+	else
+		delta_distance = get_delta_dist(ray->ray_direction_y);
+	if (mode == 'x')
+		return (ray->side_distance_x - delta_distance);
+	else
+		return (ray->side_distance_y - delta_distance);
 }
 
 //returns perpendicular distance to wall
-double	get_ray_length(double ray_direction_x, double ray_direction_y, int *step_x, int *step_y, double position_x, double position_y, char **map)
+void	get_ray_length(int *step_x, int *step_y, t_data *data)
 {
-	double	side_distance_x;
-	double	side_distance_y;
-	bool	hit;
-	int		side;
-	int		map_x;
-	int		map_y;
-	
+	bool		hit;
+	int			side;
+	int			map_x;
+	int			map_y;
+	t_ray		*ray;
+	t_vector	*map;
+
+	map = data->map;
+	ray = data->ray;
 	hit = false;
-	map_x = (int) position_x;
-	map_y = (int) position_y;
 	side = -1;
-	side_distance_x = get_side_distance(ray_direction_x, step_x, position_x, map_x);
-	side_distance_y = get_side_distance(ray_direction_y, step_y, position_y, map_y);
+	ray->side_distance_x = get_side_distance(data, step_x, 'x');
+	ray->side_distance_y = get_side_distance(data, step_y, 'y');
+	map_x = (int) data->pos_X;
+	map_y = (int) data->pos_Y;
 	while (hit == false)
 	{
-		if (side_distance_x < side_distance_y)
+		if (ray->side_distance_x < ray->side_distance_y)
 		{
-			side_distance_x += get_delta_dist(ray_direction_x);
+			ray->side_distance_x += get_delta_dist(ray->ray_direction_x);
 			map_x += *step_x;
 			side = 0;
 		}
 		else
 		{
-			side_distance_y += get_delta_dist(ray_direction_y);
+			ray->side_distance_y += get_delta_dist(ray->ray_direction_y);
 			map_y += *step_y;
 			side = 1;
 		}
-		if ((check_if_valid_pos(map, map_x, map_y) == true) && map[map_y][map_x] == '1')
+		if ((check_if_valid_pos(map->text, map_x, map_y) == true) && map->text[map_y][map_x] == '1')
 		{
 			hit = true;
 		}
 	}
 	if (side == 0)
-		return (adjust_for_camera_plane(side_distance_x, ray_direction_x));
+		ray->perp_wall_dist = (adjust_for_camera_plane(data, 'x'));
 	else
-		return (adjust_for_camera_plane(side_distance_y, ray_direction_y));
+		ray->perp_wall_dist = (adjust_for_camera_plane(data, 'y'));
 }
 

@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 09:33:03 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/09 10:05:57 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/09 15:44:18 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,19 @@
 
 static void	set_start_orientation(t_data *data, char c)
 {
-	if (c == 'N')
+	if (c == 'S')
 	{
-		data->dir_X = 0.0;
-		data->dir_Y = 1.0;
+		data->dir_X = 0;
+		data->dir_Y = 1;
+		data->plane_X = -PLANE_Y;
+		data->plane_Y = 0;
 	}
-	else if (c == 'S')
+	else if (c == 'N')
 	{
-		data->dir_X = 0.0;
-		data->dir_Y = -1.0;
+		data->dir_X = 0;
+		data->dir_Y = -1;
+		data->plane_X = PLANE_Y;
+		data->plane_Y = 0;
 	}
 	else if (c == 'E')
 	{
@@ -33,6 +37,7 @@ static void	set_start_orientation(t_data *data, char c)
 	{
 		data->dir_X = -1.0;
 		data->dir_Y = 0.0;
+		data->plane_Y *= -1;
 	}
 }
 
@@ -64,16 +69,21 @@ void	set_start_position(t_data *data, t_vector *map)
 
 bool	init_wall_textures(t_data *data)
 {
-	data->assets->north = mlx_load_png(data->assets->north_file);
-	if (data->assets->north == NULL)
+	t_assets	*assets;
+
+	assets = data->assets;
+	assets->north = mlx_load_png(assets->north_file);
+	if (assets->north == NULL)
 		return (false);
 	return (true);
 }
 
-bool	init_wall_images(t_data *data)
+bool	init_image(t_data *data)
 {
-	data->wall = mlx_texture_to_image(data->window, data->assets->north);//we can't just call this "wall" later on
-	if (data->wall == NULL)
+	data->img = mlx_new_image(data->window, SCREEN_WIDTH, SCREEN_HEIGHT);//we can't just call this "wall" later on
+	if (data->img == NULL)
+		return (false);
+	if (mlx_image_to_window(data->window, data->img, 0, 0) == -1)
 		return (false);
 	return (true);
 }
