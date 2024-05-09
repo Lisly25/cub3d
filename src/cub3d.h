@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/09 15:45:04 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/09 16:00:44 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_ray
 	double			delta_dist_y;
 	double			perp_wall_dist;
 	int				line_height;
+	int				side;
 }	t_ray;
 
 typedef struct s_data
@@ -128,5 +129,8 @@ void		get_line_height(t_data *data);
 //raycasting/draw_floor_and_ceiling.c
 void		draw_ceiling(int x, int wall_start, t_data *data);
 void		draw_floor(int x, int wall_end, t_data *data);
+
+//draw_textured_wall.c
+void		draw_textured_wall_section(int draw_start, int draw_end, int x, t_data *data, int side);
 
 #endif
