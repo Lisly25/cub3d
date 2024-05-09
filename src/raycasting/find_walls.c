@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 11:21:57 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/07 15:21:05 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:12:13 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ double	adjust_ray_direction(int mode, int x, t_data *data)
 {
 	double	camera_x;
 
-	camera_x = 2 * x / (double) SCREEN_HEIGHT - 1;
+	camera_x = 2 * x / (double) SCREEN_WIDTH - 1;
 	if (mode == 1)//for ray direction x
 		return (data->dir_X + data->plane_X * camera_x);
-	return (data->dir_Y - data->plane_Y * camera_x);
+	return (data->dir_Y + data->plane_Y * camera_x);
 }
 
 //will either be called as get_delta_dist(direction_X + PLANE_X * camera_X)
@@ -50,6 +50,8 @@ static double	get_side_distance(double ray_direction, int *step, double position
 	}
 	return (side_distance);
 }
+
+// static double	get_side_distance2(double );
 
 static double	adjust_for_camera_plane(double side_distance, double ray_direction)
 {

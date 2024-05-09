@@ -26,8 +26,8 @@
 # define SCREEN_HEIGHT 900
 # define PLANE_X 0
 # define PLANE_Y 0.66
-# define ROT_SPEED 0.1
-# define MOVE_SPEED 0.5
+# define ROT_SPEED 0.04
+# define MOVE_SPEED 0.3
 # define RENDER_SCALE 10
 
 typedef struct s_assets
