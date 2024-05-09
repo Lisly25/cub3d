@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 09:33:03 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/07 12:02:04 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/09 10:05:57 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,20 @@ void	set_start_position(t_data *data, t_vector *map)
 		x = 0;
 	}
 	return ;
+}
+
+bool	init_wall_textures(t_data *data)
+{
+	data->assets->north = mlx_load_png(data->assets->north_file);
+	if (data->assets->north == NULL)
+		return (false);
+	return (true);
+}
+
+bool	init_wall_images(t_data *data)
+{
+	data->wall = mlx_texture_to_image(data->window, data->assets->north);//we can't just call this "wall" later on
+	if (data->wall == NULL)
+		return (false);
+	return (true);
 }

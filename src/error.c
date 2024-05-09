@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:15:33 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/02 15:21:58 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/08 10:17:40 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,15 @@ bool	error_msg(char *msg)
 	ft_putendl_fd("Error", 2);
 	ft_putendl_fd(msg, 2);
 	return (false);
+}
+
+void	free_all_n_exit(char *msg, t_data *data, t_assets *assts, t_vector *map)
+{
+	error_msg(msg);
+	free_vector(map);
+	free_assets_struct(assts);
+	mlx_close_window(data->window);
+	mlx_terminate(data->window);
+	free(data);
+	exit(1);
 }

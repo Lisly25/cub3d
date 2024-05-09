@@ -3,19 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 13:40:41 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/08 16:15:05 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/09 09:53:43 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	display_data(t_data *data)
+static void	delete_old_images(t_data *data)
+{
+	mlx_delete_image(data->window, data->wall);
+	mlx_delete_image(data->window, data->ceiling);
+	mlx_delete_image(data->window, data->floor);
+}
+
+/*void	display_data(t_data *data)
 {
 	printf("------\ndir_X: %f\ndir_Y: %f\nplane_X: %f\nplane_Y: %f\npos_X: %f\npos_Y: %f\n", data->dir_X, data->dir_Y, data->plane_X, data->plane_Y, data->pos_X, data->pos_Y);
-}
+}*/
 
 void	key_hook(mlx_key_data_t keydata, void *param)
 {
@@ -33,7 +40,7 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	}
 	if (mlx_is_key_down(data->window, MLX_KEY_LEFT))
 	{
-		mlx_delete_image(data->window, data->wall);
+		delete_old_images(data);
 		old_dir_X = data->dir_X;
 		data->dir_X = data->dir_X * cos(-ROT_SPEED) -  data->dir_Y * sin(-ROT_SPEED);
 		data->dir_Y = old_dir_X * sin(-ROT_SPEED) + data->dir_Y * cos(-ROT_SPEED);
@@ -44,7 +51,7 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	}
 	if (mlx_is_key_down(data->window, MLX_KEY_RIGHT))
 	{
-		mlx_delete_image(data->window, data->wall);
+		delete_old_images(data);
 		old_dir_X = data->dir_X;
 		data->dir_X = data->dir_X * cos(ROT_SPEED) -  data->dir_Y * sin(ROT_SPEED);
 		data->dir_Y = old_dir_X * sin(ROT_SPEED) + data->dir_Y * cos(ROT_SPEED);
@@ -59,7 +66,7 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		new_pos_Y = data->pos_Y + (data->dir_Y * MOVE_SPEED);
 		if (data->map->text[(int) new_pos_Y][(int) new_pos_X] != '1')
 		{
-			mlx_delete_image(data->window, data->wall);
+			delete_old_images(data);
 			data->pos_Y = new_pos_Y;
 			data->pos_X = new_pos_X;
 			draw_walls(data->map->text, data);
@@ -71,7 +78,7 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		new_pos_Y = data->pos_Y - (data->dir_Y * MOVE_SPEED);
 		if (data->map->text[(int) new_pos_Y][(int) new_pos_X] != '1')
 		{
-			mlx_delete_image(data->window, data->wall);
+			delete_old_images(data);
 			data->pos_Y = new_pos_Y;
 			data->pos_X = new_pos_X;
 			draw_walls(data->map->text, data);
@@ -83,7 +90,7 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		new_pos_Y = data->pos_Y + (data->plane_Y * MOVE_SPEED);
 		if (data->map->text[(int) new_pos_Y][(int) new_pos_X] != '1')
 		{
-			mlx_delete_image(data->window, data->wall);
+			delete_old_images(data);
 			data->pos_Y = new_pos_Y;
 			data->pos_X = new_pos_X;
 			draw_walls(data->map->text, data);
@@ -95,7 +102,7 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		new_pos_Y = data->pos_Y - (data->plane_Y * MOVE_SPEED);
 		if (data->map->text[(int) new_pos_Y][(int) new_pos_X] != '1')
 		{
-			mlx_delete_image(data->window, data->wall);
+			delete_old_images(data);
 			data->pos_Y = new_pos_Y;
 			data->pos_X = new_pos_X;
 			draw_walls(data->map->text, data);
