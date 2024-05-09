@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 11:21:57 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/09 15:30:48 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/09 16:12:54 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static double	get_side_distance(t_data *data, int *step, char mode)
 	if (ray_direction < 0)
 	{
 		*step = -1;
-		return ((position - ((int)position)) * get_delta_dist(ray_direction));
+		return ((position - ( (int) position)) * get_delta_dist(ray_direction));
 	}
 	else
 	{
@@ -86,7 +86,6 @@ static double	adjust_for_camera_plane(t_data *data, char mode)
 void	get_ray_length(int *step_x, int *step_y, t_data *data)
 {
 	bool		hit;
-	int			side;
 	int			map_x;
 	int			map_y;
 	t_ray		*ray;
@@ -95,7 +94,7 @@ void	get_ray_length(int *step_x, int *step_y, t_data *data)
 	map = data->map;
 	ray = data->ray;
 	hit = false;
-	side = -1;
+	ray->side = -1;
 	ray->side_distance_x = get_side_distance(data, step_x, 'x');
 	ray->side_distance_y = get_side_distance(data, step_y, 'y');
 	map_x = (int) data->pos_X;
@@ -106,20 +105,20 @@ void	get_ray_length(int *step_x, int *step_y, t_data *data)
 		{
 			ray->side_distance_x += get_delta_dist(ray->ray_direction_x);
 			map_x += *step_x;
-			side = 0;
+			ray->side = 0;
 		}
 		else
 		{
 			ray->side_distance_y += get_delta_dist(ray->ray_direction_y);
 			map_y += *step_y;
-			side = 1;
+			ray->side = 1;
 		}
 		if ((check_if_valid_pos(map->text, map_x, map_y) == true) && map->text[map_y][map_x] == '1')
 		{
 			hit = true;
 		}
 	}
-	if (side == 0)
+	if (ray->side == 0)
 		ray->perp_wall_dist = (adjust_for_camera_plane(data, 'x'));
 	else
 		ray->perp_wall_dist = (adjust_for_camera_plane(data, 'y'));
