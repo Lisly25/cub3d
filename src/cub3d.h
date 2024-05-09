@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
 /*   Updated: 2024/05/09 15:45:04 by skorbai          ###   ########.fr       */
@@ -28,7 +28,6 @@
 # define PLANE_Y 0.66
 # define ROT_SPEED 0.05
 # define MOVE_SPEED 0.3
-//# define RENDER_SCALE 10
 # define TEXTURE_HEIGHT 64
 # define TEXTURE_WIDTH 64
 

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 13:40:41 by fshields          #+#    #+#             */
 /*   Updated: 2024/05/09 15:38:33 by skorbai          ###   ########.fr       */
@@ -38,7 +38,7 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		mlx_close_window(data->window);
 		return ;
 	}
-	if (mlx_is_key_down(data->window, MLX_KEY_LEFT))
+	if (mlx_is_key_down(data->window, MLX_KEY_LEFT))  
 	{
 		//delete_old_images(data);
 		old_dir_X = data->dir_X;

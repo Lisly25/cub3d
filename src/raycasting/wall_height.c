@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   wall_height.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:28:49 by fshields          #+#    #+#             */
 /*   Updated: 2024/05/09 15:37:19 by skorbai          ###   ########.fr       */
