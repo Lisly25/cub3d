@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 10:08:02 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/08 13:23:11 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/09 15:41:30 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,30 @@
 
 void	draw_ceiling(int x, int wall_start, t_data *data)
 {
-	int	y;
+	int			y;
+	uint32_t	colour;
+	t_assets	*assets;
 
 	y = 0;
+	assets = data->assets;
+	colour = get_colour(assets->ceiling);
 	while (y < wall_start)
 	{
-		if (mlx_image_to_window(data->window, data->ceiling, x, \
-		y) == -1)
-			msg_and_exit("Malloc error - this is not sufficient error handling, but we'll get back to it");
-		y += RENDER_SCALE;
+		mlx_put_pixel(data->img, x, y, colour);
+		y++;
 	}
 }
 
 void	draw_floor(int x, int wall_end, t_data *data)
 {
+	uint32_t	colour;
+	t_assets	*assets;
+
+	assets = data->assets;
+	colour = get_colour(assets->floor);
 	while (wall_end < (SCREEN_HEIGHT - 1))
 	{
-		if (mlx_image_to_window(data->window, data->floor, x, \
-		wall_end) == -1)
-			msg_and_exit("Malloc error - this is not sufficient error handling, but we'll get back to it");
-		wall_end += RENDER_SCALE;
+		mlx_put_pixel(data->img, x, wall_end, colour);
+		wall_end++;
 	}
 }

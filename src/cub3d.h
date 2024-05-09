@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/09 12:21:08 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/09 15:45:04 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@
 # define SCREEN_HEIGHT 900
 # define PLANE_X 0
 # define PLANE_Y 0.66
-# define ROT_SPEED 0.2
-# define MOVE_SPEED 0.35
-# define RENDER_SCALE 10
-// # define PI 3.14159265359
+# define ROT_SPEED 0.05
+# define MOVE_SPEED 0.3
+# define TEXTURE_HEIGHT 64
+# define TEXTURE_WIDTH 64
 
 typedef struct s_assets
 {
@@ -43,12 +43,22 @@ typedef struct s_assets
 	char			start_orientation;
 }	t_assets;
 
+typedef struct s_ray
+{
+	double			ray_direction_x;
+	double			ray_direction_y;
+	double			side_distance_x;
+	double			side_distance_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			perp_wall_dist;
+	int				line_height;
+}	t_ray;
+
 typedef struct s_data
 {
 	mlx_t			*window;
-	mlx_image_t		*wall;
-	mlx_image_t		*floor;
-	mlx_image_t		*ceiling;
+	mlx_image_t		*img;
 	t_vector		*map;
 	double			dir_X;
 	double			dir_Y;
@@ -56,6 +66,7 @@ typedef struct s_data
 	double			plane_Y;
 	double			pos_X;
 	double			pos_Y;
+	t_ray			*ray;
 	t_assets		*assets;
 }	t_data;
 
@@ -95,22 +106,24 @@ int			check_if_all_map_is_accessible(t_vector *map);
 //init.c
 mlx_t		*init_window();
 t_data		*init_data(mlx_t *window, t_vector *map, t_assets *assets);
-bool		init_floor_and_ceiling_img(t_data *data);
+//bool		init_floor_and_ceiling_img(t_data *data);
+uint32_t	get_colour(int rgb[3]);
 
 //init_utils.c
 void		set_start_position(t_data *data, t_vector *map);
 bool		init_wall_textures(t_data *data);
-bool		init_wall_images(t_data *data);
+bool		init_image(t_data *data);
 
 //find_walls
-double		get_ray_length(double ray_direction_x, double ray_direction_y, int *step_x, int *step_y, double position_x, double position_y, char **map);
+void		get_ray_length(int *step_x, int *step_y, t_data *data);
 double		adjust_ray_direction(int mode, int x, t_data *data);
 
 //find_walls_utils
 bool	check_if_valid_pos(char **map, int x, int y);
 
 //wall_height.c
-void		draw_walls(char **map, t_data *data);
+void		draw_walls(t_data *data);
+void		get_line_height(t_data *data);
 
 //raycasting/draw_floor_and_ceiling.c
 void		draw_ceiling(int x, int wall_start, t_data *data);

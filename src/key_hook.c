@@ -6,18 +6,18 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 13:40:41 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/09 11:57:03 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/09 15:38:33 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	delete_old_images(t_data *data)
+/*static void	delete_old_images(t_data *data)
 {
 	mlx_delete_image(data->window, data->wall);
 	mlx_delete_image(data->window, data->ceiling);
 	mlx_delete_image(data->window, data->floor);
-}
+}*/
 
 /*void	display_data(t_data *data)
 {
@@ -40,25 +40,25 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	}
 	if (mlx_is_key_down(data->window, MLX_KEY_LEFT))  
 	{
-		delete_old_images(data);
+		//delete_old_images(data);
 		old_dir_X = data->dir_X;
 		data->dir_X = data->dir_X * cos(-ROT_SPEED) -  data->dir_Y * sin(-ROT_SPEED);
 		data->dir_Y = old_dir_X * sin(-ROT_SPEED) + data->dir_Y * cos(-ROT_SPEED);
 		old_plane_X = data->plane_X;
 		data->plane_X = data->plane_X * cos(-ROT_SPEED) - data->plane_Y * sin(-ROT_SPEED);
 		data->plane_Y = old_plane_X * sin(-ROT_SPEED) + data->plane_Y * cos(-ROT_SPEED);
-		draw_walls(data->map->text, data);
+		draw_walls(data);
 	}
 	if (mlx_is_key_down(data->window, MLX_KEY_RIGHT))
 	{
-		delete_old_images(data);
+		//delete_old_images(data);
 		old_dir_X = data->dir_X;
 		data->dir_X = data->dir_X * cos(ROT_SPEED) -  data->dir_Y * sin(ROT_SPEED);
 		data->dir_Y = old_dir_X * sin(ROT_SPEED) + data->dir_Y * cos(ROT_SPEED);
 		old_plane_X = data->plane_X;
 		data->plane_X = data->plane_X * cos(ROT_SPEED) - data->plane_Y * sin(ROT_SPEED);
 		data->plane_Y = old_plane_X * sin(ROT_SPEED) + data->plane_Y * cos(ROT_SPEED);
-		draw_walls(data->map->text, data);
+		draw_walls(data);
 	}
 	if (mlx_is_key_down(data->window, MLX_KEY_W))
 	{
@@ -66,10 +66,10 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		new_pos_Y = data->pos_Y + (data->dir_Y * MOVE_SPEED);
 		if (data->map->text[(int) new_pos_Y][(int) new_pos_X] != '1')
 		{
-			delete_old_images(data);
+			//delete_old_images(data);
 			data->pos_Y = new_pos_Y;
 			data->pos_X = new_pos_X;
-			draw_walls(data->map->text, data);
+			draw_walls(data);
 		}
 	}
 	if (mlx_is_key_down(data->window, MLX_KEY_S))
@@ -78,10 +78,10 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		new_pos_Y = data->pos_Y - (data->dir_Y * MOVE_SPEED);
 		if (data->map->text[(int) new_pos_Y][(int) new_pos_X] != '1')
 		{
-			delete_old_images(data);
+			//delete_old_images(data);
 			data->pos_Y = new_pos_Y;
 			data->pos_X = new_pos_X;
-			draw_walls(data->map->text, data);
+			draw_walls(data);
 		}
 	}
 	if (mlx_is_key_down(data->window, MLX_KEY_D))
@@ -90,10 +90,10 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		new_pos_Y = data->pos_Y + (data->plane_Y * MOVE_SPEED);
 		if (data->map->text[(int) new_pos_Y][(int) new_pos_X] != '1')
 		{
-			delete_old_images(data);
+			//delete_old_images(data);
 			data->pos_Y = new_pos_Y;
 			data->pos_X = new_pos_X;
-			draw_walls(data->map->text, data);
+			draw_walls(data);
 		}
 	}
 	if (mlx_is_key_down(data->window, MLX_KEY_A))
@@ -102,10 +102,10 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		new_pos_Y = data->pos_Y - (data->plane_Y * MOVE_SPEED);
 		if (data->map->text[(int) new_pos_Y][(int) new_pos_X] != '1')
 		{
-			delete_old_images(data);
+			//delete_old_images(data);
 			data->pos_Y = new_pos_Y;
 			data->pos_X = new_pos_X;
-			draw_walls(data->map->text, data);
+			draw_walls(data);
 		}
 	}
 }

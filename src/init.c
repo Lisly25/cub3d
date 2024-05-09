@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 10:58:44 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/09 10:38:15 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/09 14:44:04 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ mlx_t	*init_window()
 	return (window);
 }
 
-static void	*ft_int_memset(void *dest, int rgb[3], size_t len)
+/*static void	*ft_int_memset(void *dest, int rgb[3], size_t len)
 {
 	uint8_t	*buffer;
 	size_t	i;
@@ -55,9 +55,9 @@ static void	set_img_to_color(mlx_image_t *img, int rgb[3])
 
 	pixel_count = (RENDER_SCALE * RENDER_SCALE * 4);
 	img->pixels = ft_int_memset(img->pixels, rgb, pixel_count);
-}
+}*/
 
-bool	init_floor_and_ceiling_img(t_data *data)
+/*bool	init_floor_and_ceiling_img(t_data *data)
 {
 	t_assets	*assets;
 
@@ -71,11 +71,22 @@ bool	init_floor_and_ceiling_img(t_data *data)
 	set_img_to_color(data->ceiling, assets->ceiling);
 	set_img_to_color(data->floor, assets->floor);
 	return (true);
+}*/
+
+uint32_t	get_colour(int rgb[3])
+{
+	uint32_t	colour;
+	uint32_t	a;
+
+	a = 255;
+	colour = (rgb[0] << 24 | rgb[1] << 16 | rgb[2] << 8 | a);
+	return (colour);
 }
 
 t_data	*init_data(mlx_t *window, t_vector *map, t_assets *assets)
 {
 	t_data	*data;
+	t_ray	*ray_data;
 
 	data = (t_data *) malloc(sizeof(t_data));
 	if (!data)
@@ -88,5 +99,11 @@ t_data	*init_data(mlx_t *window, t_vector *map, t_assets *assets)
 	data->assets = assets;
 	if (init_wall_textures(data) == false)//Should change error handling to tell which specific texture file could not be opened
 		free_all_n_exit("Failed to load wall texture", data, assets, map);
+	if (init_image(data) == false)
+		free_all_n_exit("Failed to create image", data, assets, map);
+	ray_data = (t_ray *)malloc(sizeof(t_ray));
+	if (ray_data == NULL)
+		free_all_n_exit("Malloc failure", data, assets, map);
+	data->ray = ray_data;
 	return (data);
 }
