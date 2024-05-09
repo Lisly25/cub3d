@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 09:33:03 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/09 10:05:57 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/09 12:22:13 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,19 @@
 
 static void	set_start_orientation(t_data *data, char c)
 {
-	if (c == 'N')
+	if (c == 'S')
 	{
-		data->dir_X = 0.0;
-		data->dir_Y = 1.0;
+		data->dir_X = 0;
+		data->dir_Y = 1;
+		data->plane_X = -PLANE_Y;
+		data->plane_Y = 0;
 	}
-	else if (c == 'S')
+	else if (c == 'N')
 	{
-		data->dir_X = 0.0;
-		data->dir_Y = -1.0;
+		data->dir_X = 0;
+		data->dir_Y = -1;
+		data->plane_X = PLANE_Y;
+		data->plane_Y = 0;
 	}
 	else if (c == 'E')
 	{
@@ -33,6 +37,7 @@ static void	set_start_orientation(t_data *data, char c)
 	{
 		data->dir_X = -1.0;
 		data->dir_Y = 0.0;
+		data->plane_Y *= -1;
 	}
 }
 

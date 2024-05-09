@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_height.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:28:49 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/09 10:08:49 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/09 11:48:25 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ static void draw_wall_section(char **map, int x, mlx_image_t *line, t_data *data
 	double	ray_direction_y;
 	
 	ray_direction_x = adjust_ray_direction(1, x, data);
+	printf("ray_dir_x = %f\n", ray_direction_x);
 	ray_direction_y = adjust_ray_direction(2, x, data);
+	printf("ray_dir_y = %f\n", ray_direction_y);
+	printf("----- x * y: %f\n", ray_direction_x * ray_direction_y);
 	perp_wall_dist = get_ray_length(ray_direction_x, ray_direction_y, &step_x, &step_y, data->pos_X, data->pos_Y, map);
 	line_height = get_line_height(perp_wall_dist);
 	draw_start = -(line_height) / 2 + SCREEN_HEIGHT / 2;
