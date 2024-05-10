@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_height.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:28:49 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/10 15:21:01 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:53:18 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	draw_wall_section(int x, t_data *data)
 	if (draw_end >= SCREEN_HEIGHT)
 		draw_end = SCREEN_HEIGHT - 1;
 	draw_ceiling(x, draw_start, data);
-	draw_tex_wall_section(draw_start, draw_end, x, data);
+	draw_text_sect(draw_start, draw_end, x, data);
 	draw_floor(x, draw_end, data);
 }
 

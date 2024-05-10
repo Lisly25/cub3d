@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:03:33 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/10 15:41:27 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/10 15:45:59 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ typedef struct s_vector_text
 	size_t	used_nodes;
 	size_t	max_nodes;
 }	t_vector;
-
 
 //vector_expand.c
 t_vector	*vector_new(size_t size);

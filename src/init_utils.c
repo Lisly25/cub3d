@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 09:33:03 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/10 15:03:57 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/10 15:47:06 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,28 @@ static void	set_start_orientation(t_data *data, char c)
 {
 	if (c == 'S')
 	{
-		data->dir_X = 0;
-		data->dir_Y = 1;
-		data->plane_X = -PLANE_Y;
-		data->plane_Y = 0;
+		data->dir_x = 0;
+		data->dir_y = 1;
+		data->plane_x = -PLANE_Y;
+		data->plane_y = 0;
 	}
 	else if (c == 'N')
 	{
-		data->dir_X = 0;
-		data->dir_Y = -1;
-		data->plane_X = PLANE_Y;
-		data->plane_Y = 0;
+		data->dir_x = 0;
+		data->dir_y = -1;
+		data->plane_x = PLANE_Y;
+		data->plane_y = 0;
 	}
 	else if (c == 'E')
 	{
-		data->dir_X = 1.0;
-		data->dir_Y = 0.0;
+		data->dir_x = 1.0;
+		data->dir_y = 0.0;
 	}
 	else if (c == 'W')
 	{
-		data->dir_X = -1.0;
-		data->dir_Y = 0.0;
-		data->plane_Y *= -1;
+		data->dir_x = -1.0;
+		data->dir_y = 0.0;
+		data->plane_y *= -1;
 	}
 }
 
@@ -54,8 +54,8 @@ void	set_start_position(t_data *data, t_vector *map)
 		{
 			if (ft_strchr("NSEW", map->text[y][x]) != NULL)
 			{
-				data->pos_X = (double) x;
-				data->pos_Y = (double) y;
+				data->pos_x = (double) x;
+				data->pos_y = (double) y;
 				set_start_orientation(data, map->text[y][x]);
 				return ;
 			}

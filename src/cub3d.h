@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/10 15:42:45 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/10 15:53:01 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ typedef struct s_data
 	mlx_t			*window;
 	mlx_image_t		*img;
 	t_vector		*map;
-	double			dir_X;
-	double			dir_Y;
-	double			plane_X;
-	double			plane_Y;
-	double			pos_X;
-	double			pos_Y;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
+	double			pos_x;
+	double			pos_y;
 	t_ray			*ray;
 	t_assets		*assets;
 }	t_data;
@@ -149,7 +149,7 @@ void		draw_ceiling(int x, int wall_start, t_data *data);
 void		draw_floor(int x, int wall_end, t_data *data);
 
 //draw_textured_wall.c
-void		draw_tex_wall_section(int draw_start, int draw_end, int x, t_data *data);
+void		draw_text_sect(int draw_start, int draw_end, int x, t_data *data);
 
 //clean_up_textures.c
 void		clean_up_textures(t_assets *assets);

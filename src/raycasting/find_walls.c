@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_walls.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 11:21:57 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/10 15:02:27 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:47:06 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ double	adjust_ray_direction(int mode, int x, t_data *data)
 
 	camera_x = 2 * x / (double) SCREEN_WIDTH - 1;
 	if (mode == 1)
-		return (data->dir_X + data->plane_X * camera_x);
-	return (data->dir_Y + data->plane_Y * camera_x);
+		return (data->dir_x + data->plane_x * camera_x);
+	return (data->dir_y + data->plane_y * camera_x);
 }
 
 double	get_delta_dist(double ray_direction)
@@ -38,12 +38,12 @@ double	get_side_distance(t_data *data, int *step, char mode)
 	if (mode == 'x')
 	{
 		ray_direction = data->ray->ray_direction_x;
-		position = data->pos_X;
+		position = data->pos_x;
 	}
 	else
 	{
 		ray_direction = data->ray->ray_direction_y;
-		position = data->pos_Y;
+		position = data->pos_y;
 	}
 	if (ray_direction < 0)
 	{
@@ -85,8 +85,8 @@ void	get_ray_length(int *step_x, int *step_y, t_data *data)
 	map = data->map;
 	ray = assign_ray(data, step_x, step_y);
 	hit = false;
-	map_x = (int) data->pos_X;
-	map_y = (int) data->pos_Y;
+	map_x = (int) data->pos_x;
+	map_y = (int) data->pos_y;
 	while (hit == false)
 	{
 		if (ray->side_distance_x < ray->side_distance_y)

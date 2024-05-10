@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_textured_wall.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:43:02 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/10 15:22:04 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:53:01 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static double	get_wall_x(int side, t_data *data, t_ray *ray)
 	double	wall_x;
 
 	if (side == 0)
-		wall_x = data->pos_Y + ray->perp_wall_dist * ray->ray_direction_y;
+		wall_x = data->pos_y + ray->perp_wall_dist * ray->ray_direction_y;
 	else
-		wall_x = data->pos_X + ray->perp_wall_dist * ray->ray_direction_x;
+		wall_x = data->pos_x + ray->perp_wall_dist * ray->ray_direction_x;
 	wall_x -= floor(wall_x);
 	return (wall_x);
 }
@@ -65,7 +65,7 @@ static mlx_texture_t	*select_texture(t_assets *assets, t_ray *ray)
 		return (assets->west);
 }
 
-void	draw_tex_wall_section(int draw_start, int draw_end, int x, t_data *data)
+void	draw_text_sect(int draw_start, int draw_end, int x, t_data *data)
 {
 	double			texture_position;
 	int				texture_y;
