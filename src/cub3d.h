@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
 /*   Updated: 2024/05/10 15:53:01 by skorbai          ###   ########.fr       */
@@ -19,7 +19,6 @@
 # include "fcntl.h"
 # include <math.h>
 # include <stdio.h>
-# include <errno.h>
 
 # define SCREEN_WIDTH 1300
 # define SCREEN_HEIGHT 900
@@ -27,8 +26,6 @@
 # define PLANE_Y 0.66
 # define ROT_SPEED 0.1
 # define MOVE_SPEED 0.3
-# define TEXTURE_HEIGHT 64
-# define TEXTURE_WIDTH 64
 # define PLAYER_SIZE 0.2
 # define DBL_MAX 1.7976931348623158e+308
 
