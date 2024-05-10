@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:15:33 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/10 14:46:26 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/10 15:26:11 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,10 @@ bool	error_msg(char *msg)
 	return (false);
 }
 
-void	free_all_n_exit(char *msg, t_data *data, t_assets *assts, t_vector *map)
+void	ft_exit(char *msg, t_data *data, t_assets *assts, t_vector *map)
 {
-	error_msg(msg);
+	if (msg != NULL)
+		error_msg(msg);
 	free_vector(map);
 	free_assets_struct(assts);
 	mlx_close_window(data->window);
