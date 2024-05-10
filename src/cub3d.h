@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/09 16:00:44 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/10 10:11:15 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define SCREEN_HEIGHT 900
 # define PLANE_X 0
 # define PLANE_Y 0.66
-# define ROT_SPEED 0.05
+# define ROT_SPEED 0.1
 # define MOVE_SPEED 0.3
 # define TEXTURE_HEIGHT 64
 # define TEXTURE_WIDTH 64

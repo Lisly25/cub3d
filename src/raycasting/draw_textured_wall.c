@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:43:02 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/09 16:10:07 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/10 11:31:40 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,19 @@ static int	get_texture_x(int side, t_data *data)
 	return (texture_x);
 }
 
+uint32_t	get_element_by_coordinate(int x, int y, uint32_t *arr)
+{
+	uint32_t	colour;
+	int			index;
+
+	if (y == 0)
+		index = x;
+	else
+		index = (y * TEXTURE_WIDTH) + x;
+	colour =  arr[index];
+	return (colour);
+}
+
 void	draw_textured_wall_section(int draw_start, int draw_end, int x, t_data *data, int side)
 {
 	double			step;
@@ -63,7 +76,7 @@ void	draw_textured_wall_section(int draw_start, int draw_end, int x, t_data *dat
 	{
 		texture_y = (int)texture_position & (TEXTURE_HEIGHT - 1);
 		texture_position += step;
-		color = texture->pixels[TEXTURE_HEIGHT * texture_y + texture_x];
+		color = get_element_by_coordinate(texture_x, texture_y, (uint32_t *)texture->pixels);
 		mlx_put_pixel(data->img, x, y, color);
 		y++;
 	}
