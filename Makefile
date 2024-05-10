@@ -8,6 +8,8 @@ SRCS		=	src/main.c \
 				src/init.c \
 				src/init_utils.c \
 				src/key_hook.c \
+				src/key_hook_utils_1.c \
+				src/key_hook_utils_2.c \
 				src/raycasting/find_walls.c \
 				src/raycasting/find_walls_utils.c \
 				src/raycasting/wall_height.c \

@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:43:02 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/10 13:09:02 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:22:04 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ uint32_t	get_element_by_coordinate(int x, int y, uint32_t *arr, int tex_w)
 		index = x;
 	else
 		index = (y * tex_w) + x;
-	colour =  arr[index];
+	colour = arr[index];
 	return (colour);
 }
 
@@ -65,32 +65,27 @@ static mlx_texture_t	*select_texture(t_assets *assets, t_ray *ray)
 		return (assets->west);
 }
 
-void	draw_textured_wall_section(int draw_start, int draw_end, int x, t_data *data, int side)
+void	draw_tex_wall_section(int draw_start, int draw_end, int x, t_data *data)
 {
-	double			step;
 	double			texture_position;
 	int				texture_y;
 	int				texture_x;
 	uint32_t		color;
-	int				y;
-	t_ray			*ray;
-	t_assets		*assets;
 	mlx_texture_t	*texture;
 
-	ray = data->ray;
-	assets = data->assets;
-	texture = select_texture(assets, ray);
-	step = 1.0 * texture->height / ray->line_height;
-	texture_x = get_texture_x(side, data, texture->width);
-	texture_position = (draw_start - SCREEN_HEIGHT / 2 + ray->line_height / 2) * step;
-	y = draw_start;
-	while (y < draw_end)
+	texture = select_texture(data->assets, data->ray);
+	texture_x = get_texture_x(data->ray->side, data, texture->width);
+	texture_position = (draw_start - SCREEN_HEIGHT / 2 + data->ray->line_height \
+		/ 2) * ((double) texture->height / data->ray->line_height);
+	while (draw_start < draw_end)
 	{
 		texture_y = (int)texture_position & (texture->height - 1);
-		texture_position += step;
-		color = get_element_by_coordinate(texture_x, texture_y, (uint32_t *)texture->pixels, texture->width);
-		color = (color << 24) | (((color>>16)<<24)>>16) |  (((color<<16)>>24)<<16) | (color>>24);
-		mlx_put_pixel(data->img, x, y, color);
-		y++;
+		texture_position += (double) texture->height / data->ray->line_height;
+		color = get_element_by_coordinate(texture_x, texture_y, \
+			(uint32_t *)texture->pixels, texture->width);
+		color = (color << 24) | (((color >> 16) << 24) >> 16) | \
+			(((color << 16) >> 24) << 16) | (color >> 24);
+		mlx_put_pixel(data->img, x, draw_start, color);
+		draw_start++;
 	}
 }
