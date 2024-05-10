@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:43:02 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/10 11:39:19 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/10 12:01:30 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	draw_textured_wall_section(int draw_start, int draw_end, int x, t_data *dat
 		texture_y = (int)texture_position & (texture->height - 1);
 		texture_position += step;
 		color = get_element_by_coordinate(texture_x, texture_y, (uint32_t *)texture->pixels, texture->width);
+		color = (color << 24) | (((color>>16)<<24)>>16) |  (((color<<16)>>24)<<16) | (color>>24);
 		mlx_put_pixel(data->img, x, y, color);
 		y++;
 	}
