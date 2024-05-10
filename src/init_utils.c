@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 09:33:03 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/10 13:00:01 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/10 14:55:19 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ bool	init_wall_textures(t_data *data)
 
 bool	init_image(t_data *data)
 {
-	data->img = mlx_new_image(data->window, SCREEN_WIDTH, SCREEN_HEIGHT);//we can't just call this "wall" later on
+	data->img = mlx_new_image(data->window, SCREEN_WIDTH, SCREEN_HEIGHT);
 	if (data->img == NULL)
 		return (false);
 	if (mlx_image_to_window(data->window, data->img, 0, 0) == -1)
