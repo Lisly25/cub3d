@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:43:02 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/09 16:10:07 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/10 11:22:51 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,34 @@ static int	get_texture_x(int side, t_data *data)
 	return (texture_x);
 }
 
+/*static uint32_t	get_texture_color(mlx_texture_t *texture, int tex_x, int tex_y)
+{
+	u_int32_t	colour;
+	uint8_t		*buffer;
+
+	colour = 0;
+	buffer = (uint8_t *) &colour;
+	buffer[0] = texture->pixels[TEXTURE_HEIGHT * tex_y + tex_x];
+	buffer[1] = texture->pixels[(TEXTURE_HEIGHT * tex_y + tex_x) + 1];
+	buffer[2] = texture->pixels[(TEXTURE_HEIGHT * tex_y + tex_x) + 2];
+	buffer[3] = texture->pixels[(TEXTURE_HEIGHT * tex_y + tex_x) + 3];
+	//printf("r %c, g: %c, b %c a: %c\n", buffer[0], buffer[1], buffer[2], buffer[3]);
+	return (colour);
+}*/
+
+uint32_t	get_element_by_coordinate(int x, int y, uint32_t *arr)
+{
+	uint32_t	colour;
+	int			index;
+
+	if (y == 0)
+		index = x;
+	else
+		index = (y * TEXTURE_WIDTH) + x;
+	colour =  arr[index];
+	return (colour);
+}
+
 void	draw_textured_wall_section(int draw_start, int draw_end, int x, t_data *data, int side)
 {
 	double			step;
@@ -57,13 +85,16 @@ void	draw_textured_wall_section(int draw_start, int draw_end, int x, t_data *dat
 	texture = assets->north;
 	step = 1.0 * TEXTURE_HEIGHT / ray->line_height;
 	texture_x = get_texture_x(side, data);
-	texture_position = (draw_start - SCREEN_HEIGHT / 2 + ray->line_height / 2) * step;
+	texture_position = (draw_start - 100 - SCREEN_HEIGHT / 2 + ray->line_height / 2) * step;
 	y = draw_start;
 	while (y < draw_end)
 	{
 		texture_y = (int)texture_position & (TEXTURE_HEIGHT - 1);
 		texture_position += step;
-		color = texture->pixels[TEXTURE_HEIGHT * texture_y + texture_x];
+		//color = get_texture_color(texture, texture_x, texture_y);
+		//color = (uint32_t*) &(texture->pixels)[((texture_y + 1) * texture_x)];
+		color = get_element_by_coordinate(texture_x, texture_y, (uint32_t *)texture->pixels);
+		printf("Colour we extracted is: %x\n", color);
 		mlx_put_pixel(data->img, x, y, color);
 		y++;
 	}
