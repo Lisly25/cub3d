@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_assets.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:46:21 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/06 15:43:46 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/10 14:39:33 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,10 @@ t_assets	*get_assets(t_vector *map)
 	assets = (t_assets *)malloc(sizeof(t_assets));
 	if (assets == NULL)
 		map_validation_error("Malloc failure", map, NULL);
+	assets->east_file = NULL;
+	assets->north_file = NULL;
+	assets->west_file = NULL;
+	assets->south_file = NULL;
 	get_texture_info(map, assets);
 	return (assets);
 }
