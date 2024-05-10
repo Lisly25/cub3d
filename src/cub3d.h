@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/10 13:56:25 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:20:57 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define TEXTURE_HEIGHT 64
 # define TEXTURE_WIDTH 64
 # define PLAYER_SIZE 0.2
+# define DBL_MAX 1.7976931348623158e+308
 
 typedef struct s_assets
 {
@@ -85,6 +86,17 @@ void		free_all_n_exit(char *msg, t_data *data, t_assets *assts, t_vector *map);
 //key_hook
 void		key_hook(mlx_key_data_t keydata, void *param);
 
+//key_hook_utils_1.c
+void		left_key(t_data *data);
+void		right_key(t_data *data);
+void		w_key(t_data *data);
+void		s_key(t_data *data);
+
+//key_hook_utils_2.c
+void		a_key(t_data *data);
+void		d_key(t_data *data);
+bool		wall_collision(t_data *data, double new_pos_X, double new_pos_Y);
+
 //map_operations/read_map.c
 t_vector	*read_map(int argc, char **argv);
 
@@ -122,9 +134,14 @@ bool		init_image(t_data *data);
 //find_walls
 void		get_ray_length(int *step_x, int *step_y, t_data *data);
 double		adjust_ray_direction(int mode, int x, t_data *data);
+double		get_delta_dist(double ray_direction);
+double		get_side_distance(t_data *data, int *step, char mode);
 
 //find_walls_utils
-bool	check_if_valid_pos(char **map, int x, int y);
+bool		check_if_valid_pos(char **map, t_data *data);
+void		dda_x(t_ray *ray, int *map_x, int *step_x);
+void		dda_y(t_ray *ray, int *map_y, int *step_y);
+t_ray		*assign_ray(t_data *data, int *step_x, int *step_y);
 
 //wall_height.c
 void		draw_walls(t_data *data);
@@ -135,6 +152,6 @@ void		draw_ceiling(int x, int wall_start, t_data *data);
 void		draw_floor(int x, int wall_end, t_data *data);
 
 //draw_textured_wall.c
-void		draw_textured_wall_section(int draw_start, int draw_end, int x, t_data *data, int side);
+void		draw_tex_wall_section(int draw_start, int draw_end, int x, t_data *data);
 
 #endif

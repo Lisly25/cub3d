@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_height.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 13:28:49 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/09 16:01:49 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/10 15:21:01 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	get_line_height(t_data *data)
 	ray->line_height = ((int) SCREEN_HEIGHT / ray->perp_wall_dist);
 }
 
-static void draw_wall_section(int x, t_data *data)
+static void	draw_wall_section(int x, t_data *data)
 {
 	int		draw_start;
 	int		draw_end;
@@ -42,12 +42,7 @@ static void draw_wall_section(int x, t_data *data)
 	if (draw_end >= SCREEN_HEIGHT)
 		draw_end = SCREEN_HEIGHT - 1;
 	draw_ceiling(x, draw_start, data);
-	draw_textured_wall_section(draw_start, draw_end, x, data, ray->side);
-	// while (draw_start <= draw_end)
-	// {
-	// 	mlx_put_pixel(data->img, x, draw_start, 0x43ff64d9);
-	// 	draw_start++;
-	// }
+	draw_tex_wall_section(draw_start, draw_end, x, data);
 	draw_floor(x, draw_end, data);
 }
 
