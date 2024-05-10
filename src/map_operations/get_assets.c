@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:46:21 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/10 14:39:33 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/10 14:50:07 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ static void	extract_rgb(char *id, t_assets *assets, t_vector *map)
 			trimmed_info = trim_identifier(color_info, 2);
 			if (trimmed_info == NULL)
 				map_validation_error("Malloc failure", map, assets);
-			if (copy_rgb_values(trimmed_info, assets, id) == -1)//this should differentiate between bad values and malloc fails
-				map_validation_error("Invalid color config", map, assets);
+			if (copy_rgb_values(trimmed_info, assets, id) == false)
+				map_validation_error(NULL, map, assets);
 			return ;
 		}
 		i++;

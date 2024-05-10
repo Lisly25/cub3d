@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:15:33 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/08 10:17:40 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/10 14:46:26 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,11 @@ void	map_validation_error(char *msg, t_vector *map, t_assets *assets)
 		free_assets_struct(assets);
 	if (map != NULL)
 		free_vector(map);
-	ft_putendl_fd("Error", 2);
-	ft_putendl_fd(msg, 2);
+	if (msg != NULL)
+	{
+		ft_putendl_fd("Error", 2);
+		ft_putendl_fd(msg, 2);
+	}
 	exit(1);
 }
 
