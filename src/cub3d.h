@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/10 12:58:33 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/10 13:56:25 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define MOVE_SPEED 0.3
 # define TEXTURE_HEIGHT 64
 # define TEXTURE_WIDTH 64
+# define PLAYER_SIZE 0.2
 
 typedef struct s_assets
 {
