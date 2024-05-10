@@ -4,6 +4,7 @@ CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror
 SRCS		=	src/main.c \
 				src/error.c \
+				src/clean_up_textures.c \
 				src/init.c \
 				src/init_utils.c \
 				src/key_hook.c \

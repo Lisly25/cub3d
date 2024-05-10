@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_assets.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:46:21 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/06 15:43:46 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:15:57 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ static void	extract_rgb(char *id, t_assets *assets, t_vector *map)
 			trimmed_info = trim_identifier(color_info, 2);
 			if (trimmed_info == NULL)
 				map_validation_error("Malloc failure", map, assets);
-			if (copy_rgb_values(trimmed_info, assets, id) == -1)//this should differentiate between bad values and malloc fails
-				map_validation_error("Invalid color config", map, assets);
+			if (copy_rgb_values(trimmed_info, assets, id) == false)
+				map_validation_error(NULL, map, assets);
 			return ;
 		}
 		i++;
@@ -109,6 +109,10 @@ t_assets	*get_assets(t_vector *map)
 	assets = (t_assets *)malloc(sizeof(t_assets));
 	if (assets == NULL)
 		map_validation_error("Malloc failure", map, NULL);
+	assets->east_file = NULL;
+	assets->north_file = NULL;
+	assets->west_file = NULL;
+	assets->south_file = NULL;
 	get_texture_info(map, assets);
 	return (assets);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:13:25 by skorbai           #+#    #+#             */
-/*   Updated: 2024/04/30 15:08:48 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/10 14:04:37 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,28 @@ static int	open_map(char *filename)
 	return (map_fd);
 }
 
-t_vector	*read_map(int argc, char **argv)
+static void	check_map_dimensions(t_vector *map, char *map_line)
+{
+	if (map->used_nodes >= 999)
+	{
+		free_vector(map);
+		free(map_line);
+		msg_and_exit("Map too large - too many lines");
+	}
+	if (ft_strlen(map_line) > 1000)
+	{
+		free_vector(map);
+		free(map_line);
+		msg_and_exit("Map too large - line(s) too long");
+	}
+}
+
+t_vector	*read_map(char **argv)
 {
 	int			map_fd;
 	t_vector	*map;
 	char		*map_line;
 
-	if (argc != 2)
-		msg_and_exit("Incorrect number of arguments");
 	map_fd = open_map(argv[1]);
 	if (map_fd < 0)
 		msg_and_exit("failed to open map");
@@ -55,6 +69,7 @@ t_vector	*read_map(int argc, char **argv)
 		map_line = get_next_line(map_fd);
 		if (map_line == NULL)
 			break ;
+		check_map_dimensions(map, map_line);
 		if (vector_add_back(map, map_line) == MALLOC_ERROR)
 		{
 			free_vector(map);

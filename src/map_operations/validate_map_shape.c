@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 14:29:36 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/07 16:54:48 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/10 15:26:35 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static bool	validate_start_orientation(t_vector *map)
 	return (true);
 }
 
-bool	check_neighbours_for_char(t_vector *map, char c, size_t x, size_t y)
+bool	check_around_for_char(t_vector *map, char c, size_t x, size_t y)
 {
 	if ((y < map->used_nodes - 1) && (map->text[y + 1][x] == c))
 		return (true);
@@ -67,7 +67,7 @@ static bool	validate_if_walled(t_vector *map)
 		{
 			if (map->text[y][x] == '0')
 			{
-				if (check_neighbours_for_char(map, ' ', x, y) == true)
+				if (check_around_for_char(map, ' ', x, y) == true)
 					return (false);
 			}
 			x++;
