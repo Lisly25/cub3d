@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_walls_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:11:31 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/10 15:01:57 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:47:06 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ bool	check_if_valid_pos(char **map, t_data *data)
 
 	i = 0;
 	j = 0;
-	map_x = (int) data->pos_X;
-	map_y = (int) data->pos_Y;
+	map_x = (int) data->pos_x;
+	map_y = (int) data->pos_y;
 	while (map[j] != NULL)
 		j++;
 	if (j < map_y)

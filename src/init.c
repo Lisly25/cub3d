@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 10:58:44 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/10 15:26:11 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/10 15:46:54 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ t_data	*init_data(t_vector *map, t_assets *assets)
 	if (!(data->window))
 		ft_exit("Failed to init window", data, assets, map);
 	data->map = map;
-	data->plane_X = PLANE_X;
-	data->plane_Y = PLANE_Y;
+	data->plane_x = PLANE_X;
+	data->plane_y = PLANE_Y;
 	set_start_position(data, map);
 	data->assets = assets;
 	if (init_wall_textures(data) == false)
