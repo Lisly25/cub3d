@@ -6,23 +6,57 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 13:40:41 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/10 12:55:47 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/10 14:00:19 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/*static void	delete_old_images(t_data *data)
+static bool	check_diags(t_data *data, double new_x, double new_y)
 {
-	mlx_delete_image(data->window, data->wall);
-	mlx_delete_image(data->window, data->ceiling);
-	mlx_delete_image(data->window, data->floor);
-}*/
+	int			diag_x;
+	int			diag_y;
+	t_vector	*map;
+	
+	if ((int) data->pos_X == (int) new_x || (int) data->pos_Y == (int) new_y)
+		return (true);
+	map = data->map;
+	diag_x = (int) data->pos_X + (data->dir_X > 0) - (data->dir_X < 0);
+	diag_y = (int) data->pos_Y + (data->dir_Y > 0) - (data->dir_Y < 0);
+	if (map->text[diag_y][(int) data->pos_X] == '1')
+		return (false);
+	if (map->text[(int) data->pos_Y][diag_x] == '1')
+		return (false);
+	return (true);
+}
 
-/*void	display_data(t_data *data)
+static bool	wall_collision(t_data *data, double new_pos_X, double new_pos_Y)
 {
-	printf("------\ndir_X: %f\ndir_Y: %f\nplane_X: %f\nplane_Y: %f\npos_X: %f\npos_Y: %f\n", data->dir_X, data->dir_Y, data->plane_X, data->plane_Y, data->pos_X, data->pos_Y);
-}*/
+	t_vector	*map;
+	double		adjusted_x;
+	double		adjusted_y;
+
+	map = data->map;
+	if (data->dir_X > 0)
+		adjusted_x = new_pos_X + PLAYER_SIZE;
+	else if (data->dir_X < 0)
+		adjusted_x = new_pos_X - PLAYER_SIZE;
+	else
+		adjusted_x = new_pos_X;
+	if (data->dir_Y > 0)
+		adjusted_y = new_pos_Y + PLAYER_SIZE;
+	else if (data->dir_Y < 0)
+		adjusted_y = new_pos_Y - PLAYER_SIZE;
+	else
+		adjusted_y = new_pos_Y;
+	if (map->text[(int) new_pos_Y][(int) new_pos_X] == '1')
+		return (true);
+	if (map->text[(int) adjusted_y][(int) adjusted_x] == '1')
+		return (true);
+	if (!check_diags(data, adjusted_x, adjusted_y))
+		return (true);
+	return (false);
+}
 
 void	key_hook(mlx_key_data_t keydata, void *param)
 {
@@ -40,7 +74,6 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	}
 	if (mlx_is_key_down(data->window, MLX_KEY_LEFT))  
 	{
-		//delete_old_images(data);
 		old_dir_X = data->dir_X;
 		data->dir_X = data->dir_X * cos(-ROT_SPEED) -  data->dir_Y * sin(-ROT_SPEED);
 		data->dir_Y = old_dir_X * sin(-ROT_SPEED) + data->dir_Y * cos(-ROT_SPEED);
@@ -51,7 +84,6 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	}
 	if (mlx_is_key_down(data->window, MLX_KEY_RIGHT))
 	{
-		//delete_old_images(data);
 		old_dir_X = data->dir_X;
 		data->dir_X = data->dir_X * cos(ROT_SPEED) -  data->dir_Y * sin(ROT_SPEED);
 		data->dir_Y = old_dir_X * sin(ROT_SPEED) + data->dir_Y * cos(ROT_SPEED);
@@ -64,9 +96,8 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	{
 		new_pos_X = data->pos_X + (data->dir_X * MOVE_SPEED);
 		new_pos_Y = data->pos_Y + (data->dir_Y * MOVE_SPEED);
-		if (data->map->text[(int) new_pos_Y][(int) new_pos_X] != '1')
+		if (!wall_collision(data, new_pos_X, new_pos_Y))
 		{
-			//delete_old_images(data);
 			data->pos_Y = new_pos_Y;
 			data->pos_X = new_pos_X;
 			draw_walls(data);
@@ -76,9 +107,8 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	{
 		new_pos_X = data->pos_X - (data->dir_X * MOVE_SPEED);
 		new_pos_Y = data->pos_Y - (data->dir_Y * MOVE_SPEED);
-		if (data->map->text[(int) new_pos_Y][(int) new_pos_X] != '1')
+		if (!wall_collision(data, new_pos_X, new_pos_Y))
 		{
-			//delete_old_images(data);
 			data->pos_Y = new_pos_Y;
 			data->pos_X = new_pos_X;
 			draw_walls(data);
@@ -88,9 +118,8 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	{
 		new_pos_X = data->pos_X + (data->plane_X * MOVE_SPEED);
 		new_pos_Y = data->pos_Y + (data->plane_Y * MOVE_SPEED);
-		if (data->map->text[(int) new_pos_Y][(int) new_pos_X] != '1')
+		if (!wall_collision(data, new_pos_X, new_pos_Y))
 		{
-			//delete_old_images(data);
 			data->pos_Y = new_pos_Y;
 			data->pos_X = new_pos_X;
 			draw_walls(data);
@@ -100,9 +129,8 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	{
 		new_pos_X = data->pos_X - (data->plane_X * MOVE_SPEED);
 		new_pos_Y = data->pos_Y - (data->plane_Y * MOVE_SPEED);
-		if (data->map->text[(int) new_pos_Y][(int) new_pos_X] != '1')
+		if (!wall_collision(data, new_pos_X, new_pos_Y))
 		{
-			//delete_old_images(data);
 			data->pos_Y = new_pos_Y;
 			data->pos_X = new_pos_X;
 			draw_walls(data);

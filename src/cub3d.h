@@ -30,6 +30,7 @@
 # define MOVE_SPEED 0.3
 # define TEXTURE_HEIGHT 64
 # define TEXTURE_WIDTH 64
+# define PLAYER_SIZE 0.2
 
 typedef struct s_assets
 {
