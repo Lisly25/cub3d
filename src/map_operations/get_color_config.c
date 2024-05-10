@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 10:09:04 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/06 13:46:01 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/10 15:14:11 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,16 @@ static bool	validate_values(char **strs, int *nums, t_assets *assets, char *id)
 	while (i < 3)
 	{
 		if (ft_strlen(strs[i]) > 3)
-			return (false);
+			return (error_msg("Invalid RGB values"));
 		if (nums[i] < 0 || nums[i] > 255)
-			return (false);
+			return (error_msg("Invalid RGB values"));
 		asset[i] = nums[i];
 		i++;
 	}
 	return (true);
 }
 
-int	copy_rgb_values(char *trimmed_info, t_assets *assets, char *id)
+bool	copy_rgb_values(char *trimmed_info, t_assets *assets, char *id)
 {
 	char	**num_strs;
 	size_t	i;
@@ -69,11 +69,11 @@ int	copy_rgb_values(char *trimmed_info, t_assets *assets, char *id)
 	num_strs = ft_split(trimmed_info, ',');
 	free(trimmed_info);
 	if (num_strs == NULL)
-		return (return_value);
+		return (error_msg("Malloc failure"));
 	if (get_array_size(num_strs) != 3)
 	{
 		free_2d_array(num_strs);
-		return (return_value);
+		return (error_msg("Malloc failure"));
 	}
 	i = 0;
 	while (num_strs[i] != NULL)
@@ -82,7 +82,7 @@ int	copy_rgb_values(char *trimmed_info, t_assets *assets, char *id)
 		i++;
 	}
 	if (validate_values(num_strs, nums, assets, id) == true)
-		return_value = 0;
+		return_value = true;
 	free_2d_array(num_strs);
 	return (return_value);
 }

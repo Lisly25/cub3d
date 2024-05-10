@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 09:33:03 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/10 13:00:01 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:03:57 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,23 @@ bool	init_wall_textures(t_data *data)
 
 	assets = data->assets;
 	assets->north = mlx_load_png(assets->north_file);
-	assets->south = mlx_load_png(assets->south_file);
-	assets->east = mlx_load_png(assets->east_file);
-	assets->west = mlx_load_png(assets->west_file);
 	if (assets->north == NULL)
-		return (false);
+		return (error_msg("Cannot load north texture"));
+	assets->south = mlx_load_png(assets->south_file);
+	if (assets->south == NULL)
+		return (error_msg("Cannot load south texture"));
+	assets->east = mlx_load_png(assets->east_file);
+	if (assets->east == NULL)
+		return (error_msg("Cannot load east texture"));
+	assets->west = mlx_load_png(assets->west_file);
+	if (assets->west == NULL)
+		return (error_msg("Cannot load west texture"));
 	return (true);
 }
 
 bool	init_image(t_data *data)
 {
-	data->img = mlx_new_image(data->window, SCREEN_WIDTH, SCREEN_HEIGHT);//we can't just call this "wall" later on
+	data->img = mlx_new_image(data->window, SCREEN_WIDTH, SCREEN_HEIGHT);
 	if (data->img == NULL)
 		return (false);
 	if (mlx_image_to_window(data->window, data->img, 0, 0) == -1)
