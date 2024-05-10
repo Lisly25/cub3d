@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 09:33:03 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/10 15:47:06 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/10 16:04:54 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,20 +67,45 @@ void	set_start_position(t_data *data, t_vector *map)
 	return ;
 }
 
+static bool	validate_texture_file(char *path)
+{
+	int	fd;
+
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
+	{
+		ft_putendl_fd("Error", 2);
+		ft_putstr_fd("file \"", 2);
+		ft_putstr_fd(path, 2);
+		ft_putendl_fd("\" cannot be opened", 2);
+		return (false);
+	}
+	close(fd);
+	return (true);
+}
+
 bool	init_wall_textures(t_data *data)
 {
 	t_assets	*assets;
 
 	assets = data->assets;
+	if (validate_texture_file(assets->north_file) == false)
+		return (false);
 	assets->north = mlx_load_png(assets->north_file);
 	if (assets->north == NULL)
 		return (error_msg("Cannot load north texture"));
+	if (validate_texture_file(assets->south_file) == false)
+		return (false);
 	assets->south = mlx_load_png(assets->south_file);
 	if (assets->south == NULL)
 		return (error_msg("Cannot load south texture"));
+	if (validate_texture_file(assets->east_file) == false)
+		return (false);
 	assets->east = mlx_load_png(assets->east_file);
 	if (assets->east == NULL)
 		return (error_msg("Cannot load east texture"));
+	if (validate_texture_file(assets->west_file) == false)
+		return (false);
 	assets->west = mlx_load_png(assets->west_file);
 	if (assets->west == NULL)
 		return (error_msg("Cannot load west texture"));
