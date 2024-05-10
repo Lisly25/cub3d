@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 10:09:04 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/10 14:49:30 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/10 15:14:11 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ bool	copy_rgb_values(char *trimmed_info, t_assets *assets, char *id)
 		i++;
 	}
 	if (validate_values(num_strs, nums, assets, id) == true)
-		return_value = 0;
+		return_value = true;
 	free_2d_array(num_strs);
 	return (return_value);
 }
