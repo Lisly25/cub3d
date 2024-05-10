@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/10 12:58:33 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/10 13:58:57 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void		free_all_n_exit(char *msg, t_data *data, t_assets *assts, t_vector *map);
 void		key_hook(mlx_key_data_t keydata, void *param);
 
 //map_operations/read_map.c
-t_vector	*read_map(int argc, char **argv);
+t_vector	*read_map(char **argv);
 
 //map_operations/get_assets.c
 char		*trim_identifier(char *config_line, unsigned int id_length);

@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:47:28 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/09 15:19:23 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/10 14:05:03 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ int	main(int argc, char **argv)
 	t_data		*data;
 	mlx_t		*window;
 
-	map = read_map(argc, argv);
+	if (argc != 2)
+		msg_and_exit("Incorrect number of arguments");
+	map = read_map(argv);
 	assets = get_assets(map);
 	window = init_window();
 	data = init_data(window, map, assets);
