@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 09:33:03 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/09 15:44:18 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/10 13:00:01 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ bool	init_wall_textures(t_data *data)
 
 	assets = data->assets;
 	assets->north = mlx_load_png(assets->north_file);
+	assets->south = mlx_load_png(assets->south_file);
+	assets->east = mlx_load_png(assets->east_file);
+	assets->west = mlx_load_png(assets->west_file);
 	if (assets->north == NULL)
 		return (false);
 	return (true);
