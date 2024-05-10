@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/10 15:20:57 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:42:45 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <stdio.h>
 # include <errno.h>
 
-# define MALLOC_ERROR 1 
 # define SCREEN_WIDTH 1300
 # define SCREEN_HEIGHT 900
 # define PLANE_X 0

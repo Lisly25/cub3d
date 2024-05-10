@@ -6,11 +6,11 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:04:40 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/01 10:50:51 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/10 15:41:08 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "vector.h"
 
 void	free_vector(t_vector *vector)
 {
