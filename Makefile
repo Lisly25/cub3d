@@ -47,7 +47,9 @@ BONUS_SRCS		=	bonus_src/main_bonus.c \
 					bonus_src/map_operations/validate_format_bonus.c \
 					bonus_src/map_operations/clean_up_map_bonus.c \
 					bonus_src/map_operations/validate_map_shape_bonus.c \
-					bonus_src/map_operations/path_validation_bonus.c 
+					bonus_src/map_operations/path_validation_bonus.c \
+					bonus_src/map_operations/validate_exit_position.c \
+					bonus_src/map_operations/path_validation_utils_bonus.c
 OBJS			=	$(SRCS:.c=.o)
 BONUS_OBJS		=	$(BONUS_SRCS:.c=.o)
 HEADER			=	src/cub3d.h
@@ -78,6 +80,7 @@ $(NAME):		$(OBJS) $(LIBFT) $(HEADER) $(LIBFT_H) $(MLX)
 
 clean:
 					@rm -f $(OBJS)
+					@rm -f $(BONUS_OBJS)
           
 san:			$(OBJS) $(LIBFT) $(HEADER) $(LIBFT_H) $(MLX)
 					@$(CC) $(FSAN) $(OBJS) $(MLX) $(LIBFT) -ldl -pthread -lm -L$(GLFW_DIR) -lglfw -I $(MLX_HEADER) -o san

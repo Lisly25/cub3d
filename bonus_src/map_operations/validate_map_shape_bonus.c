@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 14:29:36 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 10:38:26 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/13 12:58:49 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static bool	validate_if_walled(t_vector *map)
 {
 	size_t	x;
 	size_t	y;
+	char	char_c;
 
 	x = 0;
 	y = 0;
@@ -65,7 +66,8 @@ static bool	validate_if_walled(t_vector *map)
 	{
 		while (map->text[y][x] != '\0')
 		{
-			if (map->text[y][x] == '0')
+			char_c = map->text[y][x];
+			if (char_c == '0' || char_c == 'D' || char_c == 'P')
 			{
 				if (check_around_for_char(map, ' ', x, y) == true)
 					return (false);
@@ -83,7 +85,7 @@ static bool	ask_whether_to_continue(void)
 	char	*input;
 	int		result;
 
-	ft_printf("Map has inaccessible rooms. Continue anyway? (Y/N)\n");
+	ft_printf("Map has inaccessible areas. Continue anyway? (Y/N)\n");
 	while (1)
 	{
 		input = get_next_line(0);
@@ -109,10 +111,14 @@ bool	validate_map_shape(t_vector *map)
 
 	if (validate_start_orientation(map) == false)
 		return (false);
+	if (validate_exit_position(map) == false)
+		return (false);
 	if (validate_if_walled(map) == false)
 		return (error_msg("Map must be surrounded by walls"));
+	if (count_chars(map, 'D') == 0)
+		return (error_msg("No doors in the map"));
 	map_accessibility_result = check_if_all_map_is_accessible(map);
-	if (map_accessibility_result == 2)
+	if (map_accessibility_result == 2 || map_accessibility_result == 3)
 		return (false);
 	else if (map_accessibility_result == false)
 	{

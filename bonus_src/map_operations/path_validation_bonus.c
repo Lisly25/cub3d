@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:03:05 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 10:37:51 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/13 12:51:27 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,21 @@ static bool	check_if_char_is_in_map(t_vector *map, char c)
 	return (false);
 }
 
-static void	mark_neighbour_if_char(t_vector *map, char c, size_t x, size_t y)
+static void	mark_neighbour_if_accessible(t_vector *map, size_t x, size_t y)
 {
-	if ((y < (map->used_nodes - 1)) && (map->text[y + 1][x] == c))
-		map->text[y + 1][x] = '#';
-	if ((x < (ft_strlen(map->text[y]) - 1)) && (map->text[y][x + 1] == c))
-		map->text[y][x + 1] = '#';
-	if ((y != 0) && (map->text[y - 1][x] == c))
-		map->text[y - 1][x] = '#';
-	if ((x != 0) && (map->text[y][x - 1] == c))
-		map->text[y][x - 1] = '#';
-	map->text[y][x] = '*';
+	char	**arr;
+
+	arr = map->text;
+	if ((y < map->used_nodes - 1) && ft_strchr("0PD", arr[y + 1][x]) != NULL)
+		arr[y + 1][x] = '#';
+	if (x < (ft_strlen(map->text[y]) - 1))
+		if (ft_strchr("0PD", arr[y][x + 1]) != NULL)
+			arr[y][x + 1] = '#';
+	if ((y != 0) && (ft_strchr("0PD", map->text[y - 1][x]) != NULL))
+		arr[y - 1][x] = '#';
+	if ((x != 0) && (ft_strchr("0PD", map->text[y][x - 1]) != NULL))
+		arr[y][x - 1] = '#';
+	arr[y][x] = '*';
 }
 
 static void	check_start(t_vector *map)
@@ -59,7 +63,7 @@ static void	check_start(t_vector *map)
 		{
 			if (ft_strchr("NSEW", map->text[y][x]) != NULL)
 			{
-				mark_neighbour_if_char(map, '0', x, y);
+				mark_neighbour_if_accessible(map, x, y);
 				return ;
 			}
 			x++;
@@ -85,7 +89,7 @@ static void	check_all_from_start(t_vector *map)
 			while (map->text[y][x] != '\0')
 			{
 				if (map->text[y][x] == '#')
-					mark_neighbour_if_char(map, '0', x, y);
+					mark_neighbour_if_accessible(map, x, y);
 				x++;
 			}
 			y++;
@@ -100,6 +104,7 @@ int	check_if_all_map_is_accessible(t_vector *map)
 {
 	t_vector	*map_cpy;
 	int			result;
+	size_t		door_count;
 
 	map_cpy = copy_vector(map);
 	if (map_cpy == NULL)
@@ -107,11 +112,19 @@ int	check_if_all_map_is_accessible(t_vector *map)
 		error_msg("Malloc failure");
 		return (2);
 	}
+	door_count = count_chars(map_cpy, 'D');
 	check_all_from_start(map_cpy);
 	if (check_if_char_is_in_map(map_cpy, '0') == true)
 		result = false;
 	else
 		result = true;
+	if (result == true && count_chars(map_cpy, 'D') == door_count)
+		result = error_msg("Map has no accessible doors");
+	if (result == true && count_chars(map_cpy, 'P') != 0)
+	{
+		error_msg("Invalid map - exit can't be reached");
+		result = 3;
+	}
 	free_vector(map_cpy);
 	return (result);
 }

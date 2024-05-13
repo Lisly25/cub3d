@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 10:40:29 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/13 12:11:04 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct s_assets
 	char			*east_file;
 	char			*north_file;
 	char			*south_file;
+	char			*door_file;
+	char			*portal_file;
 	mlx_texture_t	*north;
 	mlx_texture_t	*south;
 	mlx_texture_t	*east;
@@ -115,6 +117,12 @@ bool		check_around_for_char(t_vector *map, char c, size_t x, size_t y);
 
 //map_operations/path_validation.c
 int			check_if_all_map_is_accessible(t_vector *map);
+
+//map_operations/validate_exit_position
+bool		validate_exit_position(t_vector *map);
+
+//map_operations/path_validation_utils_bonus.c
+size_t		count_chars(t_vector *map, char c);
 
 //init.c
 t_data		*init_data(t_vector *map, t_assets *assets);
