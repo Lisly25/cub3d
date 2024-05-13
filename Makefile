@@ -1,39 +1,63 @@
-NAME		=	cub3d
-GLFW_DIR	=	/Users/$(USER)/.brew/opt/glfw/lib
-CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror
-SRCS		=	src/main.c \
-				src/error.c \
-				src/clean_up_textures.c \
-				src/init.c \
-				src/init_utils.c \
-				src/key_hook.c \
-				src/key_hook_utils_1.c \
-				src/key_hook_utils_2.c \
-				src/raycasting/find_walls.c \
-				src/raycasting/find_walls_utils.c \
-				src/raycasting/wall_height.c \
-				src/raycasting/draw_floor_and_ceiling.c \
-				src/raycasting/draw_textured_wall.c \
-				src/vector_expand.c \
-				src/vector_decrease.c \
-				src/vector_copy.c \
-				src/map_operations/read_map.c \
-				src/map_operations/get_assets.c \
-				src/map_operations/get_color_config.c \
-				src/map_operations/validate_format.c \
-				src/map_operations/clean_up_map.c \
-				src/map_operations/validate_map_shape.c \
-				src/map_operations/path_validation.c 
-				
-OBJS		=	$(SRCS:.c=.o)
-HEADER		=	src/cub3d.h
-LIBFT_DIR	=	libft
-LIBFT_H		=	$(LIBFT_DIR)/libft.h
-LIBFT		=	$(LIBFT_DIR)/libft.a
-MLX			=	mlx/build/libmlx42.a
-MLX_HEADER	=	mlx/include/MLX42/MLX42.h
-FSAN		=	-g -fsanitize=address -static-libsan
+NAME			=	cub3d
+GLFW_DIR		=	/Users/$(USER)/.brew/opt/glfw/lib
+CC				=	cc
+CFLAGS			=	-Wall -Wextra -Werror
+SRCS			=	src/main.c \
+					src/error.c \
+					src/clean_up_textures.c \
+					src/init.c \
+					src/init_utils.c \
+					src/key_hook.c \
+					src/key_hook_utils_1.c \
+					src/key_hook_utils_2.c \
+					src/raycasting/find_walls.c \
+					src/raycasting/find_walls_utils.c \
+					src/raycasting/wall_height.c \
+					src/raycasting/draw_floor_and_ceiling.c \
+					src/raycasting/draw_textured_wall.c \
+					src/vector_expand.c \
+					src/vector_decrease.c \
+					src/vector_copy.c \
+					src/map_operations/read_map.c \
+					src/map_operations/get_assets.c \
+					src/map_operations/get_color_config.c \
+					src/map_operations/validate_format.c \
+					src/map_operations/clean_up_map.c \
+					src/map_operations/validate_map_shape.c \
+					src/map_operations/path_validation.c 		
+BONUS_SRCS		=	bonus_src/main_bonus.c \
+					bonus_src/error_bonus.c \
+					bonus_src/clean_up_textures_bonus.c \
+					bonus_src/init_bonus.c \
+					bonus_src/init_utils_bonus.c \
+					bonus_src/key_hook_bonus.c \
+					bonus_src/key_hook_utils_1_bonus.c \
+					bonus_src/key_hook_utils_2_bonus.c \
+					bonus_src/raycasting/find_walls_bonus.c \
+					bonus_src/raycasting/find_walls_utils_bonus.c \
+					bonus_src/raycasting/wall_height_bonus.c \
+					bonus_src/raycasting/draw_floor_and_ceiling_bonus.c \
+					bonus_src/raycasting/draw_textured_wall_bonus.c \
+					bonus_src/vector_expand_bonus.c \
+					bonus_src/vector_decrease_bonus.c \
+					bonus_src/vector_copy_bonus.c \
+					bonus_src/map_operations/read_map_bonus.c \
+					bonus_src/map_operations/get_assets_bonus.c \
+					bonus_src/map_operations/get_color_config_bonus.c \
+					bonus_src/map_operations/validate_format_bonus.c \
+					bonus_src/map_operations/clean_up_map_bonus.c \
+					bonus_src/map_operations/validate_map_shape_bonus.c \
+					bonus_src/map_operations/path_validation_bonus.c 
+OBJS			=	$(SRCS:.c=.o)
+BONUS_OBJS		=	$(BONUS_SRCS:.c=.o)
+HEADER			=	src/cub3d.h
+BONUS_HEADER	=	
+LIBFT_DIR		=	libft
+LIBFT_H			=	$(LIBFT_DIR)/libft.h
+LIBFT			=	$(LIBFT_DIR)/libft.a
+MLX				=	mlx/build/libmlx42.a
+MLX_HEADER		=	mlx/include/MLX42/MLX42.h
+FSAN			=	-g -fsanitize=address -static-libsan
 
 all:			makelibft $(NAME)
 
@@ -69,4 +93,13 @@ tidymake:
 					@make all
 					@make clean
 
-.PHONY:			all makelibft clean fclean re tidymake san
+bonus:			.bonus
+
+.bonus:			$(BONUS_OBJS) $(LIBFT) $(BONUS_HEADER) $(LIBFT_H) $(MLX)
+					@$(CC) $(BONUS_OBJS) $(MLX) $(LIBFT) -ldl -pthread -lm -L$(GLFW_DIR) -lglfw -I $(MLX_HEADER) -o cub3d_bonus
+					@echo "⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂"
+					@echo "⚂  bonus compiled !  ⚂"
+					@echo "⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂"
+
+
+.PHONY:			all makelibft clean fclean re tidymake san bonus
