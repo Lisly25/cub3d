@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 14:15:28 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/13 16:16:26 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/13 16:48:20 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	d_key(t_data *data)
 		return ;
 	data->pos_y = new_pos_y;
 	data->pos_x = new_pos_x;
+	check_for_win(data);
 	draw_walls(data);
 }
 
@@ -37,6 +38,7 @@ void	a_key(t_data *data)
 		return ;
 	data->pos_y = new_pos_y;
 	data->pos_x = new_pos_x;
+	check_for_win(data);
 	draw_walls(data);
 }
 

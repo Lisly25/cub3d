@@ -33,6 +33,7 @@ BONUS_SRCS		=	bonus_src/main_bonus.c \
 					bonus_src/key_hook_bonus.c \
 					bonus_src/key_hook_utils_1_bonus.c \
 					bonus_src/key_hook_utils_2_bonus.c \
+					bonus_src/check_for_win_bonus.c \
 					bonus_src/raycasting/find_walls_bonus.c \
 					bonus_src/raycasting/find_walls_utils_bonus.c \
 					bonus_src/raycasting/wall_height_bonus.c \

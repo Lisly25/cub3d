@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 16:00:25 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/13 16:47:05 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,5 +165,8 @@ void		draw_text_sect(int draw_start, int draw_end, int x, t_data *data);
 
 //clean_up_textures.c
 void		clean_up_textures(t_assets *assets);
+
+//check_for_win.c
+void		check_for_win(t_data *data);
 
 #endif
