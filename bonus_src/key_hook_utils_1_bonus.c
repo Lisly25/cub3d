@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook_utils_1_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 14:09:26 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/13 10:39:20 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/13 12:14:30 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	w_key(t_data *data)
 	data->pos_y = new_pos_y;
 	data->pos_x = new_pos_x;
 	draw_walls(data);
+	clear_minimap(data);
+	display_minimap(data);
 }
 
 void	s_key(t_data *data)
@@ -70,4 +72,6 @@ void	s_key(t_data *data)
 	data->pos_y = new_pos_y;
 	data->pos_x = new_pos_x;
 	draw_walls(data);
+	clear_minimap(data);
+	display_minimap(data);
 }

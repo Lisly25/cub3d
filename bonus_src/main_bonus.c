@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:47:28 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 10:39:26 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/13 11:32:35 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int argc, char **argv)
 	assets = get_assets(map);
 	data = init_data(map, assets);
 	draw_walls(data);
+	display_minimap(data);
 	mlx_key_hook(data->window, &key_hook, data);
 	mlx_loop(data->window);
 	mlx_terminate(data->window);
