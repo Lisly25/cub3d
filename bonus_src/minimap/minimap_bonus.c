@@ -6,53 +6,69 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 11:00:40 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/13 12:22:59 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/13 13:42:39 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
+static void	init_mm_images(t_data *data, int mm_square)
+{
+	data->mm_wall = mlx_new_image(data->window, mm_square, mm_square);
+	if (!data->mm_wall)
+		msg_and_exit("image creation error");
+	ft_memset(data->mm_wall->pixels, 175, data->mm_wall->width * \
+		data->mm_wall->height * sizeof(int32_t));
+	data->mm_open = mlx_new_image(data->window, mm_square, mm_square);
+	if (!data->mm_open)
+		msg_and_exit("image creation error");
+	ft_memset(data->mm_open->pixels, 200, data->mm_open->width * \
+		data->mm_open->height * sizeof(int32_t));
+	data->mm_player = mlx_new_image(data->window, mm_square, mm_square);
+	if (!data->mm_player)
+		msg_and_exit("image creation error");
+	ft_memset(data->mm_player->pixels, 255, data->mm_player->width * \
+		data->mm_player->height * sizeof(int32_t));
+}
+
+static void	place_line_of_images(t_data *data, size_t y, int mm_square)
+{
+	size_t	x;
+
+	x = 0;
+	while (data->map->text[y][x] != '\0')
+	{
+		if (data->map->text[y][x] == '1')
+		{
+			if (mlx_image_to_window(data->window, data->mm_wall, (MM_OFFSET + x \
+			* mm_square), (MM_OFFSET + y * mm_square)) == -1)
+				msg_and_exit("error with image instance");
+		}
+		else if (data->map->text[y][x] != ' ' && data->map->text[y][x] != '\n')
+		{
+			if (mlx_image_to_window(data->window, data->mm_open, (MM_OFFSET + x \
+			* mm_square), (MM_OFFSET + y * mm_square)) == -1)
+				msg_and_exit("error with image instance");
+		}
+		x ++;
+	}
+}
+
 void	display_minimap(t_data *data)
 {
-	mlx_image_t	*wall;
-	mlx_image_t	*open;
-	mlx_image_t	*player;
-	t_vector	*map;
-	size_t		x;
 	size_t		y;
+	int			mm_square;
 
-	map = data->map;
-	wall = mlx_new_image(data->window, MM_SQUARE, MM_SQUARE);
-	if (!wall)
-		msg_and_exit("image creation error");
-	ft_memset(wall->pixels, 175, wall->width * wall->height * sizeof(int32_t));
-	open = mlx_new_image(data->window, MM_SQUARE, MM_SQUARE);
-	if (!open)
-		msg_and_exit("image creation error");
-	ft_memset(open->pixels, 200, open->width * open->height * sizeof(int32_t));
-	player = mlx_new_image(data->window, MM_SQUARE, MM_SQUARE);
-	if (!player)
-		msg_and_exit("image creation error");
-	ft_memset(player->pixels, 255, player->width * player->height * sizeof(int32_t));
-	x = 0;
+	mm_square = 8;
+	if (data->map->max_nodes > 50 || ft_strlen(data->map->text[0]) > 50)
+		mm_square = 4;
+	init_mm_images(data, mm_square);
 	y = 0;
-	while (y < map->used_nodes)
-	{
-		while (map->text[y][x] != '\0')
-		{
-			if (map->text[y][x] == '1')
-				mlx_image_to_window(data->window, wall, (MM_OFFSET + x * MM_SQUARE), (MM_OFFSET + y * MM_SQUARE));
-			else if (map->text[y][x] != ' ' && map->text[y][x] != '\n')
-				mlx_image_to_window(data->window, open, (MM_OFFSET + x * MM_SQUARE), (MM_OFFSET + y * MM_SQUARE));
-			x ++;
-		}
-		y ++;
-		x = 0;
-	}
-	mlx_image_to_window(data->window, player, ((int) data->pos_x * MM_SQUARE) + MM_OFFSET, ((int) data->pos_y * MM_SQUARE) + MM_OFFSET);
-	data->mm_wall = wall;
-	data->mm_open = open;
-	data->mm_player = player;
+	while (y < data->map->used_nodes)
+		place_line_of_images(data, y++, mm_square);
+	if (mlx_image_to_window(data->window, data->mm_player, ((int) data->pos_x * \
+	mm_square) + MM_OFFSET, ((int) data->pos_y * mm_square) + MM_OFFSET) == -1)
+		msg_and_exit("error with image instance");
 }
 
 void	clear_minimap(t_data *data)

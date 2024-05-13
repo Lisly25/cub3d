@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 12:20:26 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/13 13:24:58 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # define ROT_SPEED 0.1
 # define MOVE_SPEED 0.3
 # define PLAYER_SIZE 0.2
-# define MM_SQUARE 8
 # define MM_OFFSET 75
 # define DBL_MAX 1.7976931348623158e+308
 
