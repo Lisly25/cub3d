@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 13:24:58 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/13 15:11:50 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,5 +158,8 @@ void		clean_up_textures(t_assets *assets);
 //minimap.c
 void		display_minimap(t_data *data);
 void		clear_minimap(t_data *data);
+
+//mouse_hook.c
+void		mouse_hook(void *param);		
 
 #endif
