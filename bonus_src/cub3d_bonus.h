@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 10:40:29 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/13 13:24:58 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define ROT_SPEED 0.1
 # define MOVE_SPEED 0.3
 # define PLAYER_SIZE 0.2
+# define MM_OFFSET 75
 # define DBL_MAX 1.7976931348623158e+308
 
 typedef struct s_assets
@@ -61,6 +62,9 @@ typedef struct s_data
 {
 	mlx_t			*window;
 	mlx_image_t		*img;
+	mlx_image_t		*mm_wall;
+	mlx_image_t		*mm_open;
+	mlx_image_t		*mm_player;
 	t_vector		*map;
 	double			dir_x;
 	double			dir_y;
@@ -150,5 +154,9 @@ void		draw_text_sect(int draw_start, int draw_end, int x, t_data *data);
 
 //clean_up_textures.c
 void		clean_up_textures(t_assets *assets);
+
+//minimap.c
+void		display_minimap(t_data *data);
+void		clear_minimap(t_data *data);
 
 #endif
