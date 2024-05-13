@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:13:25 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/10 14:04:37 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/13 09:58:51 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,24 @@ static int	open_map(char *filename)
 
 static void	check_map_dimensions(t_vector *map, char *map_line)
 {
+	size_t	i;
+
+	i = 0;
 	if (map->used_nodes >= 999)
 	{
 		free_vector(map);
 		free(map_line);
 		msg_and_exit("Map too large - too many lines");
 	}
-	if (ft_strlen(map_line) > 1000)
+	while (map_line[i] != '\0')
 	{
-		free_vector(map);
-		free(map_line);
-		msg_and_exit("Map too large - line(s) too long");
+		i++;
+		if (i == 1000)
+		{
+			free_vector(map);
+			free(map_line);
+			msg_and_exit("Map too large - line(s) too long");
+		}
 	}
 }
 
