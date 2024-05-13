@@ -1,4 +1,5 @@
 NAME			=	cub3d
+BONUS_NAME		=	cub3d_bonus
 GLFW_DIR		=	/Users/$(USER)/.brew/opt/glfw/lib
 CC				=	cc
 CFLAGS			=	-Wall -Wextra -Werror
@@ -78,12 +79,14 @@ $(NAME):		$(OBJS) $(LIBFT) $(HEADER) $(LIBFT_H) $(MLX)
 
 clean:
 					@rm -f $(OBJS)
+					@rm -f $(BONUS_OBJS)
           
 san:			$(OBJS) $(LIBFT) $(HEADER) $(LIBFT_H) $(MLX)
 					@$(CC) $(FSAN) $(OBJS) $(MLX) $(LIBFT) -ldl -pthread -lm -L$(GLFW_DIR) -lglfw -I $(MLX_HEADER) -o san
 
 fclean:			clean
 					@rm -f $(NAME)
+					@rm -f $(BONUS_NAME)
 					@rm -rf mlx/build
 
 re:				fclean all
@@ -96,7 +99,7 @@ tidymake:
 bonus:			.bonus
 
 .bonus:			$(BONUS_OBJS) $(LIBFT) $(BONUS_HEADER) $(LIBFT_H) $(MLX)
-					@$(CC) $(BONUS_OBJS) $(MLX) $(LIBFT) -ldl -pthread -lm -L$(GLFW_DIR) -lglfw -I $(MLX_HEADER) -o cub3d_bonus
+					@$(CC) $(BONUS_OBJS) $(MLX) $(LIBFT) -ldl -pthread -lm -L$(GLFW_DIR) -lglfw -I $(MLX_HEADER) -o $(BONUS_NAME)
 					@echo "⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂"
 					@echo "⚂  bonus compiled !  ⚂"
 					@echo "⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂"
