@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:11:31 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 10:38:46 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/13 16:00:38 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,24 @@ t_ray	*assign_ray(t_data *data, int *step_x, int *step_y)
 	ray->side_distance_x = get_side_distance(data, step_x, 'x');
 	ray->side_distance_y = get_side_distance(data, step_y, 'y');
 	return (ray);
+}
+
+bool	check_n_set_tile_type(char **map, int map_x, int map_y, t_ray *ray)
+{
+	if (map[map_y][map_x] == '1')
+	{
+		ray->tile_type = '1';
+		return (true);
+	}
+	if (map[map_y][map_x] == 'D')
+	{
+		ray->tile_type = 'D';
+		return (true);
+	}
+	if (map[map_y][map_x] == 'P')
+	{
+		ray->tile_type = 'P';
+		return (true);
+	}
+	return (false);
 }

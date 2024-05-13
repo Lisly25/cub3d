@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:43:02 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 10:38:38 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/13 16:01:39 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,20 @@ uint32_t	get_element_by_coordinate(int x, int y, uint32_t *arr, int tex_w)
 	return (colour);
 }
 
-static mlx_texture_t	*select_texture(t_assets *assets, t_ray *ray)
+static mlx_texture_t	*select_texture(t_data *data)
 {
+	t_assets	*assets;
+	t_ray		*ray;
+	char		**map;
+
+	assets = data->assets;
+	ray = data->ray;
+	map = data->map->text;
+
+	if (ray->tile_type == 'D')
+		return (assets->door);
+	if (ray->tile_type == 'P')
+		return (assets->portal);
 	if (ray->side == 1 && ray->ray_direction_y < 0)
 		return (assets->north);
 	if (ray->side == 1 && ray->ray_direction_y > 0)
@@ -73,7 +85,7 @@ void	draw_text_sect(int draw_start, int draw_end, int x, t_data *data)
 	uint32_t		color;
 	mlx_texture_t	*texture;
 
-	texture = select_texture(data->assets, data->ray);
+	texture = select_texture(data);
 	texture_x = get_texture_x(data->ray->side, data, texture->width);
 	texture_position = (draw_start - SCREEN_HEIGHT / 2 + data->ray->line_height \
 		/ 2) * ((double) texture->height / data->ray->line_height);

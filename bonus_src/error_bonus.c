@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:15:33 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 10:39:01 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/13 16:05:52 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ void	free_assets_struct(t_assets *assets)
 		free(assets->east_file);
 	if (assets->west_file != NULL)
 		free(assets->west_file);
+	if (assets->door_file != NULL)
+		free(assets->door_file);
+	if (assets->portal_file != NULL)
+		free(assets->portal_file);
 	free(assets);
 }
 
