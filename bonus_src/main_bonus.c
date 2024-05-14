@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:47:28 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/14 09:37:36 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/14 12:30:19 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int argc, char **argv)
 	assets = get_assets(map);
 	data = init_data(map, assets);
 	draw_walls(data);
+	init_staff(data);
 	display_minimap(data);
 	mlx_key_hook(data->window, &key_hook, data);
 	mlx_loop_hook(data->window, &mouse_hook, data);

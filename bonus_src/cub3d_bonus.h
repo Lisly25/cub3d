@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 16:47:05 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/14 12:40:06 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "fcntl.h"
 # include <math.h>
 # include <stdio.h>
+# include <unistd.h>
 
 # define SCREEN_WIDTH 1300
 # define SCREEN_HEIGHT 900
@@ -70,6 +71,7 @@ typedef struct s_data
 	mlx_image_t		*mm_wall;
 	mlx_image_t		*mm_open;
 	mlx_image_t		*mm_player;
+	mlx_image_t		*staff;
 	t_vector		*map;
 	double			dir_x;
 	double			dir_y;
@@ -178,6 +180,9 @@ void		display_minimap(t_data *data);
 void		clear_minimap(t_data *data);
 
 //mouse_hook.c
-void		mouse_hook(void *param);		
+void		mouse_hook(void *param);
+
+//sprites
+void		init_staff(t_data *data);
 
 #endif
