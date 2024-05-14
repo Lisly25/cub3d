@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook_utils_2_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 14:15:28 by fshields          #+#    #+#             */
 /*   Updated: 2024/05/13 16:48:20 by skorbai          ###   ########.fr       */
@@ -25,6 +25,8 @@ void	d_key(t_data *data)
 	data->pos_x = new_pos_x;
 	check_for_win(data);
 	draw_walls(data);
+	clear_minimap(data);
+	display_minimap(data);
 }
 
 void	a_key(t_data *data)
@@ -40,6 +42,8 @@ void	a_key(t_data *data)
 	data->pos_x = new_pos_x;
 	check_for_win(data);
 	draw_walls(data);
+	clear_minimap(data);
+	display_minimap(data);
 }
 
 static bool	check_diags(t_data *data, double new_x, double new_y)

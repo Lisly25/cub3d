@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
 /*   Updated: 2024/05/13 16:47:05 by skorbai          ###   ########.fr       */
@@ -27,6 +27,7 @@
 # define ROT_SPEED 0.1
 # define MOVE_SPEED 0.3
 # define PLAYER_SIZE 0.2
+# define MM_OFFSET 75
 # define DBL_MAX 1.7976931348623158e+308
 
 typedef struct s_assets
@@ -66,6 +67,9 @@ typedef struct s_data
 {
 	mlx_t			*window;
 	mlx_image_t		*img;
+	mlx_image_t		*mm_wall;
+	mlx_image_t		*mm_open;
+	mlx_image_t		*mm_player;
 	t_vector		*map;
 	double			dir_x;
 	double			dir_y;
@@ -168,5 +172,12 @@ void		clean_up_textures(t_assets *assets);
 
 //check_for_win.c
 void		check_for_win(t_data *data);
+
+//minimap.c
+void		display_minimap(t_data *data);
+void		clear_minimap(t_data *data);
+
+//mouse_hook.c
+void		mouse_hook(void *param);		
 
 #endif

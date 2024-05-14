@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook_utils_1_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 14:09:26 by fshields          #+#    #+#             */
 /*   Updated: 2024/05/13 16:48:01 by skorbai          ###   ########.fr       */
@@ -57,6 +57,8 @@ void	w_key(t_data *data)
 	data->pos_x = new_pos_x;
 	check_for_win(data);
 	draw_walls(data);
+	clear_minimap(data);
+	display_minimap(data);
 }
 
 void	s_key(t_data *data)
@@ -72,4 +74,6 @@ void	s_key(t_data *data)
 	data->pos_x = new_pos_x;
 	check_for_win(data);
 	draw_walls(data);
+	clear_minimap(data);
+	display_minimap(data);
 }
