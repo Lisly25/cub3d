@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/14 11:28:00 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/14 12:12:34 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ typedef struct s_ray
 	int				line_height;
 	char			tile_type;
 	int				side;
+	int				tile_x;
+	int				tile_y;
 }	t_ray;
 
 typedef struct s_data
@@ -81,6 +83,8 @@ typedef struct s_data
 	t_assets		*assets;
 	double			exit_x;
 	double			exit_y;
+	int				targeted_x;
+	int				targeted_y;
 }	t_data;
 
 //error.c
@@ -178,6 +182,9 @@ void		display_minimap(t_data *data);
 void		clear_minimap(t_data *data);
 
 //mouse_hook.c
-void		mouse_hook(void *param);		
+void		mouse_hook(void *param);
+
+//door_mechanism/door_open.c
+void		save_targeted_x_and_y(t_data *data);
 
 #endif

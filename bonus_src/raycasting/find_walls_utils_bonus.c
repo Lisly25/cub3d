@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:11:31 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 16:00:38 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/14 12:05:08 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ t_ray	*assign_ray(t_data *data, int *step_x, int *step_y)
 
 bool	check_n_set_tile_type(char **map, int map_x, int map_y, t_ray *ray)
 {
+	ray->tile_x = map_x;
+	ray->tile_y = map_y;
 	if (map[map_y][map_x] == '1')
 	{
 		ray->tile_type = '1';

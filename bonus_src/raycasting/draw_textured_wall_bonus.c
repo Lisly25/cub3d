@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:43:02 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/14 11:29:55 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/14 12:29:33 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ void	draw_text_sect(int draw_start, int draw_end, int x, t_data *data)
 		/ 2) * ((double) texture->height / data->ray->line_height);
 	while (draw_start < draw_end)
 	{
+		if (x == (SCREEN_WIDTH / 2) && draw_start == (SCREEN_HEIGHT / 2))
+			save_targeted_x_and_y(data);
 		texture_y = (int)texture_position & (texture->height - 1);
 		texture_position += (double) texture->height / data->ray->line_height;
 		color = get_element_by_coordinate(texture_x, texture_y, \
