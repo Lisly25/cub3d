@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:47:28 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/14 14:39:32 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/14 17:23:48 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@ int	main(int argc, char **argv)
 	map = read_map(argv);
 	assets = get_assets(map);
 	data = init_data(map, assets);
+	data->is_door_open = false;
 	draw_walls(data);
 	display_minimap(data);
 	mlx_key_hook(data->window, &key_hook, data);
 	mlx_loop_hook(data->window, &mouse_hook, data);
+	mlx_loop_hook(data->window, &play_door_animation, data);
 	mlx_loop(data->window);
 	mlx_terminate(data->window);
 	free_vector(map);

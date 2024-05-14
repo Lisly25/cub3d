@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 13:40:41 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/14 15:30:36 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/14 16:36:55 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,5 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	if (mlx_is_key_down(data->window, MLX_KEY_A))
 		a_key(data);
 	if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_RELEASE)
-		play_opening_animation(data);
-		// usleep(100000);
+		open_door(data);
 }

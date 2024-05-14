@@ -6,76 +6,65 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 11:24:31 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/14 16:17:02 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/14 17:54:13 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
 
-static useconds_t	get_current_sec(void)
+useconds_t	get_elapsed_time(t_data *data)
 {
 	struct timeval	current_time;
+	useconds_t		elapsed_usec;
+	useconds_t		elapsed_sec;
+	useconds_t		elapsed_milisec;
 
 	gettimeofday(&current_time, NULL);
-	return (current_time.tv_sec);
-}
-
-void	ft_sleep(useconds_t duration)
-{
-	useconds_t		start_time;
-	useconds_t		elapsed_time_goal;
-	useconds_t		elapsed_time;
-
-	start_time = get_current_sec();
-	elapsed_time_goal = (start_time + duration);
-	elapsed_time = 0;
-	while (elapsed_time < elapsed_time_goal)
+	elapsed_sec = (current_time.tv_sec - data->last_opening_sec) * 1000;
+	if (elapsed_sec == 0)
+		elapsed_usec = (current_time.tv_usec - data->last_opening_usec) / 1000;
+	else
 	{
-		usleep(500);
-		elapsed_time = get_current_sec();
+		elapsed_usec = (1000 - (data->last_opening_usec / 1000)) + \
+		(current_time.tv_usec / 1000);
+		elapsed_sec -= 1000;
 	}
+	elapsed_milisec = elapsed_sec + elapsed_usec;
+	return (elapsed_milisec);
 }
 
-static void	flicker_door(t_data *data, char mode, int anim_x, int anim_y)
+static void	flicker_door(t_data *data, char mode)
 {
-	data->map->text[anim_y][anim_x] = mode;
+	data->map->text[data->open_door_y][data->open_door_x] = mode;
 	draw_walls(data);
-	ft_sleep(1);
 }
 
-void	play_opening_animation(t_data *data)
+void	play_door_animation(void *param)
 {
-	int	anim_x;
-	int	anim_y;
-	int	i;
+	useconds_t	elapsed_millisec;
+	t_data		*data;
 
-	anim_x = data->targeted_x;
-	anim_y = data->targeted_y;
-	i = 0;
-	if (data->map->text[data->targeted_y][data->targeted_x] != 'D')
+	data = (t_data *)param;
+	if (data->is_door_open == false)
 		return ;
-	while (i < 3)
+	elapsed_millisec = get_elapsed_time(data);
+	if (elapsed_millisec < 1000)
 	{
-		flicker_door(data, 'd', anim_x, anim_y);
-		flicker_door(data, 'D', anim_x, anim_y);
-		i++;
+		if (elapsed_millisec % 200 == 0)
+			return (flicker_door(data, 'd'));
+		else if (elapsed_millisec % 100 == 0)
+			return (flicker_door(data, 'D'));
 	}
-	flicker_door(data, '0', anim_x, anim_y);
-	// data->map->text[anim_y][anim_x] = 'd';
-	// draw_walls(data);
-	// ft_sleep(1);
-	// data->map->text[anim_y][anim_x] = 'D';
-	// draw_walls(data);
-	// ft_sleep(1);
-	// data->map->text[anim_y][anim_x] = 'd';
-	// draw_walls(data);
-	// ft_sleep(1);
-	// data->map->text[anim_y][anim_x] = 'D';
-	// draw_walls(data);
-	// ft_sleep(1);
-	// data->map->text[anim_y][anim_x] = '0';
-	// draw_walls(data);
-	// ft_sleep(1);
+	if (elapsed_millisec < 6000)
+		return (flicker_door(data, '0'));
+	data->is_door_open = false;
+	if ((int)data->pos_x == data->open_door_x && \
+	(int)data->pos_y == data->open_door_y)
+	{
+		printf("GAME OVER - YOU GOT STUCK IN A RE-MATERIALIZING WALL\n");
+		mlx_close_window(data->window);
+	}
+	flicker_door(data, 'D');
 }
 
 void	save_targeted_x_and_y(t_data *data)
@@ -84,13 +73,19 @@ void	save_targeted_x_and_y(t_data *data)
 	data->targeted_y = data->ray->tile_y;
 }
 
-// void	open_door(t_data *data)
-// {
-// 	struct timeval	current;
+void	open_door(t_data *data)
+{
+	struct timeval	anim_start;
 
-// 	if (data->map->text[data->targeted_y][data->targeted_x] != 'D')
-// 		return ;
-// 	gettimeofday(&current, NULL);
-// 	data->last_opening = current.tv_sec;
-// 	//play_opening_animation(data);
-// }
+	if (data->is_door_open == true)
+		return ;
+	if (data->map->text[data->targeted_y][data->targeted_x] != 'D')
+		return ;
+	data->open_door_x = data->targeted_x;
+	data->open_door_y = data->targeted_y;
+	gettimeofday(&anim_start, NULL);
+	data->is_door_open = true;
+	data->last_opening_sec = anim_start.tv_sec;
+	data->last_opening_usec = anim_start.tv_usec;
+	flicker_door(data, 'd');
+}

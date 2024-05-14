@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/14 15:21:29 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/14 17:24:30 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,11 @@ typedef struct s_data
 	double			exit_y;
 	int				targeted_x;
 	int				targeted_y;
-	time_t			last_opening;
+	useconds_t		last_opening_sec;
+	useconds_t		last_opening_usec;
+	int				open_door_x;
+	int				open_door_y;
+	bool			is_door_open;
 }	t_data;
 
 //error.c
@@ -190,7 +194,9 @@ void		mouse_hook(void *param);
 
 //door_mechanism/door_open.c
 void		save_targeted_x_and_y(t_data *data);
-void		play_opening_animation(t_data *data);
+void		open_door(t_data *data);
+useconds_t	get_elapsed_time(t_data *data);
+void		play_door_animation(void *param);
 
 //door_mechanism/door_open_utils.c
 void		init_door_flicker(t_data *data);
