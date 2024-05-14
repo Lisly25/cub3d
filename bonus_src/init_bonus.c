@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 10:58:44 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/14 11:26:46 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/14 16:28:23 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,7 @@ bool	init_wall_textures(t_data *data)
 	assets = data->assets;
 	assets->north = init_texture(assets->north_file, "north");
 	if (assets->north == NULL)
-	{
-		printf("Here?\n");
 		return (false);
-	}
 	assets->south = init_texture(assets->south_file, "south");
 	if (assets->south == NULL)
 		return (false);
@@ -75,6 +72,9 @@ bool	init_wall_textures(t_data *data)
 		return (false);
 	assets->door = init_texture(assets->door_file, "door");
 	if (assets->door == NULL)
+		return (false);
+	assets->door_flicker = init_texture(assets->door_file, "door flicker");
+	if (assets->door_flicker == NULL)
 		return (false);
 	assets->portal = init_texture(assets->portal_file, "exit");
 	if (assets->portal == NULL)
@@ -107,5 +107,6 @@ t_data	*init_data(t_vector *map, t_assets *assets)
 	if (ray_data == NULL)
 		ft_exit("Malloc failure", data, assets, map);
 	data->ray = ray_data;
+	init_door_flicker(data);
 	return (data);
 }
