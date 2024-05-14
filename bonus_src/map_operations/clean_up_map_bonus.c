@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:15:32 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 10:37:27 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/13 14:42:53 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static bool	validate_middle_line(char *line)
 			return (error_msg("Map must be surrounded by walls(1)"));
 		while (line[i] != ' ' && line[i] != '\n')
 		{
-			if (ft_strchr("NESW10", line[i]) == NULL)
+			if (ft_strchr("NESW10DP", line[i]) == NULL)
 				return (error_msg("Invalid character in map"));
 			i++;
 		}

@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 14:09:26 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/13 12:14:30 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:48:01 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	w_key(t_data *data)
 		return ;
 	data->pos_y = new_pos_y;
 	data->pos_x = new_pos_x;
+	check_for_win(data);
 	draw_walls(data);
 	clear_minimap(data);
 	display_minimap(data);
@@ -71,6 +72,7 @@ void	s_key(t_data *data)
 		return ;
 	data->pos_y = new_pos_y;
 	data->pos_x = new_pos_x;
+	check_for_win(data);
 	draw_walls(data);
 	clear_minimap(data);
 	display_minimap(data);

@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 15:11:50 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:47:05 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,14 @@ typedef struct s_assets
 	char			*east_file;
 	char			*north_file;
 	char			*south_file;
+	char			*door_file;
+	char			*portal_file;
 	mlx_texture_t	*north;
 	mlx_texture_t	*south;
 	mlx_texture_t	*east;
 	mlx_texture_t	*west;
+	mlx_texture_t	*door;
+	mlx_texture_t	*portal;
 	int				floor[3];
 	int				ceiling[3];
 	char			start_orientation;
@@ -55,6 +59,7 @@ typedef struct s_ray
 	double			delta_dist_y;
 	double			perp_wall_dist;
 	int				line_height;
+	char			tile_type;
 	int				side;
 }	t_ray;
 
@@ -74,6 +79,8 @@ typedef struct s_data
 	double			pos_y;
 	t_ray			*ray;
 	t_assets		*assets;
+	double			exit_x;
+	double			exit_y;
 }	t_data;
 
 //error.c
@@ -120,14 +127,21 @@ bool		check_around_for_char(t_vector *map, char c, size_t x, size_t y);
 //map_operations/path_validation.c
 int			check_if_all_map_is_accessible(t_vector *map);
 
+//map_operations/validate_exit_position
+bool		validate_exit_position(t_vector *map);
+
+//map_operations/path_validation_utils_bonus.c
+size_t		count_chars(t_vector *map, char c);
+
 //init.c
 t_data		*init_data(t_vector *map, t_assets *assets);
+bool		init_wall_textures(t_data *data);
 uint32_t	get_colour(int rgb[3]);
 
 //init_utils.c
 void		set_start_position(t_data *data, t_vector *map);
-bool		init_wall_textures(t_data *data);
 bool		init_image(t_data *data);
+mlx_texture_t	*init_texture(char *file, char *id);
 
 //find_walls
 void		get_ray_length(int *step_x, int *step_y, t_data *data);
@@ -140,6 +154,7 @@ bool		check_if_valid_pos(char **map, t_data *data);
 void		dda_x(t_ray *ray, int *map_x, int *step_x);
 void		dda_y(t_ray *ray, int *map_y, int *step_y);
 t_ray		*assign_ray(t_data *data, int *step_x, int *step_y);
+bool		check_n_set_tile_type(char **map, int map_x, int map_y, t_ray *ray);
 
 //wall_height.c
 void		draw_walls(t_data *data);
@@ -154,6 +169,9 @@ void		draw_text_sect(int draw_start, int draw_end, int x, t_data *data);
 
 //clean_up_textures.c
 void		clean_up_textures(t_assets *assets);
+
+//check_for_win.c
+void		check_for_win(t_data *data);
 
 //minimap.c
 void		display_minimap(t_data *data);

@@ -34,6 +34,7 @@ BONUS_SRCS		=	bonus_src/main_bonus.c \
 					bonus_src/key_hook_bonus.c \
 					bonus_src/key_hook_utils_1_bonus.c \
 					bonus_src/key_hook_utils_2_bonus.c \
+					bonus_src/check_for_win_bonus.c \
 					bonus_src/raycasting/find_walls_bonus.c \
 					bonus_src/raycasting/find_walls_utils_bonus.c \
 					bonus_src/raycasting/wall_height_bonus.c \
@@ -49,8 +50,11 @@ BONUS_SRCS		=	bonus_src/main_bonus.c \
 					bonus_src/map_operations/clean_up_map_bonus.c \
 					bonus_src/map_operations/validate_map_shape_bonus.c \
 					bonus_src/map_operations/path_validation_bonus.c \
+					bonus_src/map_operations/validate_exit_position.c \
+					bonus_src/map_operations/path_validation_utils_bonus.c
 					bonus_src/minimap/minimap_bonus.c \
 					bonus_src/mouse_hook.c
+
 OBJS			=	$(SRCS:.c=.o)
 BONUS_OBJS		=	$(BONUS_SRCS:.c=.o)
 HEADER			=	src/cub3d.h

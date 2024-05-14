@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 09:59:22 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/10 15:40:55 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/13 11:56:37 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void	rearrange_vector(t_vector *vector, size_t index, char **new_text)
 	free(vector->text);
 	vector->text = new_text;
 	vector->used_nodes = vector->used_nodes - 1;
+	vector->text[vector->used_nodes] = NULL;
 	vector->max_nodes = vector->max_nodes - 1;
 }
 

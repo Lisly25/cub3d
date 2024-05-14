@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:46:21 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 10:37:40 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/13 12:45:54 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ void	get_texture_info(t_vector *map, t_assets *assets)
 	assets->south_file = extract_config("SO ", assets, map);
 	assets->east_file = extract_config("EA ", assets, map);
 	assets->west_file = extract_config("WE ", assets, map);
+	assets->door_file = extract_config("DO ", assets, map);
+	assets->portal_file = extract_config("PO ", assets, map);
 	extract_rgb("F ", assets, map);
 	extract_rgb("C ", assets, map);
 	if (clean_up_and_validate_map(map) == false)
@@ -113,6 +115,8 @@ t_assets	*get_assets(t_vector *map)
 	assets->north_file = NULL;
 	assets->west_file = NULL;
 	assets->south_file = NULL;
+	assets->door_file = NULL;
+	assets->portal_file = NULL;
 	get_texture_info(map, assets);
 	return (assets);
 }

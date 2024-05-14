@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_up_textures_bonus.c                          :+:      :+:    :+:   */
+/*   path_validation_utils_bonus.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/10 15:17:40 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 16:04:49 by skorbai          ###   ########.fr       */
+/*   Created: 2024/05/13 12:10:02 by skorbai           #+#    #+#             */
+/*   Updated: 2024/05/13 12:40:57 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_bonus.h"
+#include "../cub3d_bonus.h"
 
-void	clean_up_textures(t_assets *assets)
+size_t	count_chars(t_vector *map, char c)
 {
-	mlx_delete_texture(assets->north);
-	mlx_delete_texture(assets->east);
-	mlx_delete_texture(assets->south);
-	mlx_delete_texture(assets->west);
-	mlx_delete_texture(assets->door);
-	mlx_delete_texture(assets->portal);
+	size_t	x;
+	size_t	y;
+	size_t	count;
+
+	x = 0;
+	y = 0;
+	count = 0;
+	while (y < map->used_nodes)
+	{
+		while (map->text[y][x] != '\0')
+		{
+			if (map->text[y][x] == c)
+				count++;
+			x++;
+		}
+		y++;
+		x = 0;
+	}
+	return (count);
 }

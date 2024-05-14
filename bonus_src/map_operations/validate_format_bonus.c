@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 11:04:42 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 10:38:00 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/13 11:14:13 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	validate_texture_info_format(t_vector *map)
 		}
 		i++;
 	}
-	if (texture_info_line != 6)
+	if (texture_info_line != 8)
 		map_validation_error("Invalid texture config data", map, NULL);
 	while (i < map->used_nodes)
 	{

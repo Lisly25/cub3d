@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_up_textures_bonus.c                          :+:      :+:    :+:   */
+/*   check_for_win.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/10 15:17:40 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 16:04:49 by skorbai          ###   ########.fr       */
+/*   Created: 2024/05/13 16:39:03 by skorbai           #+#    #+#             */
+/*   Updated: 2024/05/13 16:49:08 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-void	clean_up_textures(t_assets *assets)
+void	check_for_win(t_data *data)
 {
-	mlx_delete_texture(assets->north);
-	mlx_delete_texture(assets->east);
-	mlx_delete_texture(assets->south);
-	mlx_delete_texture(assets->west);
-	mlx_delete_texture(assets->door);
-	mlx_delete_texture(assets->portal);
+	t_vector	*map;
+	int			new_x;
+	int			new_y;
+
+	map = data->map;
+	new_x = (int)data->pos_x;
+	new_y = (int)data->pos_y;
+	if (map->text[new_y][new_x] == 'P')
+	{
+		ft_printf("YOU WIN!");
+		mlx_close_window(data->window);
+	}
 }

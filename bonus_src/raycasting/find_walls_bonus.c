@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 11:21:57 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/13 10:38:42 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/13 16:00:33 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	get_ray_length(int *step_x, int *step_y, t_data *data)
 		else
 			dda_y(ray, &map_y, step_y);
 		if (check_if_valid_pos(map->text, data) && \
-		map->text[map_y][map_x] == '1')
+		check_n_set_tile_type(map->text, map_x, map_y, ray) == true)
 			hit = true;
 	}
 	if (ray->side == 0)
