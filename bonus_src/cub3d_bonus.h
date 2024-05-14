@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 16:47:05 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/14 11:28:00 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,12 +136,12 @@ size_t		count_chars(t_vector *map, char c);
 //init.c
 t_data		*init_data(t_vector *map, t_assets *assets);
 bool		init_wall_textures(t_data *data);
-uint32_t	get_colour(int rgb[3]);
 
 //init_utils.c
 void		set_start_position(t_data *data, t_vector *map);
 bool		init_image(t_data *data);
-mlx_texture_t	*init_texture(char *file, char *id);
+uint32_t	get_colour(int rgb[3]);
+bool		validate_texture_file(char *path);
 
 //find_walls
 void		get_ray_length(int *step_x, int *step_y, t_data *data);
