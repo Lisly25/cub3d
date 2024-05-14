@@ -51,14 +51,14 @@ BONUS_SRCS		=	bonus_src/main_bonus.c \
 					bonus_src/map_operations/validate_map_shape_bonus.c \
 					bonus_src/map_operations/path_validation_bonus.c \
 					bonus_src/map_operations/validate_exit_position.c \
-					bonus_src/map_operations/path_validation_utils_bonus.c
+					bonus_src/map_operations/path_validation_utils_bonus.c \
 					bonus_src/minimap/minimap_bonus.c \
 					bonus_src/mouse_hook.c
 
 OBJS			=	$(SRCS:.c=.o)
 BONUS_OBJS		=	$(BONUS_SRCS:.c=.o)
 HEADER			=	src/cub3d.h
-BONUS_HEADER	=	
+BONUS_HEADER	=	bonus_src/cub3d_bonus.h
 LIBFT_DIR		=	libft
 LIBFT_H			=	$(LIBFT_DIR)/libft.h
 LIBFT			=	$(LIBFT_DIR)/libft.a
@@ -104,7 +104,7 @@ tidymake:
 
 bonus:			.bonus
 
-.bonus:			$(BONUS_OBJS) $(LIBFT) $(BONUS_HEADER) $(LIBFT_H) $(MLX)
+.bonus:			makelibft $(BONUS_OBJS) $(LIBFT) $(BONUS_HEADER) $(LIBFT_H) $(MLX)
 					@$(CC) $(BONUS_OBJS) $(MLX) $(LIBFT) -ldl -pthread -lm -L$(GLFW_DIR) -lglfw -I $(MLX_HEADER) -o $(BONUS_NAME)
 					@echo "⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂"
 					@echo "⚂  bonus compiled !  ⚂"
