@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/14 12:12:34 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/14 15:21:29 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include "fcntl.h"
 # include <math.h>
 # include <stdio.h>
+# include <sys/time.h>
+# include <unistd.h>
 
 # define SCREEN_WIDTH 1300
 # define SCREEN_HEIGHT 900
@@ -43,6 +45,7 @@ typedef struct s_assets
 	mlx_texture_t	*east;
 	mlx_texture_t	*west;
 	mlx_texture_t	*door;
+	mlx_texture_t	*door_flicker;
 	mlx_texture_t	*portal;
 	int				floor[3];
 	int				ceiling[3];
@@ -85,6 +88,7 @@ typedef struct s_data
 	double			exit_y;
 	int				targeted_x;
 	int				targeted_y;
+	time_t			last_opening;
 }	t_data;
 
 //error.c
@@ -186,5 +190,9 @@ void		mouse_hook(void *param);
 
 //door_mechanism/door_open.c
 void		save_targeted_x_and_y(t_data *data);
+void		play_opening_animation(t_data *data);
+
+//door_mechanism/door_open_utils.c
+void		init_door_flicker(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:43:02 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/14 12:29:33 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/14 16:16:38 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ static mlx_texture_t	*select_texture(t_data *data)
 	map = data->map->text;
 	if (ray->tile_type == 'D')
 		return (assets->door);
+	if (ray->tile_type == 'd')
+		return (assets->door_flicker);
 	if (ray->tile_type == 'P')
 		return (assets->portal);
 	if (ray->side == 1 && ray->ray_direction_y < 0)

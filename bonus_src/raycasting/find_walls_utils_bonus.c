@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:11:31 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/14 12:05:08 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/14 15:24:47 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,11 @@ bool	check_n_set_tile_type(char **map, int map_x, int map_y, t_ray *ray)
 	if (map[map_y][map_x] == 'D')
 	{
 		ray->tile_type = 'D';
+		return (true);
+	}
+	if (map[map_y][map_x] == 'd')
+	{
+		ray->tile_type = 'd';
 		return (true);
 	}
 	if (map[map_y][map_x] == 'P')
