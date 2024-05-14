@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 13:40:41 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/13 13:51:33 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:28:34 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,11 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		d_key(data);
 	if (mlx_is_key_down(data->window, MLX_KEY_A))
 		a_key(data);
+	if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
+		space_key(data);
+	if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_RELEASE)
+	{
+		mlx_delete_image(data->window, data->staff);
+		init_staff(data);
+	}
 }

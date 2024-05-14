@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_textured_wall_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:43:02 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 16:01:39 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/14 13:31:58 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ static mlx_texture_t	*select_texture(t_data *data)
 	assets = data->assets;
 	ray = data->ray;
 	map = data->map->text;
-
 	if (ray->tile_type == 'D')
 		return (assets->door);
 	if (ray->tile_type == 'P')

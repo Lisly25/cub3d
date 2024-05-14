@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 11:00:40 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/13 13:42:39 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/14 12:43:43 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,20 @@ static void	init_mm_images(t_data *data, int mm_square)
 
 static void	place_line_of_images(t_data *data, size_t y, int mm_square)
 {
-	size_t	x;
+	size_t		x;
+	t_vector	*map;
 
 	x = 0;
-	while (data->map->text[y][x] != '\0')
+	map = data->map;
+	while (map->text[y][x] != '\0')
 	{
-		if (data->map->text[y][x] == '1')
+		if (map->text[y][x] == '1')
 		{
 			if (mlx_image_to_window(data->window, data->mm_wall, (MM_OFFSET + x \
 			* mm_square), (MM_OFFSET + y * mm_square)) == -1)
 				msg_and_exit("error with image instance");
 		}
-		else if (data->map->text[y][x] != ' ' && data->map->text[y][x] != '\n')
+		else if (map->text[y][x] != ' ' && map->text[y][x] != '\n')
 		{
 			if (mlx_image_to_window(data->window, data->mm_open, (MM_OFFSET + x \
 			* mm_square), (MM_OFFSET + y * mm_square)) == -1)
@@ -58,13 +60,15 @@ void	display_minimap(t_data *data)
 {
 	size_t		y;
 	int			mm_square;
+	t_vector	*map;
 
 	mm_square = 8;
-	if (data->map->max_nodes > 50 || ft_strlen(data->map->text[0]) > 50)
+	map = data->map;
+	if (map->used_nodes > 50 || ft_strlen(map->text[0]) > 50)
 		mm_square = 4;
 	init_mm_images(data, mm_square);
 	y = 0;
-	while (y < data->map->used_nodes)
+	while (y < map->used_nodes)
 		place_line_of_images(data, y++, mm_square);
 	if (mlx_image_to_window(data->window, data->mm_player, ((int) data->pos_x * \
 	mm_square) + MM_OFFSET, ((int) data->pos_y * mm_square) + MM_OFFSET) == -1)

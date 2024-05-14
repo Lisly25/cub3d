@@ -1,9 +1,9 @@
 NO ./textures/asset1.png
-SO ./textures/asset1.png
-WE ./textures/asset2.png
-EA ./textures/asset2.png
+SO ./textures/asset2.png
+WE ./textures/asset3.png
+EA ./textures/asset4.png
 DO ./textures/backdrop.png
-PO ./textures/backdrop.png
+PO ./textures/backdrop2.png
 
 F  220,100,3
 C  225,30,10
