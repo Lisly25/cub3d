@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/14 12:40:06 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:34:23 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,103 +86,112 @@ typedef struct s_data
 }	t_data;
 
 //error.c
-void		msg_and_exit(char *msg);
-void		map_validation_error(char *msg, t_vector *map, t_assets *assets);
-void		free_assets_struct(t_assets *assets);
-bool		error_msg(char *msg);
-void		ft_exit(char *msg, t_data *data, t_assets *assts, t_vector *map);
+void			msg_and_exit(char *msg);
+void			map_validation_error(char *msg, t_vector *map, \
+				t_assets *assets);
+void			free_assets_struct(t_assets *assets);
+bool			error_msg(char *msg);
+void			ft_exit(char *msg, t_data *data, t_assets *assts, \
+				t_vector *map);
 
 //key_hook
-void		key_hook(mlx_key_data_t keydata, void *param);
+void			key_hook(mlx_key_data_t keydata, void *param);
 
 //key_hook_utils_1.c
-void		left_key(t_data *data);
-void		right_key(t_data *data);
-void		w_key(t_data *data);
-void		s_key(t_data *data);
+void			left_key(t_data *data);
+void			right_key(t_data *data);
+void			w_key(t_data *data);
+void			s_key(t_data *data);
+void			space_key(t_data *data);
 
 //key_hook_utils_2.c
-void		a_key(t_data *data);
-void		d_key(t_data *data);
-bool		wall_collision(t_data *data, double new_pos_X, double new_pos_Y);
+void			a_key(t_data *data);
+void			d_key(t_data *data);
+bool			wall_collision(t_data *data, double new_pos_X, \
+				double new_pos_Y);
 
 //map_operations/read_map.c
-t_vector	*read_map(char **argv);
+t_vector		*read_map(char **argv);
 
 //map_operations/get_assets.c
-char		*trim_identifier(char *config_line, unsigned int id_length);
-t_assets	*get_assets(t_vector *map);
+char			*trim_identifier(char *config_line, \
+				unsigned int id_length);
+t_assets		*get_assets(t_vector *map);
 
 //map_operations/validate_format.c
-void		validate_texture_info_format(t_vector *map);
+void			validate_texture_info_format(t_vector *map);
 
 //map_operations/get_color_config.c
-bool		copy_rgb_values(char *color_info, t_assets *assets, char *id);
+bool			copy_rgb_values(char *color_info, \
+				t_assets *assets, char *id);
 
 //map_operations/clean_up_map.c
-bool		clean_up_and_validate_map(t_vector *map);
+bool			clean_up_and_validate_map(t_vector *map);
 
 //map_operations/validate_map_shape.c
-bool		validate_map_shape(t_vector *map);
-bool		check_around_for_char(t_vector *map, char c, size_t x, size_t y);
+bool			validate_map_shape(t_vector *map);
+bool			check_around_for_char(t_vector *map, char c, \
+				size_t x, size_t y);
 
 //map_operations/path_validation.c
-int			check_if_all_map_is_accessible(t_vector *map);
+int				check_if_all_map_is_accessible(t_vector *map);
 
 //map_operations/validate_exit_position
-bool		validate_exit_position(t_vector *map);
+bool			validate_exit_position(t_vector *map);
 
 //map_operations/path_validation_utils_bonus.c
-size_t		count_chars(t_vector *map, char c);
+size_t			count_chars(t_vector *map, char c);
 
 //init.c
-t_data		*init_data(t_vector *map, t_assets *assets);
-bool		init_wall_textures(t_data *data);
-uint32_t	get_colour(int rgb[3]);
+t_data			*init_data(t_vector *map, t_assets *assets);
+bool			init_wall_textures(t_data *data);
+uint32_t		get_colour(int rgb[3]);
 
 //init_utils.c
-void		set_start_position(t_data *data, t_vector *map);
-bool		init_image(t_data *data);
+void			set_start_position(t_data *data, t_vector *map);
+bool			init_image(t_data *data);
 mlx_texture_t	*init_texture(char *file, char *id);
 
 //find_walls
-void		get_ray_length(int *step_x, int *step_y, t_data *data);
-double		adjust_ray_direction(int mode, int x, t_data *data);
-double		get_delta_dist(double ray_direction);
-double		get_side_distance(t_data *data, int *step, char mode);
+void			get_ray_length(int *step_x, int *step_y, t_data *data);
+double			adjust_ray_direction(int mode, int x, t_data *data);
+double			get_delta_dist(double ray_direction);
+double			get_side_distance(t_data *data, int *step, char mode);
 
 //find_walls_utils
-bool		check_if_valid_pos(char **map, t_data *data);
-void		dda_x(t_ray *ray, int *map_x, int *step_x);
-void		dda_y(t_ray *ray, int *map_y, int *step_y);
-t_ray		*assign_ray(t_data *data, int *step_x, int *step_y);
-bool		check_n_set_tile_type(char **map, int map_x, int map_y, t_ray *ray);
+bool			check_if_valid_pos(char **map, t_data *data);
+void			dda_x(t_ray *ray, int *map_x, int *step_x);
+void			dda_y(t_ray *ray, int *map_y, int *step_y);
+t_ray			*assign_ray(t_data *data, int *step_x, int *step_y);
+bool			check_n_set_tile_type(char **map, int map_x, \
+				int map_y, t_ray *ray);
 
 //wall_height.c
-void		draw_walls(t_data *data);
-void		get_line_height(t_data *data);
+void			draw_walls(t_data *data);
+void			get_line_height(t_data *data);
 
 //raycasting/draw_floor_and_ceiling.c
-void		draw_ceiling(int x, int wall_start, t_data *data);
-void		draw_floor(int x, int wall_end, t_data *data);
+void			draw_ceiling(int x, int wall_start, t_data *data);
+void			draw_floor(int x, int wall_end, t_data *data);
 
 //draw_textured_wall.c
-void		draw_text_sect(int draw_start, int draw_end, int x, t_data *data);
+void			draw_text_sect(int draw_start, int draw_end, int x, \
+				t_data *data);
 
 //clean_up_textures.c
-void		clean_up_textures(t_assets *assets);
+void			clean_up_textures(t_assets *assets);
 
 //check_for_win.c
-void		check_for_win(t_data *data);
+void			check_for_win(t_data *data);
 
 //minimap.c
-void		display_minimap(t_data *data);
-void		clear_minimap(t_data *data);
+void			display_minimap(t_data *data);
+void			clear_minimap(t_data *data);
 
 //mouse_hook.c
-void		mouse_hook(void *param);
+void			mouse_hook(void *param);
 
 //sprites
-void		init_staff(t_data *data);
+void			init_staff(t_data *data);
 
 #endif
