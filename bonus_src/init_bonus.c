@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 10:58:44 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/14 16:28:23 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/15 15:47:34 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,10 @@ t_data	*init_data(t_vector *map, t_assets *assets)
 
 	data = (t_data *) malloc(sizeof(t_data));
 	if (!data)
-		ft_exit("Malloc failure", data, assets, map);
+		ft_exit("Malloc failure", data, 1);
 	data->window = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "cub3d", false);
 	if (!(data->window))
-		ft_exit("Failed to init window", data, assets, map);
+		ft_exit("Failed to init window", data, 1);
 	data->map = map;
 	data->plane_x = PLANE_X;
 	data->plane_y = PLANE_Y;
@@ -100,12 +100,12 @@ t_data	*init_data(t_vector *map, t_assets *assets)
 	set_exit_position(data, map);
 	data->assets = assets;
 	if (init_wall_textures(data) == false)
-		ft_exit(NULL, data, assets, map);
+		ft_exit(NULL, data, 1);
 	if (init_image(data) == false)
-		ft_exit("Failed to create image", data, assets, map);
+		ft_exit("Failed to create image", data, 1);
 	ray_data = (t_ray *)malloc(sizeof(t_ray));
 	if (ray_data == NULL)
-		ft_exit("Malloc failure", data, assets, map);
+		ft_exit("Malloc failure", data, 1);
 	data->ray = ray_data;
 	init_door_flicker(data);
 	return (data);
