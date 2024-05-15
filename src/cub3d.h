@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/10 15:53:01 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/15 14:48:41 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void		validate_texture_info_format(t_vector *map);
 
 //map_operations/get_color_config.c
 bool		copy_rgb_values(char *color_info, t_assets *assets, char *id);
+bool		validate_trimmed_rgb_info(char *rgb);
 
 //map_operations/clean_up_map.c
 bool		clean_up_and_validate_map(t_vector *map);
@@ -115,6 +116,9 @@ bool		check_around_for_char(t_vector *map, char c, size_t x, size_t y);
 
 //map_operations/path_validation.c
 int			check_if_all_map_is_accessible(t_vector *map);
+
+//map_operations/convert_rgb.c
+int			convert_rgb(int *asset, char **strs);
 
 //init.c
 t_data		*init_data(t_vector *map, t_assets *assets);
