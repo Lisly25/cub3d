@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   door_open_utils.c                                  :+:      :+:    :+:   */
+/*   door_open_utils_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:17:41 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/14 15:21:18 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/15 13:06:38 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,12 @@ static void	*ft_texture_color_set(void *dest, size_t len)
 	i = 0;
 	while (len > i)
 	{
-		if (i % 8 == 0)
-		{
-			i = i + 4;
-			continue ;
-		}
-		i += 3;
-		buffer[i] = 0;
+		buffer[i] = 255;
+		i++;
+		i++;
+		buffer[i] = 255;
+		i++;
+		buffer[i] = 255;
 		i++;
 	}
 	return (buffer);
