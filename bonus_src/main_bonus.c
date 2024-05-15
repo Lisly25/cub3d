@@ -25,6 +25,7 @@ int	main(int argc, char **argv)
 	data = init_data(map, assets);
 	data->is_door_open = false;
 	draw_walls(data);
+	init_staff(data);
 	display_minimap(data);
 	mlx_key_hook(data->window, &key_hook, data);
 	mlx_loop_hook(data->window, &mouse_hook, data);

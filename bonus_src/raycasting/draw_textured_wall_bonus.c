@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   draw_textured_wall_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:43:02 by skorbai           #+#    #+#             */
 /*   Updated: 2024/05/14 16:16:38 by skorbai          ###   ########.fr       */

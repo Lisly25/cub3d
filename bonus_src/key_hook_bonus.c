@@ -31,6 +31,12 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		d_key(data);
 	if (mlx_is_key_down(data->window, MLX_KEY_A))
 		a_key(data);
+	if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
+		space_key(data);
 	if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_RELEASE)
-		open_door(data);
+	{
+		mlx_delete_image(data->window, data->staff);
+    open_door(data);
+		init_staff(data);
+	}
 }
