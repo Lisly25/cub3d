@@ -52,6 +52,7 @@ BONUS_SRCS		=	bonus_src/main_bonus.c \
 					bonus_src/map_operations/path_validation_bonus.c \
 					bonus_src/map_operations/validate_exit_position.c \
 					bonus_src/map_operations/path_validation_utils_bonus.c \
+					bonus_src/map_operations/validate_doors_bonus.c \
 					bonus_src/minimap/minimap_bonus.c \
 					bonus_src/mouse_hook.c \
 					bonus_src/door_mechanism/door_open_bonus.c \

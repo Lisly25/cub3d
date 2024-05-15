@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/14 17:24:30 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/15 09:43:47 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,9 @@ bool		validate_exit_position(t_vector *map);
 
 //map_operations/path_validation_utils_bonus.c
 size_t		count_chars(t_vector *map, char c);
+
+//map_operations/validate_doors_bonus.c
+bool		validate_doors(t_vector *map);
 
 //init.c
 t_data		*init_data(t_vector *map, t_assets *assets);
