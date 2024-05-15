@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 13:40:41 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/15 14:21:22 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:00:41 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_RELEASE)
 	{
 		mlx_delete_image(data->window, data->staff);
-    	open_door(data);
+		open_door(data);
 		init_staff(data);
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door_open_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 11:24:31 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/15 14:41:12 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:00:23 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	flicker_door(t_data *data, char mode, bool reset_map)
 {
 	static bool	map_done;
 	static bool	disappeared;
-	
+
 	printf("flickering: %c\n", mode);
 	data->map->text[data->open_door_y][data->open_door_x] = mode;
 	draw_walls(data);
