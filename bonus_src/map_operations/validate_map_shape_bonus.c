@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 14:29:36 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 12:58:49 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/14 12:50:24 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static bool	ask_whether_to_continue(void)
 		if ((ft_strlen(input) == 2) && (input[0] == 'Y' || input[0] == 'N'))
 			break ;
 		else
-			ft_printf("Not a valid answer");
+			ft_printf("Not a valid answer\n");
 		free(input);
 	}
 	if (input[0] == 'Y')

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/14 13:34:23 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/15 09:43:47 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "fcntl.h"
 # include <math.h>
 # include <stdio.h>
+# include <sys/time.h>
 # include <unistd.h>
 
 # define SCREEN_WIDTH 1300
@@ -44,6 +45,7 @@ typedef struct s_assets
 	mlx_texture_t	*east;
 	mlx_texture_t	*west;
 	mlx_texture_t	*door;
+	mlx_texture_t	*door_flicker;
 	mlx_texture_t	*portal;
 	int				floor[3];
 	int				ceiling[3];
@@ -62,6 +64,8 @@ typedef struct s_ray
 	int				line_height;
 	char			tile_type;
 	int				side;
+	int				tile_x;
+	int				tile_y;
 }	t_ray;
 
 typedef struct s_data
@@ -83,6 +87,13 @@ typedef struct s_data
 	t_assets		*assets;
 	double			exit_x;
 	double			exit_y;
+	int				targeted_x;
+	int				targeted_y;
+	useconds_t		last_opening_sec;
+	useconds_t		last_opening_usec;
+	int				open_door_x;
+	int				open_door_y;
+	bool			is_door_open;
 }	t_data;
 
 //error.c
@@ -142,15 +153,18 @@ bool			validate_exit_position(t_vector *map);
 //map_operations/path_validation_utils_bonus.c
 size_t			count_chars(t_vector *map, char c);
 
+//map_operations/validate_doors_bonus.c
+bool		validate_doors(t_vector *map);
+
 //init.c
-t_data			*init_data(t_vector *map, t_assets *assets);
-bool			init_wall_textures(t_data *data);
-uint32_t		get_colour(int rgb[3]);
+t_data		*init_data(t_vector *map, t_assets *assets);
+bool		init_wall_textures(t_data *data);
 
 //init_utils.c
-void			set_start_position(t_data *data, t_vector *map);
-bool			init_image(t_data *data);
-mlx_texture_t	*init_texture(char *file, char *id);
+void		set_start_position(t_data *data, t_vector *map);
+bool		init_image(t_data *data);
+uint32_t	get_colour(int rgb[3]);
+bool		validate_texture_file(char *path);
 
 //find_walls
 void			get_ray_length(int *step_x, int *step_y, t_data *data);
@@ -189,7 +203,16 @@ void			display_minimap(t_data *data);
 void			clear_minimap(t_data *data);
 
 //mouse_hook.c
-void			mouse_hook(void *param);
+void		mouse_hook(void *param);
+
+//door_mechanism/door_open.c
+void		    save_targeted_x_and_y(t_data *data);
+void		    open_door(t_data *data);
+useconds_t  get_elapsed_time(t_data *data);
+void		    play_door_animation(void *param);
+
+//door_mechanism/door_open_utils.c
+void		init_door_flicker(t_data *data);
 
 //sprites
 void			init_staff(t_data *data);

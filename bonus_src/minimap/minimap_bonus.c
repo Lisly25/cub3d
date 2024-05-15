@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 11:00:40 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/14 12:43:43 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:03:41 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	place_line_of_images(t_data *data, size_t y, int mm_square)
 	map = data->map;
 	while (map->text[y][x] != '\0')
 	{
-		if (map->text[y][x] == '1')
+		if (data->map->text[y][x] == '1' || data->map->text[y][x] == 'D' || data->map->text[y][x] == 'd')
 		{
 			if (mlx_image_to_window(data->window, data->mm_wall, (MM_OFFSET + x \
 			* mm_square), (MM_OFFSET + y * mm_square)) == -1)

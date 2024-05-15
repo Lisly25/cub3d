@@ -6,21 +6,11 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 10:58:44 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/13 15:11:39 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/14 16:28:23 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
-
-uint32_t	get_colour(int rgb[3])
-{
-	uint32_t	colour;
-	uint32_t	a;
-
-	a = 255;
-	colour = (rgb[0] << 24 | rgb[1] << 16 | rgb[2] << 8 | a);
-	return (colour);
-}
 
 static void	set_exit_position(t_data *data, t_vector *map)
 {
@@ -47,6 +37,22 @@ static void	set_exit_position(t_data *data, t_vector *map)
 	return ;
 }
 
+static mlx_texture_t	*init_texture(char *file, char *id)
+{
+	mlx_texture_t	*texture;
+
+	if (validate_texture_file(file) == false)
+		return (NULL);
+	texture = mlx_load_png(file);
+	if (texture == NULL)
+	{
+		ft_putendl_fd("Error", 2);
+		ft_putstr_fd(id, 2);
+		ft_putendl_fd("could not be loaded as mlx_texture_t", 2);
+	}
+	return (texture);
+}
+
 bool	init_wall_textures(t_data *data)
 {
 	t_assets	*assets;
@@ -54,10 +60,7 @@ bool	init_wall_textures(t_data *data)
 	assets = data->assets;
 	assets->north = init_texture(assets->north_file, "north");
 	if (assets->north == NULL)
-	{
-		printf("Here?\n");
 		return (false);
-	}
 	assets->south = init_texture(assets->south_file, "south");
 	if (assets->south == NULL)
 		return (false);
@@ -69,6 +72,9 @@ bool	init_wall_textures(t_data *data)
 		return (false);
 	assets->door = init_texture(assets->door_file, "door");
 	if (assets->door == NULL)
+		return (false);
+	assets->door_flicker = init_texture(assets->door_file, "door flicker");
+	if (assets->door_flicker == NULL)
 		return (false);
 	assets->portal = init_texture(assets->portal_file, "exit");
 	if (assets->portal == NULL)
@@ -101,5 +107,6 @@ t_data	*init_data(t_vector *map, t_assets *assets)
 	if (ray_data == NULL)
 		ft_exit("Malloc failure", data, assets, map);
 	data->ray = ray_data;
+	init_door_flicker(data);
 	return (data);
 }
