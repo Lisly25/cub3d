@@ -16,11 +16,9 @@
 # include "../libft/libft.h"
 # include "../mlx/include/MLX42/MLX42.h"
 # include "vector_bonus.h"
-# include "fcntl.h"
+# include <fcntl.h>
 # include <math.h>
-# include <stdio.h>
 # include <sys/time.h>
-# include <unistd.h>
 
 # define SCREEN_WIDTH 1300
 # define SCREEN_HEIGHT 900
@@ -220,5 +218,8 @@ void		init_door_flicker(t_data *data);
 //sprites
 void		init_staff(t_data *data);
 bool		validate_sprite(int mode);
+
+//game_messages_bonus.c
+void		print_start_message(void);
 
 #endif

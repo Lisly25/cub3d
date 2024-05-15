@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:47:28 by skorbai           #+#    #+#             */
 /*   Updated: 2024/05/15 15:37:44 by fshields         ###   ########.fr       */
@@ -24,6 +24,7 @@ int	main(int argc, char **argv)
 	assets = get_assets(map);
 	data = init_data(map, assets);
 	data->is_door_open = false;
+	print_start_message();
 	draw_walls(data);
 	init_staff(data);
 	display_minimap(data);

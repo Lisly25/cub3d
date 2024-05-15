@@ -78,7 +78,7 @@ void	play_door_animation(void *param)
 	if ((int)data->pos_x == data->open_door_x && \
 	(int)data->pos_y == data->open_door_y)
 	{
-		printf("GAME OVER - YOU GOT STUCK IN A RE-MATERIALIZING WALL\n");
+		ft_printf("GAME OVER - YOU GOT STUCK IN A RE-MATERIALIZING WALL\n");
 		mlx_close_window(data->window);
 	}
 	flicker_door(data, 'D', true);
