@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   sprites_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 11:37:30 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/14 13:31:32 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:13:34 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d_bonus.h"
+
+static bool	validate_sprite(int mode)
+{
+	int	fd;
+
+	if (mode == 1)
+		fd = open("./bonus_src/sprites/staff_1.png", O_RDONLY);
+	else
+		fd = open("./bonus_src/sprites/staff_2.png", O_RDONLY);
+	if (fd == -1)
+		return (error_msg("Sprite file can't be opened"));
+	close(fd);
+	return (true);
+}
 
 void	init_staff(t_data *data)
 {
