@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 11:00:40 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/14 17:03:41 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/15 14:28:43 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,21 @@ static void	place_line_of_images(t_data *data, size_t y, int mm_square)
 	{
 		if (data->map->text[y][x] == '1' || data->map->text[y][x] == 'D' || data->map->text[y][x] == 'd')
 		{
+			printf("%c", data->map->text[y][x]);
 			if (mlx_image_to_window(data->window, data->mm_wall, (MM_OFFSET + x \
 			* mm_square), (MM_OFFSET + y * mm_square)) == -1)
 				msg_and_exit("error with image instance");
 		}
 		else if (map->text[y][x] != ' ' && map->text[y][x] != '\n')
 		{
+			printf("%c", data->map->text[y][x]);
 			if (mlx_image_to_window(data->window, data->mm_open, (MM_OFFSET + x \
 			* mm_square), (MM_OFFSET + y * mm_square)) == -1)
 				msg_and_exit("error with image instance");
 		}
 		x ++;
 	}
+	printf("\n");
 }
 
 void	display_minimap(t_data *data)
@@ -70,6 +73,7 @@ void	display_minimap(t_data *data)
 	y = 0;
 	while (y < map->used_nodes)
 		place_line_of_images(data, y++, mm_square);
+	printf("\n\n\n");
 	if (mlx_image_to_window(data->window, data->mm_player, ((int) data->pos_x * \
 	mm_square) + MM_OFFSET, ((int) data->pos_y * mm_square) + MM_OFFSET) == -1)
 		msg_and_exit("error with image instance");
@@ -81,3 +85,12 @@ void	clear_minimap(t_data *data)
 	mlx_delete_image(data->window, data->mm_player);
 	mlx_delete_image(data->window, data->mm_wall);
 }
+
+// void	mm_loop(void *param)
+// {
+// 	t_data	*data;
+
+// 	data = param;
+// 	clear_minimap(data);
+// 	display_minimap(data);
+// }

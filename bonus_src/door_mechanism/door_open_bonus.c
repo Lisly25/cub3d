@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   door_open.c                                        :+:      :+:    :+:   */
+/*   door_open_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 11:24:31 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/14 17:54:13 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/15 14:41:12 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,28 @@ useconds_t	get_elapsed_time(t_data *data)
 	return (elapsed_milisec);
 }
 
-static void	flicker_door(t_data *data, char mode)
+static void	flicker_door(t_data *data, char mode, bool reset_map)
 {
+	static bool	map_done;
+	static bool	disappeared;
+	
+	printf("flickering: %c\n", mode);
 	data->map->text[data->open_door_y][data->open_door_x] = mode;
 	draw_walls(data);
+	if (mode == '0' && !map_done && reset_map == true)
+	{
+		clear_minimap(data);
+		display_minimap(data);
+		map_done = true;
+		disappeared = true;
+	}
+	if (mode == 'D' && disappeared && reset_map == true)
+	{
+		clear_minimap(data);
+		display_minimap(data);
+		disappeared = false;
+		map_done = false;
+	}
 }
 
 void	play_door_animation(void *param)
@@ -51,12 +69,12 @@ void	play_door_animation(void *param)
 	if (elapsed_millisec < 1000)
 	{
 		if (elapsed_millisec % 200 == 0)
-			return (flicker_door(data, 'd'));
+			return (flicker_door(data, 'd', false));
 		else if (elapsed_millisec % 100 == 0)
-			return (flicker_door(data, 'D'));
+			return (flicker_door(data, 'D', false));
 	}
 	if (elapsed_millisec < 6000)
-		return (flicker_door(data, '0'));
+		return (flicker_door(data, '0', true));
 	data->is_door_open = false;
 	if ((int)data->pos_x == data->open_door_x && \
 	(int)data->pos_y == data->open_door_y)
@@ -64,7 +82,7 @@ void	play_door_animation(void *param)
 		printf("GAME OVER - YOU GOT STUCK IN A RE-MATERIALIZING WALL\n");
 		mlx_close_window(data->window);
 	}
-	flicker_door(data, 'D');
+	flicker_door(data, 'D', true);
 }
 
 void	save_targeted_x_and_y(t_data *data)
@@ -87,5 +105,5 @@ void	open_door(t_data *data)
 	data->is_door_open = true;
 	data->last_opening_sec = anim_start.tv_sec;
 	data->last_opening_usec = anim_start.tv_usec;
-	flicker_door(data, 'd');
+	flicker_door(data, 'd', false);
 }
