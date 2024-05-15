@@ -59,7 +59,8 @@ BONUS_SRCS		=	bonus_src/main_bonus.c \
 					bonus_src/door_mechanism/door_open_utils_bonus.c \
 					bonus_src/minimap/minimap_bonus.c \
 					bonus_src/mouse_hook_bonus.c \
-					bonus_src/sprites/sprites_bonus.c
+					bonus_src/sprites/sprites_bonus.c \
+					bonus_src/game_messages_bonus.c
 
 OBJS			=	$(SRCS:.c=.o)
 BONUS_OBJS		=	$(BONUS_SRCS:.c=.o)
