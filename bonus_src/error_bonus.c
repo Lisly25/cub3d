@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:15:33 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 16:05:52 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/15 15:37:14 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,16 @@ bool	error_msg(char *msg)
 	return (false);
 }
 
-void	ft_exit(char *msg, t_data *data, t_assets *assts, t_vector *map)
+void	ft_exit(char *msg, t_data *data, int code)
 {
 	if (msg != NULL)
 		error_msg(msg);
-	free_vector(map);
-	free_assets_struct(assts);
+	free_vector(data->map);
+	clean_up_textures(data->assets);
+	free_assets_struct(data->assets);
+	free(data->ray);
 	mlx_close_window(data->window);
 	mlx_terminate(data->window);
 	free(data);
-	exit(1);
+	exit(code);
 }

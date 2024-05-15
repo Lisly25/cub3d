@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/15 15:00:13 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/15 15:29:04 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,7 @@ void		map_validation_error(char *msg, t_vector *map, \
 			t_assets *assets);
 void		free_assets_struct(t_assets *assets);
 bool		error_msg(char *msg);
-void		ft_exit(char *msg, t_data *data, t_assets *assts, \
-			t_vector *map);
+void		ft_exit(char *msg, t_data *data, int code);
 
 //key_hook
 void		key_hook(mlx_key_data_t keydata, void *param);
@@ -220,5 +219,6 @@ void		init_door_flicker(t_data *data);
 
 //sprites
 void		init_staff(t_data *data);
+bool		validate_sprite(int mode);
 
 #endif

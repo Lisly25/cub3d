@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 14:09:26 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/14 13:32:19 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:31:27 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,15 +83,17 @@ void	space_key(t_data *data)
 	mlx_texture_t	*staff_tex;
 
 	mlx_delete_image(data->window, data->staff);
+	if (validate_sprite(2) == false)
+		ft_exit("failed to load sprite data", data, 1);
 	staff_tex = mlx_load_png("./bonus_src/sprites/staff_2.png");
 	if (!staff_tex)
-		msg_and_exit("texture load error");
+		ft_exit("texture load error", data, 1);
 	data->staff = mlx_texture_to_image(data->window, staff_tex);
 	mlx_delete_texture(staff_tex);
 	if (!data->staff)
-		msg_and_exit("image load error");
+		ft_exit("image load error", data, 1);
 	if (mlx_resize_image(data->staff, 190, 290) == false)
-		msg_and_exit("image resize error");
+		ft_exit("image resize error", data, 1);
 	if (mlx_image_to_window(data->window, data->staff, 700, 700) == -1)
-		msg_and_exit("mlx image to window error");
+		ft_exit("image to window error", data, 1);
 }
