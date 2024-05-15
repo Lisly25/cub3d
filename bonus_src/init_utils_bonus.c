@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 09:33:03 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 15:08:48 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/14 11:27:49 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	set_start_position(t_data *data, t_vector *map)
 	return ;
 }
 
-static bool	validate_texture_file(char *path)
+bool	validate_texture_file(char *path)
 {
 	int	fd;
 
@@ -84,20 +84,14 @@ static bool	validate_texture_file(char *path)
 	return (true);
 }
 
-mlx_texture_t	*init_texture(char *file, char *id)
+uint32_t	get_colour(int rgb[3])
 {
-	mlx_texture_t	*texture;
+	uint32_t	colour;
+	uint32_t	a;
 
-	if (validate_texture_file(file) == false)
-		return (NULL);
-	texture = mlx_load_png(file);
-	if (texture == NULL)
-	{
-		ft_putendl_fd("Error", 2);
-		ft_putstr_fd(id, 2);
-		ft_putendl_fd("could not be loaded as mlx_texture_t", 2);
-	}
-	return (texture);
+	a = 255;
+	colour = (rgb[0] << 24 | rgb[1] << 16 | rgb[2] << 8 | a);
+	return (colour);
 }
 
 bool	init_image(t_data *data)

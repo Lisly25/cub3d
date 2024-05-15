@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:15:32 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 14:42:53 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/15 09:32:47 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,8 @@ bool	clean_up_and_validate_map(t_vector *map)
 	if (validate_bottom_line(map) == false)
 		return (false);
 	if (validate_map_shape(map) == false)
+		return (false);
+	if (validate_doors(map) == false)
 		return (false);
 	return (true);
 }

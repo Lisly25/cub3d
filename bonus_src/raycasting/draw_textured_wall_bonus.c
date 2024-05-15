@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:43:02 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/14 13:31:58 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:16:38 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ static mlx_texture_t	*select_texture(t_data *data)
 	map = data->map->text;
 	if (ray->tile_type == 'D')
 		return (assets->door);
+	if (ray->tile_type == 'd')
+		return (assets->door_flicker);
 	if (ray->tile_type == 'P')
 		return (assets->portal);
 	if (ray->side == 1 && ray->ray_direction_y < 0)
@@ -90,6 +92,8 @@ void	draw_text_sect(int draw_start, int draw_end, int x, t_data *data)
 		/ 2) * ((double) texture->height / data->ray->line_height);
 	while (draw_start < draw_end)
 	{
+		if (x == (SCREEN_WIDTH / 2) && draw_start == (SCREEN_HEIGHT / 2))
+			save_targeted_x_and_y(data);
 		texture_y = (int)texture_position & (texture->height - 1);
 		texture_position += (double) texture->height / data->ray->line_height;
 		color = get_element_by_coordinate(texture_x, texture_y, \
