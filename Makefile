@@ -25,7 +25,8 @@ SRCS			=	src/main.c \
 					src/map_operations/validate_format.c \
 					src/map_operations/clean_up_map.c \
 					src/map_operations/validate_map_shape.c \
-					src/map_operations/path_validation.c 		
+					src/map_operations/path_validation.c \
+					src/map_operations/convert_rgb.c
 BONUS_SRCS		=	bonus_src/main_bonus.c \
 					bonus_src/error_bonus.c \
 					bonus_src/clean_up_textures_bonus.c \
@@ -53,6 +54,7 @@ BONUS_SRCS		=	bonus_src/main_bonus.c \
 					bonus_src/map_operations/validate_exit_position.c \
 					bonus_src/map_operations/path_validation_utils_bonus.c \
 					bonus_src/map_operations/validate_doors_bonus.c \
+					bonus_src/map_operations/convert_rgb_bonus.c \
 					bonus_src/door_mechanism/door_open_bonus.c \
 					bonus_src/door_mechanism/door_open_utils_bonus.c \
 					bonus_src/minimap/minimap_bonus.c \
@@ -110,10 +112,11 @@ bonus:			makelibft .bonus
 
 .bonus:			$(BONUS_OBJS) $(LIBFT) $(BONUS_HEADER) $(LIBFT_H) $(MLX)
 					@$(CC) $(BONUS_OBJS) $(MLX) $(LIBFT) -ldl -pthread -lm -L$(GLFW_DIR) -lglfw -I $(MLX_HEADER) -o $(BONUS_NAME)
+					@touch .bonus
 					@echo "⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂"
 					@echo "⚂  bonus compiled !  ⚂"
 					@echo "⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂"
-					@touch .bonus
 
 
-.PHONY:			all makelibft clean fclean re tidymake san bonus
+
+.PHONY:			all makelibft clean fclean re tidymake san bonus .bonus

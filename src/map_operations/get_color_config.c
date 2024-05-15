@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 10:09:04 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/10 15:14:11 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/15 14:48:07 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static size_t	get_array_size(char **arr)
 	return (i);
 }
 
-static bool	validate_values(char **strs, int *nums, t_assets *assets, char *id)
+static bool	validate_values(char **strs, t_assets *assets, char *id)
 {
 	size_t	i;
 	int		*asset;
@@ -46,13 +46,15 @@ static bool	validate_values(char **strs, int *nums, t_assets *assets, char *id)
 		asset = assets->floor;
 	else
 		asset = assets->ceiling;
+	if (convert_rgb(asset, strs) == false)
+		return (false);
+	i = 0;
 	while (i < 3)
 	{
 		if (ft_strlen(strs[i]) > 3)
 			return (error_msg("Invalid RGB values"));
-		if (nums[i] < 0 || nums[i] > 255)
+		if (asset[i] < 0 || asset[i] > 255)
 			return (error_msg("Invalid RGB values"));
-		asset[i] = nums[i];
 		i++;
 	}
 	return (true);
@@ -62,9 +64,10 @@ bool	copy_rgb_values(char *trimmed_info, t_assets *assets, char *id)
 {
 	char	**num_strs;
 	size_t	i;
-	int		nums[3];
 	int		return_value;
 
+	if (validate_trimmed_rgb_info(trimmed_info) == false)
+		return (error_msg("Invalid RGB configuration"));
 	return_value = -1;
 	num_strs = ft_split(trimmed_info, ',');
 	free(trimmed_info);
@@ -73,16 +76,39 @@ bool	copy_rgb_values(char *trimmed_info, t_assets *assets, char *id)
 	if (get_array_size(num_strs) != 3)
 	{
 		free_2d_array(num_strs);
-		return (error_msg("Malloc failure"));
+		return (error_msg("Invalid RGB configuration"));
 	}
 	i = 0;
-	while (num_strs[i] != NULL)
-	{
-		nums[i] = ft_atoi(num_strs[i]);
-		i++;
-	}
-	if (validate_values(num_strs, nums, assets, id) == true)
+	return_value = false;
+	if (validate_values(num_strs, assets, id) == true)
 		return_value = true;
 	free_2d_array(num_strs);
 	return (return_value);
+}
+
+bool	validate_trimmed_rgb_info(char *rgb)
+{
+	bool	result;
+	size_t	comma_count;
+	size_t	i;
+
+	comma_count = 0;
+	i = 0;
+	result = true;
+	while (rgb[i] != '\0')
+	{
+		if (rgb[i] == ',')
+			comma_count++;
+		if (ft_isdigit(rgb[i]) == false && rgb[i] != ',')
+		{
+			result = false;
+			break ;
+		}
+		i++;
+	}
+	if (comma_count > 2)
+		result = false;
+	if (result == false)
+		free(rgb);
+	return (result);
 }

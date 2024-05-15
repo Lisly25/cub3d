@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/15 14:20:46 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:36:46 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ void			validate_texture_info_format(t_vector *map);
 //map_operations/get_color_config.c
 bool			copy_rgb_values(char *color_info, \
 				t_assets *assets, char *id);
+bool			validate_trimmed_rgb_info(char *rgb);
 
 //map_operations/clean_up_map.c
 bool			clean_up_and_validate_map(t_vector *map);
@@ -155,6 +156,9 @@ size_t			count_chars(t_vector *map, char c);
 
 //map_operations/validate_doors_bonus.c
 bool		validate_doors(t_vector *map);
+
+//map_operations/convert_rgb_bonus.c
+int			convert_rgb(int *asset, char **strs);
 
 //init.c
 t_data		*init_data(t_vector *map, t_assets *assets);

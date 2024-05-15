@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:13:25 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 09:58:51 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/15 13:42:22 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static int	open_map(char *filename)
 		msg_and_exit("Invalid filename");
 	file_extension = filename + (len - 4);
 	if (ft_strncmp(file_extension, ".cub", 4) != 0)
+		msg_and_exit("Invalid map - must have .cub extension");
+	if (ft_strncmp((filename + (len - 5)), "/.cub", 5) == 0)
 		msg_and_exit("Invalid map - must have .cub extension");
 	map_fd = open(filename, O_DIRECTORY);
 	if (map_fd != -1)
