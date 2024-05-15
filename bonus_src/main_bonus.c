@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:47:28 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/15 15:33:40 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/15 15:37:44 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,5 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(data->window, &mouse_hook, data);
 	mlx_loop_hook(data->window, &play_door_animation, data);
 	mlx_loop(data->window);
-	mlx_terminate(data->window);
-	free_vector(map);
-	clean_up_textures(assets);
-	free_assets_struct(assets);
-	free(data->ray);
-	free(data);
+	ft_exit(NULL, data, 0);
 }
