@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/15 09:43:47 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/15 14:20:46 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,18 +201,19 @@ void			check_for_win(t_data *data);
 //minimap.c
 void			display_minimap(t_data *data);
 void			clear_minimap(t_data *data);
+void			mm_loop(void *param);
 
 //mouse_hook.c
-void		mouse_hook(void *param);
+void			mouse_hook(void *param);
 
 //door_mechanism/door_open.c
 void		    save_targeted_x_and_y(t_data *data);
 void		    open_door(t_data *data);
-useconds_t  get_elapsed_time(t_data *data);
+useconds_t  	get_elapsed_time(t_data *data);
 void		    play_door_animation(void *param);
 
 //door_mechanism/door_open_utils.c
-void		init_door_flicker(t_data *data);
+void			init_door_flicker(t_data *data);
 
 //sprites
 void			init_staff(t_data *data);

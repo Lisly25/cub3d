@@ -106,9 +106,9 @@ tidymake:
 					@make all
 					@make clean
 
-bonus:			.bonus
+bonus:			makelibft .bonus
 
-.bonus:			makelibft $(BONUS_OBJS) $(LIBFT) $(BONUS_HEADER) $(LIBFT_H) $(MLX)
+.bonus:			$(BONUS_OBJS) $(LIBFT) $(BONUS_HEADER) $(LIBFT_H) $(MLX)
 					@$(CC) $(BONUS_OBJS) $(MLX) $(LIBFT) -ldl -pthread -lm -L$(GLFW_DIR) -lglfw -I $(MLX_HEADER) -o $(BONUS_NAME)
 					@echo "⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂⚂"
 					@echo "⚂  bonus compiled !  ⚂"

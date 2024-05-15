@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_utils_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 09:33:03 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/14 11:27:49 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/15 13:52:35 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	set_start_position(t_data *data, t_vector *map)
 		{
 			if (ft_strchr("NSEW", map->text[y][x]) != NULL)
 			{
-				data->pos_x = (double) x;
-				data->pos_y = (double) y;
+				data->pos_x = (double) x + 0.5 - (PLAYER_SIZE / 2);
+				data->pos_y = (double) y + 0.5 - (PLAYER_SIZE / 2);
 				set_start_orientation(data, map->text[y][x]);
 				return ;
 			}
