@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 11:24:31 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/15 15:00:23 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/15 15:35:08 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static void	flicker_door(t_data *data, char mode, bool reset_map)
 	static bool	map_done;
 	static bool	disappeared;
 
-	printf("flickering: %c\n", mode);
 	data->map->text[data->open_door_y][data->open_door_x] = mode;
 	draw_walls(data);
 	if (mode == '0' && !map_done && reset_map == true)
@@ -79,7 +78,7 @@ void	play_door_animation(void *param)
 	if ((int)data->pos_x == data->open_door_x && \
 	(int)data->pos_y == data->open_door_y)
 	{
-		printf("GAME OVER - YOU GOT STUCK IN A RE-MATERIALIZING WALL\n");
+		ft_printf("GAME OVER - YOU GOT STUCK IN A RE-MATERIALIZING WALL\n");
 		mlx_close_window(data->window);
 	}
 	flicker_door(data, 'D', true);
