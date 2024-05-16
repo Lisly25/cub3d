@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:15:32 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/15 09:32:47 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/16 09:33:54 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static bool	validate_middle_line(char *line)
 		while (line[i] == ' ')
 			i++;
 		if (line[i] != '1')
-			return (error_msg("Map must be surrounded by walls(1)"));
+			return (error_msg("Map border configuration invalid"));
 		while (line[i] != ' ' && line[i] != '\n')
 		{
 			if (ft_strchr("NESW10DP", line[i]) == NULL)
