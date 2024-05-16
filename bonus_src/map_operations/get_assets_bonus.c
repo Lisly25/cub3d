@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_assets_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:46:21 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/15 14:44:57 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/16 11:12:05 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,13 @@ t_assets	*get_assets(t_vector *map)
 	assets->south_file = NULL;
 	assets->door_file = NULL;
 	assets->portal_file = NULL;
+	assets->north = NULL;
+	assets->south = NULL;
+	assets->east = NULL;
+	assets->west = NULL;
+	assets->door = NULL;
+	assets->door_flicker = NULL;
+	assets->portal = NULL;
 	get_texture_info(map, assets);
 	return (assets);
 }

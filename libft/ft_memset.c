@@ -6,13 +6,11 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:44:07 by skorbai           #+#    #+#             */
-/*   Updated: 2023/10/31 11:46:03 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/16 11:28:48 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
-
 
 void	*ft_memset(void *b, int c, size_t len)
 {

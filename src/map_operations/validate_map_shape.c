@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 14:29:36 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/10 15:26:35 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/16 11:14:52 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,21 @@ static bool	validate_start_orientation(t_vector *map)
 
 bool	check_around_for_char(t_vector *map, char c, size_t x, size_t y)
 {
-	if ((y < map->used_nodes - 1) && (map->text[y + 1][x] == c))
+	if ((y >= map->used_nodes - 1) || ft_strlen(map->text[y + 1]) <= (x + 1))
 		return (true);
-	if ((x < (ft_strlen(map->text[y]) - 1)) && (map->text[y][x + 1] == c))
+	if (map->text[y + 1][x] == c)
 		return (true);
-	if ((y != 0) && (map->text[y - 1][x] == c))
+	if (x >= (ft_strlen(map->text[y]) - 1))
 		return (true);
-	if ((x != 0) && (map->text[y][x - 1] == c))
+	if (map->text[y][x + 1] == c)
+		return (true);
+	if (y == 0)
+		return (true);
+	if (map->text[y - 1][x] == c || ft_strlen(map->text[y - 1]) <= (x + 1))
+		return (true);
+	if (x == 0)
+		return (true);
+	if (map->text[y][x - 1] == c)
 		return (true);
 	return (false);
 }
