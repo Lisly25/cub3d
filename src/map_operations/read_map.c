@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:13:25 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/16 10:36:40 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/16 12:09:12 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,23 @@ bool	check_map_dimensions(t_vector *map)
 	return (true);
 }
 
+static void	check_file_height(t_vector *map, char *map_line, int fd)
+{
+	if (map->max_nodes >= 500)
+	{
+		free(map_line);
+		free_vector(map);
+		close(fd);
+		msg_and_exit("Config file too large");
+	}
+}
+
+static void	handle_vector_create_error(int map_fd)
+{
+	close(map_fd);
+	msg_and_exit("Malloc failure");
+}
+
 t_vector	*read_map(char **argv)
 {
 	int			map_fd;
@@ -72,15 +89,17 @@ t_vector	*read_map(char **argv)
 		msg_and_exit("failed to open map");
 	map = vector_new(1);
 	if (map == NULL)
-		msg_and_exit("Malloc failure");
+		handle_vector_create_error(map_fd);
 	while (1)
 	{
 		map_line = get_next_line(map_fd);
 		if (map_line == NULL)
 			break ;
+		check_file_height(map, map_line, map_fd);
 		if (vector_add_back(map, map_line) == MALLOC_ERROR)
 		{
 			free_vector(map);
+			close(map_fd);
 			msg_and_exit("Malloc failure");
 		}
 	}
