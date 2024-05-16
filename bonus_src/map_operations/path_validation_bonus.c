@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:03:05 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/13 12:51:27 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/16 10:41:32 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int	check_if_all_map_is_accessible(t_vector *map)
 		result = true;
 	if (result == true && count_chars(map_cpy, 'D') == door_count)
 		result = error_msg("Map has no accessible doors");
-	if (result == true && count_chars(map_cpy, 'P') != 0)
+	if (count_chars(map_cpy, 'P') != 0)
 	{
 		error_msg("Invalid map - exit can't be reached");
 		result = 3;
