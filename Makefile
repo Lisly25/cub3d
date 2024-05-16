@@ -101,6 +101,7 @@ fclean:			clean
 					@rm -f $(NAME)
 					@rm -f $(BONUS_NAME)
 					@rm -rf mlx/build
+					@make clean -C ./$(LIBFT_DIR)
 
 re:				fclean all
 
