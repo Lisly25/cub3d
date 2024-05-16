@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 13:55:49 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/15 15:29:04 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/16 10:25:50 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ bool		wall_collision(t_data *data, double new_pos_X, \
 
 //map_operations/read_map.c
 t_vector	*read_map(char **argv);
+bool		check_map_dimensions(t_vector *map);
 
 //map_operations/get_assets.c
 char		*trim_identifier(char *config_line, \
