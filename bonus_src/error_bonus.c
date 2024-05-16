@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:15:33 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/15 15:37:14 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/16 11:14:56 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ void	ft_exit(char *msg, t_data *data, int code)
 	free_vector(data->map);
 	clean_up_textures(data->assets);
 	free_assets_struct(data->assets);
-	free(data->ray);
+	if (data->ray != NULL)
+		free(data->ray);
 	mlx_close_window(data->window);
 	mlx_terminate(data->window);
 	free(data);

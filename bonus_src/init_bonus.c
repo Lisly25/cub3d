@@ -6,7 +6,7 @@
 /*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 10:58:44 by fshields          #+#    #+#             */
-/*   Updated: 2024/05/15 15:47:34 by fshields         ###   ########.fr       */
+/*   Updated: 2024/05/16 11:19:25 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,11 @@ t_data	*init_data(t_vector *map, t_assets *assets)
 
 	data = (t_data *) malloc(sizeof(t_data));
 	if (!data)
+		map_validation_error("Malloc failure", map, assets);
+	ray_data = (t_ray *)malloc(sizeof(t_ray));
+	if (ray_data == NULL)
 		ft_exit("Malloc failure", data, 1);
+	data->ray = ray_data;
 	data->window = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "cub3d", false);
 	if (!(data->window))
 		ft_exit("Failed to init window", data, 1);
@@ -103,10 +107,6 @@ t_data	*init_data(t_vector *map, t_assets *assets)
 		ft_exit(NULL, data, 1);
 	if (init_image(data) == false)
 		ft_exit("Failed to create image", data, 1);
-	ray_data = (t_ray *)malloc(sizeof(t_ray));
-	if (ray_data == NULL)
-		ft_exit("Malloc failure", data, 1);
-	data->ray = ray_data;
 	init_door_flicker(data);
 	return (data);
 }
