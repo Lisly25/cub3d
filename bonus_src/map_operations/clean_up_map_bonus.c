@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_up_map_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:15:32 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/16 10:22:05 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/16 10:47:36 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ bool	clean_up_and_validate_map(t_vector *map)
 	if (trim_empty_lines(map) == -1)
 		return (false);
 	if (check_map_dimensions(map) == false)
-		return (false);	
+		return (false);
 	if (validate_top_line(map) == false)
 		return (false);
 	while (i < (map->used_nodes - 1))
