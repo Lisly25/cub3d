@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 14:13:25 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/15 13:42:22 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/16 09:36:33 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	check_map_dimensions(t_vector *map, char *map_line)
 	size_t	i;
 
 	i = 0;
-	if (map->used_nodes >= 999)
+	if (map->used_nodes >= 65)
 	{
 		free_vector(map);
 		free(map_line);
@@ -52,7 +52,7 @@ static void	check_map_dimensions(t_vector *map, char *map_line)
 	while (map_line[i] != '\0')
 	{
 		i++;
-		if (i == 1000)
+		if (i == 65)
 		{
 			free_vector(map);
 			free(map_line);
