@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_messages_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fshields <fshields@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:18:43 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/15 15:31:52 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/16 10:35:19 by fshields         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	print_start_message(void)
 {
+	printf("\n");
+	printf("⚂⚂⚂\n");
+	printf("\n");
 	printf("You are a young wizard. In the course of your arcane studies\n");
 	printf("you accidentally teleported yourself to another dimension!\n");
 	printf("Can you find your way out of the twisted world of cub3D?\n\n");
@@ -24,4 +27,7 @@ void	print_start_message(void)
 	printf("to blink out of existance.\n");
 	printf("But beware! This effect is not permanent!\n\n");
 	printf("GOOD LUCK!\n");
+	printf("\n");
+	printf("⚂⚂⚂\n");
+	printf("\n");
 }
