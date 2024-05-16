@@ -6,7 +6,7 @@
 /*   By: skorbai <skorbai@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:15:32 by skorbai           #+#    #+#             */
-/*   Updated: 2024/05/10 14:25:14 by skorbai          ###   ########.fr       */
+/*   Updated: 2024/05/16 10:37:06 by skorbai          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ bool	clean_up_and_validate_map(t_vector *map)
 
 	i = 0;
 	if (trim_empty_lines(map) == -1)
+		return (false);
+	if (check_map_dimensions(map) == false)
 		return (false);
 	if (validate_top_line(map) == false)
 		return (false);
