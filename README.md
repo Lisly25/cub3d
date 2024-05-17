@@ -4,7 +4,7 @@ Cub3D is a game emulating the style of Wolfenstein 3D, fully written in C. It is
 
 ## **Overview**
 
-Cub3D lets the player explore a maze, which is displayed at a dynamically-changing, 3D-adjacent perspective. The map data - the layout and the textures - are read from a configurable file upon program launch. Some bonus features added on top of the basic project's requirements that we have added include:
+Cub3D lets the player explore a maze, which is displayed at a dynamically-changing, 3D-adjacent perspective. The map data - the layout and the textures - are read from a configurable file upon program launch. Some bonus features added on top of the basic project's requirements that we have implemented include:
 
 * wall collision
 * minimap
@@ -157,7 +157,7 @@ Example of a valid map layout:
 111111\
 1P0DN1\
 100101\
-111111\
+111111
 
 ---
 
