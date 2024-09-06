@@ -16,9 +16,7 @@ char	*trim_identifier(char *config_line, unsigned int id_len)
 {
 	char	*temp;
 	char	*trimmed;
-	size_t	len;
 
-	len = ft_strlen(config_line);
 	temp = ft_substr(config_line, id_len, (ft_strlen(config_line) - id_len));
 	free(config_line);
 	if (temp == NULL)

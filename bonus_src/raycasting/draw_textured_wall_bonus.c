@@ -57,11 +57,9 @@ static mlx_texture_t	*select_texture(t_data *data)
 {
 	t_assets	*assets;
 	t_ray		*ray;
-	char		**map;
 
 	assets = data->assets;
 	ray = data->ray;
-	map = data->map->text;
 	if (ray->tile_type == 'D')
 		return (assets->door);
 	if (ray->tile_type == 'd')

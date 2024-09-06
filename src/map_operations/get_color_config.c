@@ -63,7 +63,6 @@ static bool	validate_values(char **strs, t_assets *assets, char *id)
 bool	copy_rgb_values(char *trimmed_info, t_assets *assets, char *id)
 {
 	char	**num_strs;
-	size_t	i;
 	int		return_value;
 
 	if (validate_trimmed_rgb_info(trimmed_info) == false)
@@ -78,7 +77,6 @@ bool	copy_rgb_values(char *trimmed_info, t_assets *assets, char *id)
 		free_2d_array(num_strs);
 		return (error_msg("Invalid RGB configuration"));
 	}
-	i = 0;
 	return_value = false;
 	if (validate_values(num_strs, assets, id) == true)
 		return_value = true;
